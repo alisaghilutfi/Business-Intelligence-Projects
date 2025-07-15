@@ -76,13 +76,13 @@ The Power BI solution includes three comprehensive reports:
 - Hospital-to-hospital length of stay benchmarking
 - State average comparisons and outlier identification
 - Trend analysis and distribution visualizations
-![LOS Comparison Overview](images/dashboard_1_LOS_Comparison.png)
+![LOS Comparison Overview](Power-BI_01_Analyzing-Healthcare/images/dashboard_1_LOS_Comparison.png)
 
 ### Cost Comparison Dashboard
 - Cost per discharge analysis across facilities
 - Cost efficiency benchmarking against state averages
 - Financial performance outlier detection
-![Cost Comparison Overview](images/dashboard_2_Cost_Comparison.png)
+![Cost Comparison Overview](Power-BI_01_Analyzing-Healthcare/images/dashboard_2_Cost_Comparison.png)
 
 ### Hospital Profile Dashboard
 - Individual hospital deep-dive analysis
@@ -111,6 +111,6 @@ Custom DAX measures created for:
 - % Var Average Cost per Discharge
 - Average Cost per Discharge_ALL
 - Title Selected Facility
-![Calculated Measures Overview](images/Calculated_Measures.png)
+![Calculated Measures Overview](Power-BI_01_Analyzing-Healthcare/images/Calculated_Measures.png)
 
 
