@@ -91,7 +91,7 @@ The Power BI solution includes three comprehensive reports:
 - Comprehensive facility performance metrics
 - Root cause analysis for cost and LOS variations
 
-![Hospital Profile Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_3_Profile_Hospitals.png)
+![Hospital Profile Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_3_Profile_Hospitals.PNG)
 
 
 ## 🛠️ Technical Implementation
