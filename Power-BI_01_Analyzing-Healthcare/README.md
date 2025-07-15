@@ -84,7 +84,7 @@ The Power BI solution includes three comprehensive reports:
 - Cost efficiency benchmarking against state averages
 - Financial performance outlier detection
 
-![Cost Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_2_Cost_Comparison.png)
+![Cost Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_2_Cost_Comparison.PNG)
 
 ### Hospital Profile Dashboard
 - Individual hospital deep-dive analysis
