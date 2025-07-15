@@ -3,7 +3,7 @@
 
 
 ## 📊 Project Overview
-This Power BI project analyzes hospital efficiency metrics using real-world healthcare data to identify optimization opportunities for a fictional consulting company, HealthStat. The analysis focuses on elective hip replacement surgery patients across New York State hospitals, examining factors that impact patient length of stay (LOS) and treatment costs.
+This Power BI project analyzes hospital efficiency metrics using real-world healthcare data to identify optimization opportunities. The analysis focuses on elective hip replacement surgery patients across New York State hospitals, examining factors that impact patient length of stay (LOS) and treatment costs.
 
 
 ## 🎯 Business Objectives
@@ -104,16 +104,16 @@ The Power BI solution includes three comprehensive reports:
 ### Calculated Measures
 Custom DAX measures created for:
 
-- Total surgeons
-- Total Hospitals
-- Total Discharges
-- Average LOS Days
-- % Var Average LOS Days 
-- Average LOS Days_ALL
-- Average Cost per Discharge
 - % Var Average Cost per Discharge
+- % Var Average LOS Days 
+- Average Cost per Discharge
 - Average Cost per Discharge_ALL
+- Average LOS Days
+- Average LOS Days_ALL
 - Title Selected Facility
+- Total Discharges
+- Total Hospitals
+- Total surgeons
 
 ![Calculated Measures Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/Calculated_Measures.PNG)
 
