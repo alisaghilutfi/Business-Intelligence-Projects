@@ -77,7 +77,7 @@ The Power BI solution includes three comprehensive reports:
 - State average comparisons and outlier identification
 - Trend analysis and distribution visualizations
 
-![LOS Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_1_LOS_Comparison.png)
+![LOS Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_1_LOS_Comparison.PNG)
 
 ### Cost Comparison Dashboard
 - Cost per discharge analysis across facilities
