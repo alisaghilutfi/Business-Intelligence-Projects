@@ -111,6 +111,6 @@ Custom DAX measures created for:
 - % Var Average Cost per Discharge
 - Average Cost per Discharge_ALL
 - Title Selected Facility
-![Calculated Measures Overview](Power-BI_01_Analyzing-Healthcare/images/Calculated_Measures.png)
+![Calculated Measures Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/Calculated_Measures.PNG)
 
 
