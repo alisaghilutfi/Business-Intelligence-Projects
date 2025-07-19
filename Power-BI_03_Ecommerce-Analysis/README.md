@@ -58,6 +58,8 @@ This Power BI project delivers comprehensive ecommerce performance analysis for 
 - Shipping costs represent a significant operational expense at $385.15K
 - Opportunities exist for profit optimization through strategic shipping cost management
 
+![Executive_Summary](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_01_Executive_Summary.PNG)
+
 ### Shipping Cost Optimization
 - Quantity-based shipping discounts can reduce costs significantly
 - Shipment consolidation strategies show measurable impact on bottom line
