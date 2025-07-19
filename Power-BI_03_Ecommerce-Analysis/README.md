@@ -68,6 +68,8 @@ This Power BI project delivers comprehensive ecommerce performance analysis for 
 ### Schema: 
 **Snowflake** schema with Sales as the central fact table connected to Product, Customer, and State Mapping dimension tables.
 
+![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/data_model.PNG)
+
 ## 🧮 Key Performance Indicators (KPIs)
 | Metric | Value/Description |
 |--------|------------------|
