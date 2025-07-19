@@ -32,38 +32,9 @@ This Power BI project delivers comprehensive ecommerce performance analysis for 
 ## 📋 Dataset Information
 ### Data Structure
 
-### Fact Table:
-**Sales**
-- Transaction Date: Date of purchase
-- Customer ID: Customer identifier
-- Description: Product description
-- Stock Code: Product code
-- Invoice No: Single checkout identifier (multiple products per invoice)
-- Quantity: Quantity of product purchased
-- Sales: Total amount of product in single checkout
-- Unit Price: Unit price of product
+### Fact and Dimensional Tables:
 
-### Dimension Tables:
-**Product Table**
-- Stock Code: Product code
-- Weight: Weight of single unit
-- Landed Cost: Manufacturer cost + freight
-- Shipping_Cost_1000: Average cost of shipping 1000 miles to customers
-- Description: Most recent product description
-- Category: Product category
-
-**Customer Table**
-- Customer ID: Customer unique identifier
-- Order City: City
-- Order Postal: Postal code
-- Order State: State
-- Latitude: Latitude of customer location
-- Longitude: Longitude of customer location
-
-**State Mapping Table**
-- Order State: State code, description and variations
-- State: Standardized state code
-- Region: Region name
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/tables.PNG)
 
 ### Schema: 
 **Snowflake** schema with Sales as the central fact table connected to Product, Customer, and State Mapping dimension tables.
