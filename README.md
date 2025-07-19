@@ -1,6 +1,6 @@
 # 📊 Power BI Projects Portfolio
 
-Welcome to my Power BI Projects Portfolio! This repository showcases a collection of real-world Power BI projects developed across diverse domains, including healthcare, sales, e-commerce, and more. Each project demonstrates my expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
+Welcome to my Power BI Projects Portfolio! This repository showcases a collection of real-world Power BI projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
 
 ---
 
@@ -39,5 +39,3 @@ This Power BI project delivers a comprehensive sales and market share analysis f
 This Power BI project delivers comprehensive e-commerce performance analysis for Whiskique, a fictitious online pet supply store. Utilizing advanced data modeling, market basket analysis, and dynamic visualizations, this case study provides actionable insights to drive sales growth and reduce operational costs. The solution empowers business stakeholders with data-driven strategies for cross-selling, upselling, and shipping cost optimization.
 
 ---
-
-**Thank you for visiting my Power BI Projects Portfolio!**
