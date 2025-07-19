@@ -58,8 +58,6 @@ This Power BI project delivers comprehensive ecommerce performance analysis for 
 - Shipping costs represent a significant operational expense at $385.15K
 - Opportunities exist for profit optimization through strategic shipping cost management
 
-![Executive_Summary](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_01_Executive_Summary.PNG)
-
 ### Shipping Cost Optimization
 - Quantity-based shipping discounts can reduce costs significantly
 - Shipment consolidation strategies show measurable impact on bottom line
@@ -80,6 +78,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Total Sales by State
 - Key performance metrics dashboard
 
+![Executive_Summary](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_01_Executive_Summary.PNG)
+
 ### Shipping Metrics
 **Focus:** Cost reduction strategies and optimization
 - Impact of Shipped Quantity on Shipping Cost by Product
@@ -89,6 +89,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - What-if analysis for shipping cost scenarios
 - Baseline vs. optimized shipping cost comparisons
 
+![Shipping_Metrics](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_02_Shipping_Metrics.PNG)
+
 ### Market Basket Analysis
 **Focus:** Growth opportunities and product relationships
 - Product correlation matrix
@@ -96,6 +98,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Total Sales and Profit % by Description
 - Purchased Count analysis by product
 - Product affinity insights for marketing strategies
+
+![Market_Basket_Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_03_Market_Basket_Analysis.PNG)
 
 ## 🛠️ Technical Implementation
 ### Tools & Technologies
