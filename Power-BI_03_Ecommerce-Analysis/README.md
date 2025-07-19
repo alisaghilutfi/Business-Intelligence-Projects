@@ -32,41 +32,14 @@ This Power BI project delivers comprehensive ecommerce performance analysis for 
 ## 📋 Dataset Information
 ### Data Structure
 
-### Fact Table:
-**Sales**
-- Transaction Date: Date of purchase
-- Customer ID: Customer identifier
-- Description: Product description
-- Stock Code: Product code
-- Invoice No: Single checkout identifier (multiple products per invoice)
-- Quantity: Quantity of product purchased
-- Sales: Total amount of product in single checkout
-- Unit Price: Unit price of product
+### Fact and Dimensional Tables:
 
-### Dimension Tables:
-**Product Table**
-- Stock Code: Product code
-- Weight: Weight of single unit
-- Landed Cost: Manufacturer cost + freight
-- Shipping_Cost_1000: Average cost of shipping 1000 miles to customers
-- Description: Most recent product description
-- Category: Product category
-
-**Customer Table**
-- Customer ID: Customer unique identifier
-- Order City: City
-- Order Postal: Postal code
-- Order State: State
-- Latitude: Latitude of customer location
-- Longitude: Longitude of customer location
-
-**State Mapping Table**
-- Order State: State code, description and variations
-- State: Standardized state code
-- Region: Region name
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/tables.PNG)
 
 ### Schema: 
 **Snowflake** schema with Sales as the central fact table connected to Product, Customer, and State Mapping dimension tables.
+
+![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/data_model.PNG)
 
 ## 🧮 Key Performance Indicators (KPIs)
 | Metric | Value/Description |
@@ -105,6 +78,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Total Sales by State
 - Key performance metrics dashboard
 
+![Executive_Summary](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_01_Executive_Summary.PNG)
+
 ### Shipping Metrics
 **Focus:** Cost reduction strategies and optimization
 - Impact of Shipped Quantity on Shipping Cost by Product
@@ -114,6 +89,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - What-if analysis for shipping cost scenarios
 - Baseline vs. optimized shipping cost comparisons
 
+![Shipping_Metrics](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_02_Shipping_Metrics.PNG)
+
 ### Market Basket Analysis
 **Focus:** Growth opportunities and product relationships
 - Product correlation matrix
@@ -121,6 +98,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Total Sales and Profit % by Description
 - Purchased Count analysis by product
 - Product affinity insights for marketing strategies
+
+![Market_Basket_Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_03_Market_Basket_Analysis.PNG)
 
 ## 🛠️ Technical Implementation
 ### Tools & Technologies
@@ -130,7 +109,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - **Analytics:** Market basket analysis with correlation coefficients
 - **Features:** What-if parameters, dynamic shipping cost modeling
 
-### Key Calculated Measures
+### Calculated Measures
 ```dax
 Customer LTV (avg) = SUM(Sales[Sales]) / [Number of Customers]
 
@@ -156,26 +135,3 @@ Shipping (What-if) = SUMX(Sales,
 
 Shipping (Difference) = [Shipping (Baseline)] - [Shipping (What-if)]
 ```
-
-## 🎯 Business Value & Recommendations
-### Cost Optimization Strategies
-- **Shipping Consolidation:** Implement quantity-based shipping discounts
-- **Regional Analysis:** Optimize shipping routes and partnerships by state
-- **Package Optimization:** Consider dimensions and weight for cost reduction
-
-### Revenue Growth Opportunities
-- **Cross-selling:** Leverage market basket analysis for product bundling
-- **Upselling:** Promote higher-value alternatives based on purchase patterns
-- **Customer Segmentation:** Target high-LTV customers with personalized offers
-
-### Operational Improvements
-- **Inventory Management:** Align stock levels with demand patterns
-- **Marketing Strategy:** Focus on high-profit categories and regions
-- **Customer Experience:** Optimize shipping options for customer satisfaction
-
-## 🚀 Future Enhancements
-- Real-time data integration for live dashboard updates
-- Advanced predictive analytics for demand forecasting
-- Customer segmentation analysis with RFM modeling
-- Automated alerting for performance threshold monitoring
-- Integration with inventory management systems
