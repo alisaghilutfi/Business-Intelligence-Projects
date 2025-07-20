@@ -32,7 +32,7 @@ Each project is contained within its own dedicated folder. To explore a project:
 ### 1. 🏥 Power-BI_01_Analyzing-Healthcare
 This Power BI project analyzes hospital efficiency metrics using real-world healthcare data to identify optimization opportunities. The analysis focuses on elective hip replacement surgery patients across New York State hospitals, examining factors that impact patient length of stay (LOS) and treatment costs. The insights gained can support healthcare providers in improving patient care pathways and operational efficiency.
 
-### 2.  конкуренция 📈 Power-BI_02_Competitor-Sales-Analysis
+### 2. 📈 Power-BI_02_Competitor-Sales-Analysis
 This Power BI project delivers a comprehensive sales and market share analysis for competing manufacturers across multiple regions. Through a structured ETL process, robust data modeling, and interactive visualization, this case study simulates a real-world business scenario. The report empowers business users with actionable insights into product trends, competitor growth, and market penetration, enabling data-driven strategic decisions.
 
 ### 3. 🛍️ Power-BI_03_Ecommerce-Analysis
