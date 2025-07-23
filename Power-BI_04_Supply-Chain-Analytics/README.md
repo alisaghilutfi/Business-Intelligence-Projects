@@ -30,34 +30,9 @@ This Power BI project delivers comprehensive supply chain analysis for Widgetmak
 ## 📋 Dataset Information
 ### Data Structure
 
-### Fact Table:
-**Quotes**
-- Part_Number: Product identification code
-- Supplier: Name of supplier providing the quote
-- Volume: Minimum production volume for quoted price
-- Unit_Cost: Quoted cost per unit from supplier
-- Non_recurring_expenses: One-time expenses for production setup
-- Quote_ID: Unique identifier for each quote
-- Yield_Rate: Production efficiency rate
+### Fact and Dimensional Tbales:
 
-### Dimension Tables:
-**Internal_Mfg_Resource_Estimates**
-- Part_Number: Product identification code
-- Machine_Model: Manufacturing equipment type
-- Cost_per_Unit: Internal manufacturing cost per unit
-- Unit_Capacity: Production capacity per machine
-- Machine_Fixed_Cost: Cost of acquiring new manufacturing equipment
-- Existing_Capacity: Current available production capacity
-- Machine_Fixed_Overhead_Rate: Fixed costs for equipment operation
-
-**Product_Dimension**
-- Part_Number: Product identification code
-- Part_Name: Product name/description
-- Project: Associated project name
-
-**Yield_Rate**
-- Supplier: Supplier name
-- Yield_Rate: Production efficiency percentage
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/tables.PNG)
 
 ### Schema: 
 **Snowflake** schema with Quotes as the central fact table connected to Internal_Mfg_Resource_Estimates, Product_Dimension, and Yield_Rate dimension tables.
