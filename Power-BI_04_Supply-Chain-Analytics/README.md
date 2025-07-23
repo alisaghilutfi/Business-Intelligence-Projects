@@ -77,6 +77,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier performance comparison across volume ranges
 - Cost structure visualization by supplier
 
+![Supplier Selection](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_01_Supplier_Selection.PNG)
+
 ### Scenario Analysis Dashboard
 **Focus:** Dynamic volume planning and cost optimization
 - Variable volume scenario planning with interactive controls
@@ -84,6 +86,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier cost curves and break-even analysis
 - Dynamic cost modeling with scenario volume parameters
 - Total cost optimization across different volume scenarios
+
+![Scenario Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_02_Scenario_Analysis.PNG)
 
 ### Make versus Buy Dashboard
 **Focus:** Comprehensive decision support system
@@ -93,6 +97,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Cost avoidance quantification
 - Manufacturing resource utilization analysis
 - Equipment investment impact on total costs
+
+![Make versus Buy](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_03_Make_Buy.PNG)
 
 ## 🛠️ Technical Implementation
 ### Tools & Technologies
