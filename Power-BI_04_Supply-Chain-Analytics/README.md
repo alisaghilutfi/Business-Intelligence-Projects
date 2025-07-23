@@ -37,6 +37,8 @@ This Power BI project delivers comprehensive supply chain analysis for Widgetmak
 ### Schema: 
 **Snowflake** schema with Quotes as the central fact table connected to Internal_Mfg_Resource_Estimates, Product_Dimension, and Yield_Rate dimension tables.
 
+![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/data_model.PNG)
+
 ## 🧮 Key Performance Indicators (KPIs)
 | Metric | Description |
 |--------|-------------|
