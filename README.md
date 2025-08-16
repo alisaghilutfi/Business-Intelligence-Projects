@@ -1,6 +1,6 @@
 # 📊 Business Intelligence Projects
 
-Welcome to my Power BI Projects Portfolio! This repository showcases a collection of real-world Power BI projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
+This repository showcases a collection of real-world Power BI projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
 
 ---
 
