@@ -1,6 +1,6 @@
 # 📊 Business Intelligence Projects
 
-This repository showcases a collection of real-world Power BI projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
+This repository showcases a collection of real-world Power BI/Excel/... projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
 
 ---
 
@@ -8,7 +8,7 @@ This repository showcases a collection of real-world Power BI projects developed
 
 Throughout these projects, I've leveraged a comprehensive set of tools and techniques:
 
-* **Data Visualization & Business Intelligence:** Power BI Desktop, Power BI Service
+* **Data Visualization & Business Intelligence:** Power BI Desktop, Power BI Service, Excel
 * **Data Transformation:** Power Query (M Language)
 * **Data Modeling:** Star Schema, Relationship Management, Performance Optimization
 * **Calculations & Logic:** Data Analysis Expressions (DAX)
