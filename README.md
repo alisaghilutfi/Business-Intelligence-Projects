@@ -38,7 +38,11 @@ This Power BI project delivers a comprehensive sales and market share analysis f
 ### 3. 🛍️ Power-BI_03_Ecommerce-Analysis
 This Power BI project delivers comprehensive e-commerce performance analysis for Whiskique, a fictitious online pet supply store. Utilizing advanced data modeling, market basket analysis, and dynamic visualizations, this case study provides actionable insights to drive sales growth and reduce operational costs. The solution empowers business stakeholders with data-driven strategies for cross-selling, upselling, and shipping cost optimization.
 
-### 2. 📈 Power-BI_04_Supply-Chain-Analytics
+### 4. 📈 Power-BI_04_Supply-Chain-Analytics
 This Power BI project delivers comprehensive supply chain analysis for Widgetmakers, Inc, focusing on strategic make-or-buy decision optimization. Through advanced data modeling, cost analysis, and dynamic scenario planning, this case study provides actionable insights to minimize procurement costs and optimize manufacturing decisions. The solution empowers supply chain analysts and procurement teams with data-driven strategies for supplier selection, volume optimization, and capital investment planning.
+
+### 5. 📈 Excel_Customer-Churn-Analysis
+This Excel project analyzes customer churn patterns using real-world telecom data to identify retention opportunities for a fictional telecom company, Databel. The analysis focuses on subscription-based customers, examining factors that impact customer churn rates and developing actionable strategies to reduce customer attrition.
+
 
 ---
