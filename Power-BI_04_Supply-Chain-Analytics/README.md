@@ -30,37 +30,14 @@ This Power BI project delivers comprehensive supply chain analysis for Widgetmak
 ## 📋 Dataset Information
 ### Data Structure
 
-### Fact Table:
-**Quotes**
-- Part_Number: Product identification code
-- Supplier: Name of supplier providing the quote
-- Volume: Minimum production volume for quoted price
-- Unit_Cost: Quoted cost per unit from supplier
-- Non_recurring_expenses: One-time expenses for production setup
-- Quote_ID: Unique identifier for each quote
-- Yield_Rate: Production efficiency rate
+### Fact and Dimensional Tbales:
 
-### Dimension Tables:
-**Internal_Mfg_Resource_Estimates**
-- Part_Number: Product identification code
-- Machine_Model: Manufacturing equipment type
-- Cost_per_Unit: Internal manufacturing cost per unit
-- Unit_Capacity: Production capacity per machine
-- Machine_Fixed_Cost: Cost of acquiring new manufacturing equipment
-- Existing_Capacity: Current available production capacity
-- Machine_Fixed_Overhead_Rate: Fixed costs for equipment operation
-
-**Product_Dimension**
-- Part_Number: Product identification code
-- Part_Name: Product name/description
-- Project: Associated project name
-
-**Yield_Rate**
-- Supplier: Supplier name
-- Yield_Rate: Production efficiency percentage
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/tables.PNG)
 
 ### Schema: 
 **Snowflake** schema with Quotes as the central fact table connected to Internal_Mfg_Resource_Estimates, Product_Dimension, and Yield_Rate dimension tables.
+
+![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/data_model.PNG)
 
 ## 🧮 Key Performance Indicators (KPIs)
 | Metric | Description |
@@ -100,6 +77,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier performance comparison across volume ranges
 - Cost structure visualization by supplier
 
+![Supplier Selection](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_01_Supplier_Selection.PNG)
+
 ### Scenario Analysis Dashboard
 **Focus:** Dynamic volume planning and cost optimization
 - Variable volume scenario planning with interactive controls
@@ -107,6 +86,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier cost curves and break-even analysis
 - Dynamic cost modeling with scenario volume parameters
 - Total cost optimization across different volume scenarios
+
+![Scenario Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_02_Scenario_Analysis.PNG)
 
 ### Make versus Buy Dashboard
 **Focus:** Comprehensive decision support system
@@ -117,6 +98,8 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Manufacturing resource utilization analysis
 - Equipment investment impact on total costs
 
+![Make versus Buy](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_03_Make_Buy.PNG)
+
 ## 🛠️ Technical Implementation
 ### Tools & Technologies
 - **Platform:** Microsoft Power BI Desktop
@@ -125,7 +108,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - **Analytics:** Dynamic scenario planning with what-if parameters
 - **Features:** Interactive volume sliders, cost optimization algorithms
 
-### Key Calculated Measures
+### Calculated Measures
 ```dax
 Extended Cost = Quotes[Unit_Cost] * Quotes[Volume]
 
@@ -156,36 +139,3 @@ Capital Investment Required (Make) = MINX(
     ROUNDUP([Additional_Unit_Capacity_Required]/MIN(Internal_Mfg_Resource_Estimates[Unit_Capacity]),0) * 
     Internal_Mfg_Resource_Estimates[Machine_Fixed_Cost])
 ```
-
-## 🎯 Business Value & Recommendations
-### Cost Optimization Strategies
-- **Volume Optimization:** Leverage economies of scale for high-volume requirements
-- **Supplier Diversification:** Maintain multiple supplier relationships for risk mitigation
-- **Capacity Planning:** Align internal manufacturing capacity with demand forecasts
-
-### Strategic Decision Making
-- **Make vs Buy Framework:** Implement systematic decision criteria based on volume thresholds
-- **Capital Investment Planning:** Evaluate long-term ROI of manufacturing equipment investments
-- **Supplier Relationship Management:** Develop strategic partnerships with lowest-cost providers
-
-### Operational Improvements
-- **Scenario Planning:** Use dynamic modeling for strategic planning and budgeting
-- **Cost Transparency:** Implement full cost visibility across procurement decisions
-- **Risk Management:** Consider supplier reliability and capacity constraints in decision making
-
-## 🚀 Future Enhancements
-- Integration with ERP systems for real-time cost data
-- Advanced predictive analytics for demand forecasting
-- Supplier risk assessment and scoring models
-- Automated alerting for cost threshold breaches
-- Integration with procurement systems for automated decision support
-- Multi-currency support for global supplier analysis
-- Lead time optimization and delivery performance metrics
-- Quality metrics integration for comprehensive supplier evaluation
-
-## 📈 Expected Business Impact
-- **Cost Reduction:** 15-25% reduction in procurement costs through optimized decision making
-- **Process Efficiency:** 50% reduction in analysis time through automated scenario planning
-- **Strategic Alignment:** Improved alignment between procurement and manufacturing strategies
-- **Risk Mitigation:** Enhanced supplier diversification and capacity planning
-- **Decision Quality:** Data-driven decisions replacing subjective procurement choices
