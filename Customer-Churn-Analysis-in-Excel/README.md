@@ -1,6 +1,5 @@
 
-# Customer Churn Analysis in Excel
-## Telecom Customer Retention Insights for Databel
+# Telecom Customer Retention Insights for Databel
 
 
 ## 📊 Project Overview
