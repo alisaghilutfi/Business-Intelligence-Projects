@@ -75,7 +75,7 @@ The Power BI solution includes three comprehensive reports:
 - Year-over-year growth comparisons
 - Comparison against competitors within product categories
 
-![Competitor Salse Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
+![Competitor Salse Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
 
 ### Advanced Insights (AI-Driven Visuals)
 - Decomposition Tree for revenue drilldowns
