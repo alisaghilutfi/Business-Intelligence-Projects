@@ -97,7 +97,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Manufacturing resource utilization analysis
 - Equipment investment impact on total costs
 
-![Make versus Buy](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_03_Make_Buy.PNG)
+![Make versus Buy](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_03_Make_Buy.PNG)
 
 ## 🛠️ Technical Implementation
 ### Tools & Technologies
