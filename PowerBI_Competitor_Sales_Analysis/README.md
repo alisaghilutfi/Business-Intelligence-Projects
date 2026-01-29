@@ -41,7 +41,7 @@ The analysis empowers business users with actionable insights into product trend
 ### Schema: 
 `Snowflake` schema with Sales as the central fact table connected to all dimension tables.
 
-![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/data-model.PNG)
+![Data Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/data-model.PNG)
 
 
 ## 🧮 Key Performance Indicators (KPIs)
