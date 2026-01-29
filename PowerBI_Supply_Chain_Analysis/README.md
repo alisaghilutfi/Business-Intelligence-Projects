@@ -86,7 +86,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Dynamic cost modeling with scenario volume parameters
 - Total cost optimization across different volume scenarios
 
-![Scenario Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_02_Scenario_Analysis.PNG)
+![Scenario Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_02_Scenario_Analysis.PNG)
 
 ### Make versus Buy Dashboard
 **Focus:** Comprehensive decision support system
