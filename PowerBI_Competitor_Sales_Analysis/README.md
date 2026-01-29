@@ -1,6 +1,5 @@
 
-# Competitor Sales Analysis in Power BI
-## Market & Sales Insights Across Manufacturers and Geographies
+# Market & Sales Insights Across Manufacturers and Geographies
 
 ## 📊 Project Overview
 This Power BI project delivers a comprehensive sales and market share analysis for competing manufacturers across multiple regions. Through a structured ETL process, data modeling, and interactive visualization, this case study simulates a real-world business scenario to help stakeholders understand both internal company performance and how it stacks up against competitors.
