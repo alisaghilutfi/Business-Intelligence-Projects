@@ -76,7 +76,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier performance comparison across volume ranges
 - Cost structure visualization by supplier
 
-![Supplier Selection](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_01_Supplier_Selection.PNG)
+![Supplier Selection](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_01_Supplier_Selection.PNG)
 
 ### Scenario Analysis Dashboard
 **Focus:** Dynamic volume planning and cost optimization
