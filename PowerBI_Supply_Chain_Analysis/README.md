@@ -32,7 +32,7 @@ This Power BI project delivers comprehensive supply chain analysis for Widgetmak
 
 ### Fact and Dimensional Tbales:
 
-![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/tables.PNG)
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/data_model.PNG)
 
 ### Schema: 
 **Snowflake** schema with Quotes as the central fact table connected to Internal_Mfg_Resource_Estimates, Product_Dimension, and Yield_Rate dimension tables.
