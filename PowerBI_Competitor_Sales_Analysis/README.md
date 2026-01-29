@@ -82,7 +82,7 @@ The Power BI solution includes three comprehensive reports:
 - Key Influencers to detect major factors impacting sales
 - Smart Narratives to auto-summarize insights
 
-![AI-Driven Visuals](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/dashboard_02_Advanced-Insights.PNG)
+![AI-Driven Visuals](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_02_Advanced-Insights.PNG)
 
 
 ## 🛠️ Technical Implementation
