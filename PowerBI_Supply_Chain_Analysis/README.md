@@ -1,5 +1,4 @@
-# Supply Chain Analysis in Power BI
-## Make vs Buy Decision Support System
+# Make vs Buy Decision Support System
 
 ## 📊 Project Overview
 This Power BI project delivers comprehensive supply chain analysis for Widgetmakers, Inc, focusing on strategic make-or-buy decision optimization. Through advanced data modeling, cost analysis, and dynamic scenario planning, this case study provides actionable insights to minimize procurement costs and optimize manufacturing decisions. The solution empowers supply chain analysts and procurement teams with data-driven strategies for supplier selection, volume optimization, and capital investment planning.
