@@ -1,5 +1,4 @@
-# Healthcare Data Analysis in Power BI
-## Hospital Efficiency Insights for Elective Hip Replacement Surgery
+# Hospital Efficiency Insights for Elective Hip Replacement Surgery
 
 
 ## 📊 Project Overview
