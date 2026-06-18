@@ -1,0 +1,200 @@
+table _Measures
+	lineageTag: f5947bb5-124e-4a5f-923f-429f51dbdbfe
+
+	measure 'Total Amount' = SUM(Transactions[Amount])
+		displayFolder: Totals
+		lineageTag: f3e6dad0-0824-481b-be3e-3f44f1ee52a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Transactions' = COUNT(Transactions[Transaction Date])
+		formatString: 0
+		displayFolder: Totals
+		lineageTag: 4c083541-2031-4ed9-b87f-d1c4a5d9e91d
+
+	measure 'Average Transaction Value' = AVERAGE(Transactions[Amount])
+		displayFolder: Totals
+		lineageTag: a6d6744d-0f33-49c6-8921-363eebcbf84d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Fees' = SUM(Transactions[Fee Amount])
+		displayFolder: Totals
+		lineageTag: 01ac1a0d-dfbc-4fca-b620-7e9bcf04f320
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Tax' = SUM(Transactions[Tax Amount])
+		displayFolder: Totals
+		lineageTag: f6fa96a6-cd48-4b37-a76b-a0606744da09
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PY Amount' = CALCULATE([Total Amount], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: 0
+		displayFolder: PYs
+		lineageTag: 911acd33-7e7c-4cab-a2fb-96763c5975bb
+
+	measure 'PY Fees' = CALCULATE([Total Fees], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		displayFolder: PYs
+		lineageTag: 609eaaca-5da6-40fd-a859-69300a94bf35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PY Tax' = CALCULATE([Total Tax], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		displayFolder: PYs
+		lineageTag: e570bb66-605c-4192-9ff3-c4ef4819916b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PY Transactions' = CALCULATE([Total Transactions], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: 0
+		displayFolder: PYs
+		lineageTag: 1a426b8f-7f9c-4079-989c-9bedb56cffd8
+
+	measure 'PY Average Transaction Value' = CALCULATE([Average Transaction Value], SAMEPERIODLASTYEAR('Calendar'[Date]))
+		displayFolder: PYs
+		lineageTag: f37332a3-ab20-4be2-807c-60d98977ee50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Amount' = [Total Amount] - [PY Amount]
+		displayFolder: YOYs
+		lineageTag: 277697a7-0519-4716-968d-a61836db6bfa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Fees' = [Total Fees] - [PY Fees]
+		displayFolder: YOYs
+		lineageTag: 87388143-fb00-4cd6-8c31-30790498efdf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Tax' = [Total Tax] - [PY Tax]
+		displayFolder: YOYs
+		lineageTag: e12ae2c0-c1fa-4296-8665-59b7860fd46d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Transactions' = [Total Transactions] - [PY Transactions]
+		formatString: 0
+		displayFolder: YOYs
+		lineageTag: 55b999ac-a3a2-41e2-9cae-0b6009cdf014
+
+	measure 'YOY Average Transaction Value' = [Average Transaction Value] - [PY Average Transaction Value]
+		displayFolder: YOYs
+		lineageTag: 306ec007-85ca-4550-897a-4a59ce5da0e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY% Amount' = DIVIDE([YOY Amount], [PY Amount])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YOY%s
+		lineageTag: c62d7ae8-9e3f-4322-9d94-e396097729a2
+
+	measure 'YOY% Fees' = DIVIDE([YOY Fees], [PY Fees])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YOY%s
+		lineageTag: 408e69de-d57c-4d57-b02e-534dc19ea849
+
+	measure 'YOY% Tax' = DIVIDE([YOY Tax], [PY Tax])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YOY%s
+		lineageTag: a02b1cdc-f39b-41e5-a128-cd7f38496fd2
+
+	measure 'YOY% Transactions' = DIVIDE([YOY Transactions], [PY Transactions])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YOY%s
+		lineageTag: 4608638d-163b-472f-8cd8-87ac2b18c211
+
+	measure 'YOY% Average Transaction Value' = DIVIDE([YOY Average Transaction Value], [PY Average Transaction Value])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: YOY%s
+		lineageTag: b5c4d70a-2406-4b14-a23b-824bc9a9cb27
+
+	measure 'Dynamic Month Chart Title' =
+			
+			SWITCH(
+			    SELECTEDVALUE('_Metrics'[_Metrics Order]),
+			    0, "Total Amount by Month",
+			    1, "Total Fees by Month",
+			    2, "Total Tax by Month",
+			    3, "Total Transactions by Month",
+			    "Financial Metric by Month" -- Fallback text
+			)
+		displayFolder: Dynamic Titles
+		lineageTag: 309b1a7a-b271-47c3-911e-1f768cec3c76
+
+	measure 'Dynamic Transaction Status Chart Title' =
+			
+			SWITCH(
+			    SELECTEDVALUE('_Metrics'[_Metrics Order]),
+			    0, "Total Amount by Transaction Status",
+			    1, "Total Fees by Transaction Status",
+			    2, "Total Tax by Transaction Status",
+			    3, "Total Transactions by Transaction Status",
+			    "Financial Metric by Transaction Status" -- Fallback text
+			)
+		displayFolder: Dynamic Titles
+		lineageTag: f4f4c617-508b-4092-a01c-059b5492ae6c
+
+	measure 'Dynamic Customer Segment Chart Title' =
+			
+			SWITCH(
+			    SELECTEDVALUE('_Metrics'[_Metrics Order]),
+			    0, "Total Amount by Customer Segment",
+			    1, "Total Fees by Customer Segment",
+			    2, "Total Tax by Customer Segment",
+			    3, "Total Transactions by Customer Segment",
+			    "Financial Metric by Customer Segment" -- Fallback text
+			)
+		displayFolder: Dynamic Titles
+		lineageTag: b1c3abd5-7aaf-45f0-952e-d2dd39c7e495
+
+	measure 'Dynamic State Chart Title' =
+			
+			SWITCH(
+			    SELECTEDVALUE('_Metrics'[_Metrics Order]),
+			    0, "Total Amount by State",
+			    1, "Total Fees by State",
+			    2, "Total Tax by State",
+			    3, "Total Transactions by State",
+			    "Financial Metric by State" -- Fallback text
+			)
+		displayFolder: Dynamic Titles
+		lineageTag: ce1cbdd6-c138-411e-bbe3-ee674ae353a9
+
+	measure 'Dynamic Gender Chart Title' =
+			
+			SWITCH(
+			    SELECTEDVALUE('_Metrics'[_Metrics Order]),
+			    0, "Total Amount by Gender",
+			    1, "Total Fees by Gender",
+			    2, "Total Tax by Gender",
+			    3, "Total Transactions by Gender",
+			    "Financial Metric by Gender" -- Fallback text
+			)
+		displayFolder: Dynamic Titles
+		lineageTag: 897fe5b7-ae37-4fc2-963a-dd0c80087175
+
+	measure 'Page Title' = "Transaction Details: " & IF(HASONEVALUE(Customer[Customer Segment]), VALUES(Customer[Customer Segment]), "All Segments")
+		lineageTag: 8d8794e2-e8bb-45af-9d6a-524835f9d782
+
+	measure 'ToolTip Customers' = CALCULATE(DISTINCTCOUNT(Transactions[Customer ID]))
+		formatString: 0
+		lineageTag: 80f601a1-4b4d-4b97-b5b7-0cf5a63b1b1d
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

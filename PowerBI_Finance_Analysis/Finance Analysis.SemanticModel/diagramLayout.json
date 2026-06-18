@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 221
+          },
+          "nodeIndex": "Transactions",
+          "nodeLineageTag": "da26b986-a733-4a9a-995d-39a0fdb18146",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 334,
+            "y": 0
+          },
+          "nodeIndex": "Customer",
+          "nodeLineageTag": "6bc047da-c7bf-45a4-bae8-f7b7716d97be",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 339,
+            "y": 444.5
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "0edf7576-7950-40ab-985b-1f50a56c33f4",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 821,
+            "y": 110.25
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "f5947bb5-124e-4a5f-923f-429f51dbdbfe",
+          "size": {
+            "height": 279,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 825,
+            "y": 413.25
+          },
+          "nodeIndex": "_Metrics",
+          "nodeLineageTag": "70af9431-a468-441b-9cec-e33905013019",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

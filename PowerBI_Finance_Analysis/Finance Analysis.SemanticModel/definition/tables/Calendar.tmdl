@@ -1,0 +1,92 @@
+/// Date table for transaction analysis.
+table Calendar
+	lineageTag: 0edf7576-7950-40ab-985b-1f50a56c33f4
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3d92ec2a-ab7b-4536-9824-40aafb62fa14
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 442c0e04-36d7-4e72-887f-49382c24fb07
+			defaultHierarchy: LocalDateTable_2f9f9b7a-b39b-4cc6-b509-3abada597d51.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ece583c4-8cdd-4102-b3c7-698ac72c69fa
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 96b86748-cdf2-4162-8010-13c22287da88
+		summarizeBy: sum
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 04ff1a21-aeaa-4c79-a710-cb72cd3853d6
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: 'Month Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 571021a2-8189-4a0a-96fa-89324f3d967e
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 3ccb1d0e-555d-44c0-b494-36789b9196dc
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = m
+		mode: import
+		source = ```
+				let
+				    StartDate = #date(2023, 1, 1),
+				    EndDate = #date(2026, 12, 31),
+				    
+				    NumberOfDays = Duration.Days(Duration.From(EndDate - StartDate)) + 1,
+				    DateList = List.Dates(StartDate, NumberOfDays, #duration(1, 0, 0, 0)),
+				    
+				    TableFromList = Table.FromList(DateList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(TableFromList,{{"Column1", "Date"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}}),
+				    
+				    #"Added Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Added Month Number" = Table.AddColumn(#"Added Year", "Month Number", each Date.Month([Date]), Int64.Type),
+				    #"Added Month Name" = Table.AddColumn(#"Added Month Number", "Month Name", each Text.Start(Date.MonthName([Date]), 3), type text),
+				    #"Added Quarter" = Table.AddColumn(#"Added Month Name", "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    #"Added Day of Week" = Table.AddColumn(#"Added Quarter", "Day Name", each Text.Start(Date.DayOfWeekName([Date]), 3), type text)
+				in
+				    #"Added Day of Week"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

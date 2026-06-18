@@ -1,0 +1,23 @@
+relationship AutoDetected_767622d3-d924-4fc5-97bb-402dcb006cb3
+	fromColumn: Transactions.'Customer ID'
+	toColumn: Customer.'Customer ID'
+
+relationship 9a1cccf2-4368-4bc2-bda0-d09119f520a9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.'Date of Birth'
+	toColumn: LocalDateTable_6efd57f2-d8cf-4b5a-8dcc-58f078c80f5f.Date
+
+relationship d72842a7-9b04-4a13-8995-c63a9eb036ce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.'Join Date'
+	toColumn: LocalDateTable_b8d72774-3c4d-4a43-aade-7e130fb76e07.Date
+
+relationship 442c0e04-36d7-4e72-887f-49382c24fb07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_2f9f9b7a-b39b-4cc6-b509-3abada597d51.Date
+
+relationship 26cd9a4c-1d14-3a15-627b-2d6b6d3e6ecb
+	fromColumn: Transactions.'Transaction Date'
+	toColumn: Calendar.Date
+

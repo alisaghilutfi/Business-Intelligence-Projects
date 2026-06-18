@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Transactions","Customer","Calendar","_Measures"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table Transactions
+ref table Customer
+ref table DateTableTemplate_4035bc0a-d523-4c79-ab9d-8c97f940eef1
+ref table LocalDateTable_6efd57f2-d8cf-4b5a-8dcc-58f078c80f5f
+ref table LocalDateTable_b8d72774-3c4d-4a43-aade-7e130fb76e07
+ref table Calendar
+ref table LocalDateTable_2f9f9b7a-b39b-4cc6-b509-3abada597d51
+ref table _Measures
+ref table _Metrics
+
+ref cultureInfo en-US
+

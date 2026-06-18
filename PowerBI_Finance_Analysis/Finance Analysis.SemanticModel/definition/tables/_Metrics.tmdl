@@ -1,0 +1,50 @@
+table _Metrics
+	lineageTag: 70af9431-a468-441b-9cec-e33905013019
+
+	column _Metrics
+		lineageTag: c5d9308d-14b2-462d-8162-cdefd9781b0b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: '_Metrics Order'
+
+		relatedColumnDetails
+			groupByColumn: '_Metrics Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Metrics Fields'
+		isHidden
+		lineageTag: 0a0cd1b1-6b3f-4878-b521-fd38f748f346
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: '_Metrics Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Metrics Order'
+		isHidden
+		formatString: 0
+		lineageTag: c006a6c1-a1bc-4eb6-b402-f3421cdf0def
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Metrics = calculated
+		mode: import
+		source =
+				{
+				    ("Total Amount", NAMEOF('_Measures'[Total Amount]), 0),
+				    ("Total Fees", NAMEOF('_Measures'[Total Fees]), 1),
+				    ("Total Tax", NAMEOF('_Measures'[Total Tax]), 2),
+				    ("Total Transactions", NAMEOF('_Measures'[Total Transactions]), 3)
+				}
+
+	annotation PBI_Id = f79a99e79c004965a4a7ee262fbcd5df
+

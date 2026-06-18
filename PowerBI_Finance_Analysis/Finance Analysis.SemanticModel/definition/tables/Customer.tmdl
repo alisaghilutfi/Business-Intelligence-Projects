@@ -1,0 +1,122 @@
+/// Customer demographic and profile data.
+table Customer
+	lineageTag: 6bc047da-c7bf-45a4-bae8-f7b7716d97be
+
+	column 'Customer ID'
+		dataType: string
+		lineageTag: 9deb8c2e-ea8e-4cd3-a9ca-529b4b8fff04
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 4e80029f-e1ac-4588-b902-a72810defecf
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Birth'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fcd587f9-9c6b-42b7-9f6c-e6633fb374b2
+		summarizeBy: none
+		sourceColumn: Date of Birth
+
+		variation Variation
+			isDefault
+			relationship: 9a1cccf2-4368-4bc2-bda0-d09119f520a9
+			defaultHierarchy: LocalDateTable_6efd57f2-d8cf-4b5a-8dcc-58f078c80f5f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column City
+		dataType: string
+		lineageTag: 3dc1a756-b1c1-4ce5-8812-15b89426c775
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: b15d6c94-feaa-4853-b14e-ed06ae5a9ef0
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: 096f8aca-752d-404f-94a2-839a8256483a
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Segment'
+		dataType: string
+		lineageTag: 931876c4-cb32-48f2-86bf-44e656d61b1d
+		summarizeBy: none
+		sourceColumn: Customer Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Annual Income'
+		dataType: double
+		lineageTag: aea98e76-ce9d-478e-867c-9121d914aa76
+		summarizeBy: sum
+		sourceColumn: Annual Income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Join Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 61c6e0ed-30e4-4b1f-a9f5-2713ac64a8ff
+		summarizeBy: none
+		sourceColumn: Join Date
+
+		variation Variation
+			isDefault
+			relationship: d72842a7-9b04-4a13-8995-c63a9eb036ce
+			defaultHierarchy: LocalDateTable_b8d72774-3c4d-4a43-aade-7e130fb76e07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: e462faa8-3c51-481b-a231-997f330fee47
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Lotusoftware\Power BI_Projects\Power BI_Finance Analysis\customers.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", type text}, {"fisrt_name", type text}, {"second_name", type text}, {"gender", type text}, {"date_of_birth", type text}, {"city", type text}, {"state", type text}, {"occupation", type text}, {"customer_segment", type text}, {"annual_income", type number}, {"join_date", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"customer_id", "Customer ID"}, {"fisrt_name", "Fisrt Name"}, {"second_name", "Second Name"}, {"gender", "Gender"}, {"date_of_birth", "Date of Birth"}, {"city", "City"}, {"state", "State"}, {"occupation", "Occupation"}, {"customer_segment", "Customer Segment"}, {"annual_income", "Annual Income"}, {"join_date", "Join Date"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"Customer ID", Text.Trim, type text}, {"Fisrt Name", Text.Trim, type text}, {"Second Name", Text.Trim, type text}, {"Gender", Text.Trim, type text}, {"Date of Birth", Text.Trim, type text}, {"City", Text.Trim, type text}, {"State", Text.Trim, type text}, {"Occupation", Text.Trim, type text}, {"Customer Segment", Text.Trim, type text}, {"Join Date", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"Customer ID", Text.Clean, type text}, {"Fisrt Name", Text.Clean, type text}, {"Second Name", Text.Clean, type text}, {"Gender", Text.Clean, type text}, {"Date of Birth", Text.Clean, type text}, {"City", Text.Clean, type text}, {"State", Text.Clean, type text}, {"Occupation", Text.Clean, type text}, {"Customer Segment", Text.Clean, type text}, {"Join Date", Text.Clean, type text}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Cleaned Text", {{"Join Date", type date}}, "en-GB"),
+				    #"Merged Columns" = Table.CombineColumns(#"Changed Type with Locale",{"Fisrt Name", "Second Name"},Combiner.CombineTextByDelimiter(" ", QuoteStyle.None),"Customer Name"),
+				    #"Changed Type with Locale1" = Table.TransformColumnTypes(#"Merged Columns", {{"Date of Birth", type date}}, "en-GB")
+				in
+				    #"Changed Type with Locale1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
