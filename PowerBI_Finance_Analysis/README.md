@@ -7,6 +7,8 @@ A financial organization, FinSight, wants to build an interactive Finance Analyt
 
 **1. Executive Summary**
 
+![](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Executeive%20Summary.png)
+
 An high-level analytical landing page designed for C-suite decision-makers following an "F-pattern" structural layout.
 
 `Control Panel Sidebar:` Dynamic temporal filtering (Year) and a field parameter slicer (Metric) that switches the entire page's context across key financial metrics.
