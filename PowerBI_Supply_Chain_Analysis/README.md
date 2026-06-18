@@ -1,5 +1,4 @@
-# Supply Chain Analysis in Power BI
-## Make vs Buy Decision Support System
+# Make vs Buy Decision Support System
 
 ## 📊 Project Overview
 This Power BI project delivers comprehensive supply chain analysis for Widgetmakers, Inc, focusing on strategic make-or-buy decision optimization. Through advanced data modeling, cost analysis, and dynamic scenario planning, this case study provides actionable insights to minimize procurement costs and optimize manufacturing decisions. The solution empowers supply chain analysts and procurement teams with data-driven strategies for supplier selection, volume optimization, and capital investment planning.
@@ -32,12 +31,12 @@ This Power BI project delivers comprehensive supply chain analysis for Widgetmak
 
 ### Fact and Dimensional Tbales:
 
-![Fact and Dimensional Tables](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/tables.PNG)
+![Fact and Dimensional Tables](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/tables.PNG)
 
 ### Schema: 
 **Snowflake** schema with Quotes as the central fact table connected to Internal_Mfg_Resource_Estimates, Product_Dimension, and Yield_Rate dimension tables.
 
-![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/data_model.PNG)
+![Data Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/data_model.PNG)
 
 ## 🧮 Key Performance Indicators (KPIs)
 | Metric | Description |
@@ -77,7 +76,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Supplier performance comparison across volume ranges
 - Cost structure visualization by supplier
 
-![Supplier Selection](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_01_Supplier_Selection.PNG)
+![Supplier Selection](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_01_Supplier_Selection.PNG)
 
 ### Scenario Analysis Dashboard
 **Focus:** Dynamic volume planning and cost optimization
@@ -87,7 +86,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Dynamic cost modeling with scenario volume parameters
 - Total cost optimization across different volume scenarios
 
-![Scenario Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_02_Scenario_Analysis.PNG)
+![Scenario Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_02_Scenario_Analysis.PNG)
 
 ### Make versus Buy Dashboard
 **Focus:** Comprehensive decision support system
@@ -98,7 +97,7 @@ The Power BI solution includes three comprehensive dashboard pages:
 - Manufacturing resource utilization analysis
 - Equipment investment impact on total costs
 
-![Make versus Buy](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_04_Supply-Chain-Analytics/images/dashboard_03_Make_Buy.PNG)
+![Make versus Buy](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Supply_Chain_Analysis/images/dashboard_03_Make_Buy.PNG)
 
 ## 🛠️ Technical Implementation
 ### Tools & Technologies

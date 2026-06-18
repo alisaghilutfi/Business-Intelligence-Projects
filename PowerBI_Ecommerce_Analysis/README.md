@@ -1,5 +1,4 @@
-# Ecommerce Analysis in Power BI
-## Pet Supply Store Performance & Optimization Dashboard
+# Pet Supply Store Performance & Optimization Dashboard
 
 ## 📊 Project Overview
 This Power BI project delivers comprehensive ecommerce performance analysis for Whiskique, a fictitious online pet supply store. Through advanced data modeling, market basket analysis, and interactive visualizations, this case study provides actionable insights to drive sales growth and reduce operational costs. The solution empowers business stakeholders with data-driven strategies for cross-selling, upselling, and shipping cost optimization.

@@ -1,6 +1,5 @@
 
-# Competitor Sales Analysis in Power BI
-## Market & Sales Insights Across Manufacturers and Geographies
+# Market & Sales Insights Across Manufacturers and Geographies
 
 ## 📊 Project Overview
 This Power BI project delivers a comprehensive sales and market share analysis for competing manufacturers across multiple regions. Through a structured ETL process, data modeling, and interactive visualization, this case study simulates a real-world business scenario to help stakeholders understand both internal company performance and how it stacks up against competitors.
@@ -42,7 +41,7 @@ The analysis empowers business users with actionable insights into product trend
 ### Schema: 
 `Snowflake` schema with Sales as the central fact table connected to all dimension tables.
 
-![Data Model](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/data-model.PNG)
+![Data Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/data-model.PNG)
 
 
 ## 🧮 Key Performance Indicators (KPIs)
@@ -76,14 +75,14 @@ The Power BI solution includes three comprehensive reports:
 - Year-over-year growth comparisons
 - Comparison against competitors within product categories
 
-![Competitor Salse Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
+![Competitor Salse Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
 
 ### Advanced Insights (AI-Driven Visuals)
 - Decomposition Tree for revenue drilldowns
 - Key Influencers to detect major factors impacting sales
 - Smart Narratives to auto-summarize insights
 
-![AI-Driven Visuals](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_02_Competitor-Sales-Analysis/images/dashboard_02_Advanced-Insights.PNG)
+![AI-Driven Visuals](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_02_Advanced-Insights.PNG)
 
 
 ## 🛠️ Technical Implementation

@@ -1,5 +1,4 @@
-# Healthcare Data Analysis in Power BI
-## Hospital Efficiency Insights for Elective Hip Replacement Surgery
+# Hospital Efficiency Insights for Elective Hip Replacement Surgery
 
 
 ## 📊 Project Overview
@@ -77,21 +76,21 @@ The Power BI solution includes three comprehensive reports:
 - State average comparisons and outlier identification
 - Trend analysis and distribution visualizations
 
-![LOS Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_1_LOS_Comparison.PNG)
+![LOS Comparison Overview](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Healthcare_Analysis/images/dashboard_1_LOS_Comparison.PNG)
 
 ### Cost Comparison Dashboard
 - Cost per discharge analysis across facilities
 - Cost efficiency benchmarking against state averages
 - Financial performance outlier detection
 
-![Cost Comparison Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_2_Cost_Comparison.PNG)
+![Cost Comparison Overview](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Healthcare_Analysis/images/dashboard_2_Cost_Comparison.PNG)
 
 ### Hospital Profile Dashboard
 - Individual hospital deep-dive analysis
 - Comprehensive facility performance metrics
 - Root cause analysis for cost and LOS variations
 
-![Hospital Profile Overview](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_01_Analyzing-Healthcare/images/dashboard_3_Profile_Hospitals.PNG)
+![Hospital Profile Overview](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Healthcare_Analysis/images/dashboard_3_Profile_Hospitals.PNG)
 
 
 ## 🛠️ Technical Implementation
