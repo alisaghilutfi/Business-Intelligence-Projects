@@ -1,6 +1,9 @@
 # Finance Analysis
 
-## 📊 Core Pages & Features
+## 📊 Project Overview
+A financial organization, FinSight, wants to build an interactive Finance Analytics Dashboard in Power BI to monitor and analyze overall financial transactions, customer behavior, fees, taxes, and transaction performance across different business segments and regions.
+
+## 🎯 Core Pages & Features
 
 **1. Executive Summary**
 
@@ -67,4 +70,5 @@ Open the `.pbix file` inside `Power BI Desktop`.
 If data links are broken, navigate to `Power Query Editor`, open the Source settings, and remap the file paths to your local directory workspace.
 
 Click `Refresh` to populate the clean database structures.
+
 
