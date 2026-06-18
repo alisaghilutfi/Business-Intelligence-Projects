@@ -19,6 +19,8 @@ An high-level analytical landing page designed for C-suite decision-makers follo
 
 **2. Transaction Details**
 
+![](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Transaction%20Details.png)
+
 A granular, high-density data ledger optimized for auditing individual transactional operations.
 
 `Smart Drill-Through Wiring:` Allows users to right-click data points on Page 1 and navigate straight into a contextualized ledger view of the underlying records.
