@@ -7,7 +7,7 @@ A financial organization, FinSight, wants to build an interactive Finance Analyt
 
 **1. Executive Summary**
 
-![](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Executeive%20Summary.png)
+![Executive Suammry](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Executeive%20Summary.png)
 
 An high-level analytical landing page designed for C-suite decision-makers following an "F-pattern" structural layout.
 
@@ -19,7 +19,7 @@ An high-level analytical landing page designed for C-suite decision-makers follo
 
 **2. Transaction Details**
 
-![](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Transaction%20Details.png)
+![Transaction Details](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Transaction%20Details.png)
 
 A granular, high-density data ledger optimized for auditing individual transactional operations.
 
@@ -38,6 +38,8 @@ An advanced custom pop-up window configured to optimize user experience and elim
 
 ## 🛠️ Data Engineering & ETL Pipeline
 The backend data was thoroughly scrubbed and optimized inside the Power Query engine to ensure rigorous accounting standards:
+
+![Semantic Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Semantic%20Model.png)
 
 `Directional Absolute Adjustments:` Transformed negative raw transactional integers into clean, absolute values to prevent calculations from mathematically offsetting top-line revenue processing volumes.
 
