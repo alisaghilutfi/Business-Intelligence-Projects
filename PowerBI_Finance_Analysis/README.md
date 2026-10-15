@@ -96,7 +96,13 @@ SWITCH(
 
 ## Screenshots
 
-*(Screenshots to be added — open the `.pbix` file in Power BI Desktop to view the full report.)*
+![Executive Summary](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Executeive%20Summary.png)
+
+![Transaction Details](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Transaction%20Details.png)
+
+![Monthly State Tooltip](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Monthly%20State%20Tooltip.png)
+
+![Semantic Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Finance_Analysis/images/Semantic%20Model.png)
 
 ---
 

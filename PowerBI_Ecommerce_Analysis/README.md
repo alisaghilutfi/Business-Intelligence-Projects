@@ -93,11 +93,11 @@ Shipping (Difference) = [Shipping (Baseline)] - [Shipping (What-if)]
 
 ## Screenshots
 
-![Executive Summary](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_01_Executive_Summary.PNG)
+![Executive Summary](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Ecommerce_Analysis/images/dashboard_01_Executive_Summary.PNG)
 
-![Shipping Metrics](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_02_Shipping_Metrics.PNG)
+![Shipping Metrics](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Ecommerce_Analysis/images/dashboard_02_Shipping_Metrics.PNG)
 
-![Market Basket Analysis](https://github.com/alisaghilutfi/PowerBI-Projects/blob/main/Power-BI_03_Ecommerce-Analysis/images/dashboard_03_Market_Basket_Analysis.PNG)
+![Market Basket Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Ecommerce_Analysis/images/dashboard_03_Market_Basket_Analysis.PNG)
 
 ---
 
