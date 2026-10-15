@@ -1,103 +1,104 @@
+# PowerBI_Competitor_Sales_Analysis — Competitive Sales Intelligence
 
-# Market & Sales Insights Across Manufacturers and Geographies
+**Type:** Business Intelligence · Competitive Analysis  
+**Stack:** Power BI Desktop · Power Query · Snowflake schema · DAX · AI visuals (Decomposition Tree, Key Influencers, Smart Narrative)  
+**Data:** ~1.8M sales transactions · 6 countries · 14 manufacturers · 2014–2021
 
-## 📊 Project Overview
-This Power BI project delivers a comprehensive sales and market share analysis for competing manufacturers across multiple regions. Through a structured ETL process, data modeling, and interactive visualization, this case study simulates a real-world business scenario to help stakeholders understand both internal company performance and how it stacks up against competitors.
-The analysis empowers business users with actionable insights into product trends, competitor growth, and market penetration using a dynamic Power BI report.
+---
 
+## Business Problem
 
-## 🎯 Business Objectives
-`Primary Goal:` Analyze and compare sales performance of a manufacturer against its competitors to understand market trends and strategic opportunities.
+Sales leadership needs to know where Sintec is winning, where it is losing, and which markets and product segments represent the clearest growth opportunity — before committing to a regional or category investment decision.
 
-`Target Audience:` Business analysts, sales managers, marketing strategists, and executive decision-makers.
+---
 
-`Key Questions Addressed:`
-- Who are the top competitors generating the most revenue globally and regionally?
-- How does our company’s performance compare to others in different markets?
-- Which product segments show the most growth over time?
-- What are the yearly sales trends and market share shifts?
-- Where are our biggest opportunities for market expansion?
+## Analytical Question
 
+**Outcome variable:** Sintec revenue and market share  
+**Drivers under investigation:** geography (country, region), product segment, manufacturer, and time  
+**Question type:** Comparison (Sintec vs. 13 competitors) with a Relationship layer (which geography and segment combinations drive share gains)
 
-## 📋 Dataset Information
-### Data Structure
+The analysis does not attempt to predict future share — it establishes the factual baseline a strategist would need before modelling forward scenarios.
 
-### Fact Table:
-`Sales`
-- ProductID: Unique identifier for each product
-- Date: Sales transaction date
-- Zip: ZIP code of transaction location
-- Revenue: Total revenue per transaction
+---
 
-### Dimension Tables:
-`Product:` Product details
+## Data
 
-`Manufacturer:` Manufacturer details with logos
+| Source | Description | Rows |
+|--------|-------------|------|
+| `Sales` (CSV) | Transactions: ProductID, Date, Zip, Units, Revenue, Country | ~1.8M |
+| `Product` (XLSX) | ProductID, Product name, Segment, Category, ManufacturerID, Price | 2,412 |
+| `Manufacturer` (XLSX) | ManufacturerID, Manufacturer name, Logo URL | 14 |
+| `Geography` (XLSX) | Zip, City, State, Region, District, Country | 176,931 |
+| `Date` | Generated via DAX | — |
 
-`Geography:` Region, city, ZIP, and state data
+**Schema:** Snowflake — Sales as central fact table, joined to Product (via ProductID), then Product to Manufacturer (via ManufacturerID). Geography joined via a `ZipCountry` composite key to handle Zip reuse across countries.
 
-`Date:` Created dynamically using DAX
+**Known limitation:** A portion of US Zip codes in Sales are absent from the Geography dimension — these rows are included in revenue totals but cannot be attributed to a specific US region or district.
 
-### Schema: 
-`Snowflake` schema with Sales as the central fact table connected to all dimension tables.
+[![Data Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/raw/main/PowerBI_Competitor_Sales_Analysis/images/data-model.PNG)](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/data-model.PNG)
 
-![Data Model](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/data-model.PNG)
+---
 
+## Approach
 
-## 🧮 Key Performance Indicators (KPIs)
-| Metric | Value/Description |
-|----------|--------------------|
-| Market Share (Sintec - USA) | 38.22% |
-| Market Share (Sintec - Global) | 21.15% |
-| Highest Revenue Share (Germany) | Artisans with >50% market share |
-| Year-over-Year Growth (2021) | 18.8%|
-| Total Manufacturers Analyzed | Multiple across global markets |
-| Time Period | Multiple years (includes year-on-year tracking) |
+The report is structured around one central comparison: Sintec against each of its 13 competitors, sliced by the dimensions that a sales or marketing strategist would actually act on — country, product segment, and year.
 
+The **Competitor Sales Analysis** page answers the baseline questions: who leads where, and has that changed over time. Revenue by country and manufacturer, year-over-year growth rates, and market share by region give the factual picture without interpretation.
 
-## 📈 Key Insights Discovered
-### Revenue & Market Performance
-- Sintec has a dominant 38.22% share in the U.S. market and 21.15% globally.
-- Artisans leads the German market with over 50% share.
-- 2021 saw an 18.8% revenue growth, suggesting strong momentum.
+The **Advanced Insights** page goes one layer deeper using Power BI AI visuals. The Decomposition Tree lets a user drill into any revenue figure and decompose it by any combination of dimensions — this replaces the need to build a separate pivot analysis for every hypothesis. The Key Influencers visual identifies which variables statistically associate with high or low Sintec revenue, surfacing patterns that a static chart would obscure.
 
-### Product & Segment Trends
-- Certain product lines are outperforming others based on geography.
-- High-growth markets and underperforming regions are easily identifiable via comparative visualizations.
+Key measures:
 
+```dax
+PY Sales = CALCULATE(SUM(Sales[Revenue]), SAMEPERIODLASTYEAR('Date'[Date]))
+% Growth = DIVIDE(SUM(Sales[Revenue]) - [PY Sales], [PY Sales])
+Sintec Revenue = CALCULATE(SUM(Sales[Revenue]), Manufacturer[ManufacturerID] = 4)
+Sintec Market Share = DIVIDE([Sintec Revenue], SUM(Sales[Revenue]), 0)
+ZipCountry = Sales[Zip] & "," & Sales[Country]
+```
 
-## 📊 Dashboard Components
-The Power BI solution includes three comprehensive reports:
-### Competitor Salse Analysis
-- Revenue by country and manufacturer
-- Revenue and growth percentage over time for manufacturers
-- Market share visualized by region and product
-- Year-over-year growth comparisons
-- Comparison against competitors within product categories
+---
 
-![Competitor Salse Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
+## Key Findings
 
-### Advanced Insights (AI-Driven Visuals)
-- Decomposition Tree for revenue drilldowns
-- Key Influencers to detect major factors impacting sales
-- Smart Narratives to auto-summarize insights
+- **Sintec leads the US market** with 38.22% share — well ahead of the next competitor. This is the position worth defending; any US-targeted campaign has an outsized effect on the overall number.
+- **Sintec's global share is 21.15%** — the gap between US and global share indicates significant untapped potential in the other five markets, or a structural disadvantage outside the US.
+- **Artisans dominates Germany** with over 50% share. Germany is not a near-term Sintec expansion candidate without a differentiated product or pricing play.
+- **2021 showed 18.8% YoY revenue growth** — the strongest year in the dataset. Whether this is a trend or a post-period anomaly requires the next year's data to confirm.
+- **Segment and geography interact**: the Decomposition Tree reveals that the same product segment performs differently by country, meaning a single global segment strategy would be blunt — regional targeting is warranted.
 
-![AI-Driven Visuals](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_02_Advanced-Insights.PNG)
+---
 
+## Limitations & Caveats
 
-## 🛠️ Technical Implementation
-### Tools & Technologies
-- Platform: Microsoft Power BI Desktop
-- Data Preparation: Power Query Editor for ETL
-- Modeling: Snowflake schema with Date table via DAX
-- Visual Features: Drill-through, dynamic navigation, AI visuals
+- **No unit economics:** Revenue is the only financial metric. Without margin data, a high-revenue segment could be low-profit — the report cannot distinguish between these.
+- **Zip code coverage gap:** US rows with unmatched Zips are included in national revenue totals but excluded from region/district-level breakdowns. The magnitude of this gap should be quantified before any region-level investment decision is made.
+- **Static snapshot:** The dataset ends in 2021. The 18.8% growth finding cannot be extrapolated without 2022+ data. Momentum conclusions are fragile.
+- **Correlation is not causation:** The Key Influencers visual identifies associations, not drivers. A variable that correlates with high Sintec revenue may be a proxy for an unmeasured factor.
 
-### Calculated Measures
-- `% Growth = DIVIDE(SUM(Sales[Revenue])-[PY Sales], [PY Sales])`
-- `PY Sales = CALCULATE(SUM(Sales[Revenue]), SAMEPERIODLASTYEAR('Date'[Date]))`
-- `Sintec Market Share = DIVIDE(Sales[Sintec Revenue], SUM(Sales[Revenue]), 0)`
-- `Sintec Revenue = Calculate(SUM(Sales[Revenue]), Manufacturer[ManufacturerID] = 4)`
-- `ZipCountry = Sales[Zip] & "," & Sales[Country]`
+---
 
+## Screenshots
 
+[![Competitor Sales Analysis](https://github.com/alisaghilutfi/Business-Intelligence-Projects/raw/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_01_Competitor-Sales-Analysis.PNG)
 
+[![Advanced Insights](https://github.com/alisaghilutfi/Business-Intelligence-Projects/raw/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_02_Advanced-Insights.PNG)](https://github.com/alisaghilutfi/Business-Intelligence-Projects/blob/main/PowerBI_Competitor_Sales_Analysis/images/dashboard_02_Advanced-Insights.PNG)
+
+---
+
+## Skills Demonstrated
+
+- Power BI Desktop — multi-page report design with drill-through and dynamic navigation
+- Power Query — multi-source ETL (CSV + XLSX), composite key construction, Geography metadata row handling
+- DAX — time intelligence (SAMEPERIODLASTYEAR), market share calculation, composite key column
+- Data modeling — snowflake schema, two-hop join path (Sales → Product → Manufacturer)
+- AI visuals — Decomposition Tree, Key Influencers, Smart Narrative
+
+---
+
+## Probable Next Improvements
+
+- **Extend to 2022–2024 data** — the 18.8% growth finding in 2021 is the most actionable number in the report, but it cannot be interpreted without knowing whether growth continued, slowed, or reversed post-2021. One additional year of data would confirm whether this is a trend or a peak.
+- **Add a margin layer to the revenue analysis** — Sintec's 38.22% US market share is compelling, but share of revenue is not share of profit. If Sintec's US dominance is built on a low-price strategy, the strategic picture changes substantially. A gross margin column per product would reframe the "where to invest" question.
+- **Build a Fabric version with live refresh** — the current model is a static .pbix. Migrating to Microsoft Fabric with a medallion lakehouse and a DirectLake semantic model would enable weekly data refreshes and a Fabric Data Agent for natural language querying — both already implemented in the [Fabric-Analytics-Projects](https://github.com/alisaghilutfi/Fabric-Analytics-Projects) companion repo.

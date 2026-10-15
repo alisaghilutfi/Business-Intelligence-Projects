@@ -1,48 +1,85 @@
-# 📊 Business Intelligence Projects
+# Business Intelligence Projects
 
-This repository showcases a collection of real-world Power BI/Excel/... projects developed across diverse domains, including healthcare, sales, e-commerce, and more. It has been tried to demonstrate expertise in data analysis, data modeling, and creating insightful, interactive dashboards.
+Power BI, DAX, and data modeling projects by [Ali Saghi](https://www.linkedin.com/in/ali-saghi-fabric/), DP-600 certified Microsoft Fabric Analytics Engineer and founder of [Lotusoftware](https://lotusoftware.hashnode.dev) — a data analytics consultancy in Vantaa, Finland.
 
----
+Each project is framed through the **Analyst Mindset** (Jon Christiansen): every README states the business decision the analysis supports, names the outcome variable and question type, documents known data limitations, and ends with honest next-improvement steps. The goal is not to demonstrate that Power BI was used, but to demonstrate that the right question was asked and answered with appropriate rigour.
 
-## 🛠️ Technologies & Skills Demonstrated
-
-Throughout these projects, I've leveraged a comprehensive set of tools and techniques:
-
-* **Data Visualization & Business Intelligence:** Power BI Desktop, Power BI Service, Excel
-* **Data Transformation:** Power Query (M Language)
-* **Data Modeling:** Star Schema, Relationship Management, Performance Optimization
-* **Calculations & Logic:** Data Analysis Expressions (DAX)
-* **Data Sources:** CSV, Excel, (Add any others if applicable, e.g., SQL Databases, Web Data)
-* **Analytical Techniques:** Trend Analysis, Competitor Analysis, Market Basket Analysis, Efficiency Metrics, Customer Segmentation
+For end-to-end Microsoft Fabric projects (medallion architecture, PySpark, DirectLake semantic models, Data Agents), see the companion repo: [Fabric-Analytics-Projects](https://github.com/alisaghilutfi/Fabric-Analytics-Projects).
 
 ---
 
-## ▶️ How to View and Explore
+## Projects
 
-Each project is contained within its own dedicated folder. To explore a project:
+### PowerBI_Competitor_Sales_Analysis — Competitive Sales Intelligence
 
-1.  **Clone this repository:** `git clone https://github.com/alisaghilutfi/PowerBI-Projects.git`
-2.  **Navigate to a project folder:** `cd PowerBI-Projects/Power-BI_XX_Project-Name`
-3.  **Open the `.pbix` file:** Each project folder contains the core Power BI Desktop file (`.pbix`). You can open these files directly with Power BI Desktop to interact with the reports, explore the data model, and review the DAX measures and Power Query steps.
+**Type:** Business Intelligence · Competitive Analysis  
+**Stack:** Power BI · Power Query · Snowflake schema · DAX · AI visuals (Decomposition Tree, Key Influencers)  
+**Data:** ~1.8M sales transactions · 6 countries · 14 manufacturers · 2014–2021
+
+Where should Sintec focus product, geography, and pricing strategy to defend and grow market share? Revenue and share are compared across 13 competitors by country and segment, with AI visuals surfacing the drivers a static chart would miss. Sintec leads the US market (38.22% share) but trails globally (21.15%), with Artisans dominating Germany at >50% — pointing to distinct regional strategies rather than a single global play.
+
+---
+
+### PowerBI_Ecommerce_Analysis — E-Commerce Performance & Cost Optimisation
+
+**Type:** Business Intelligence · Operations Analytics  
+**Stack:** Power BI · Power Query · Snowflake schema · DAX · What-if parameters · Market basket analysis  
+**Data:** Whiskique pet supply store · transaction-level sales and shipping data
+
+Where can Whiskique reduce shipping costs without sacrificing revenue, and which product relationships support a cross-sell programme? Shipping costs ($385K baseline) are modelled against quantity-consolidation scenarios using What-if parameters, and a correlation-based market basket analysis identifies product pairs with the highest affinity scores for targeted promotion.
 
 ---
 
-## 📈 Project Overviews
+### PowerBI_Supply_Chain_Analysis — Make-or-Buy Decision Support
 
-### 1. 🏥 Power-BI_01_Analyzing-Healthcare
-This Power BI project analyzes hospital efficiency metrics using real-world healthcare data to identify optimization opportunities. The analysis focuses on elective hip replacement surgery patients across New York State hospitals, examining factors that impact patient length of stay (LOS) and treatment costs. The insights gained can support healthcare providers in improving patient care pathways and operational efficiency.
+**Type:** Business Intelligence · Operations Analytics · Scenario Planning  
+**Stack:** Power BI · Power Query · Snowflake schema · DAX · What-if parameters  
+**Data:** Widgetmakers Inc · supplier quotes · internal manufacturing cost estimates
 
-### 2. 📈 Power-BI_02_Competitor-Sales-Analysis
-This Power BI project delivers a comprehensive sales and market share analysis for competing manufacturers across multiple regions. Through a structured ETL process, robust data modeling, and interactive visualization, this case study simulates a real-world business scenario. The report empowers business users with actionable insights into product trends, competitor growth, and market penetration, enabling data-driven strategic decisions.
-
-### 3. 🛍️ Power-BI_03_Ecommerce-Analysis
-This Power BI project delivers comprehensive e-commerce performance analysis for Whiskique, a fictitious online pet supply store. Utilizing advanced data modeling, market basket analysis, and dynamic visualizations, this case study provides actionable insights to drive sales growth and reduce operational costs. The solution empowers business stakeholders with data-driven strategies for cross-selling, upselling, and shipping cost optimization.
-
-### 4. 📈 Power-BI_04_Supply-Chain-Analytics
-This Power BI project delivers comprehensive supply chain analysis for Widgetmakers, Inc, focusing on strategic make-or-buy decision optimization. Through advanced data modeling, cost analysis, and dynamic scenario planning, this case study provides actionable insights to minimize procurement costs and optimize manufacturing decisions. The solution empowers supply chain analysts and procurement teams with data-driven strategies for supplier selection, volume optimization, and capital investment planning.
-
-### 5. 📈 Excel_Customer-Churn-Analysis
-This Excel project analyzes customer churn patterns using real-world telecom data to identify retention opportunities for a fictional telecom company, Databel. The analysis focuses on subscription-based customers, examining factors that impact customer churn rates and developing actionable strategies to reduce customer attrition.
-
+Should Widgetmakers manufacture a component internally or buy from an external supplier — and at what volume does the answer change? Full cost (extended + non-recurring) is modelled across four suppliers and a range of production volumes, with automated Make vs Buy recommendations and capital investment requirements calculated per scenario.
 
 ---
+
+### PowerBI_Finance_Analysis — Financial Transactions Dashboard
+
+**Type:** Business Intelligence · Finance  
+**Stack:** Power BI · Power Query · DAX · Field parameters · Custom tooltips · Conditional formatting  
+**Data:** FinSight financial transactions · multi-segment, multi-region
+
+How are transaction volumes, fees, and taxes trending across business segments and geographies, and where are the operational exceptions that warrant investigation? An F-pattern Executive Summary with field-parameter metric switching covers the macro view; a drill-through transaction ledger with conditional risk formatting handles the auditing use case; a custom monthly tooltip surfaces state-level density on hover.
+
+---
+
+### PowerBI_Healthcare_Analysis — Hospital Efficiency Benchmarking
+
+**Type:** Business Intelligence · Healthcare Analytics  
+**Stack:** Power BI · Power Query · DAX · Benchmarking  
+**Data:** New York State hospital discharge data (2016) · 26,286 elective hip replacement cases · 151 hospitals
+
+Which New York hospitals are statistical outliers in length of stay and cost for elective hip replacement, and what patient and facility factors explain the variance? Illness severity and mortality risk are the dominant drivers; NYC hospitals show structurally higher costs independent of case mix; surgical programme size shows a weak efficiency correlation that warrants further investigation before being used as a policy lever.
+
+---
+
+## Skills Demonstrated
+
+| Skill | Projects |
+|---|---|
+| DAX — time intelligence, market share, scenario measures | All Power BI projects |
+| Power Query ETL — multi-source, composite keys, data cleaning | All Power BI projects |
+| What-if parameters and scenario modelling | Ecommerce, Supply Chain |
+| Market basket analysis (correlation coefficients) | Ecommerce |
+| AI visuals (Decomposition Tree, Key Influencers) | Competitor Sales |
+| Snowflake schema design | Competitor Sales, Ecommerce, Supply Chain |
+| Benchmarking and outlier detection | Healthcare, Finance |
+| Field parameters and dynamic titles | Finance |
+
+---
+
+## About Lotusoftware
+
+Lotusoftware is a data analytics consultancy founded by Ali Saghi in Vantaa, Finland, specialising in Microsoft Fabric, Power BI, and agentic analytics systems.
+
+- Blog: [lotusoftware.hashnode.dev](https://lotusoftware.hashnode.dev)
+- LinkedIn: [ali-saghi-fabric](https://www.linkedin.com/in/ali-saghi-fabric/)
+- GitHub: [alisaghilutfi](https://github.com/alisaghilutfi)
+- Fabric projects: [Fabric-Analytics-Projects](https://github.com/alisaghilutfi/Fabric-Analytics-Projects)
