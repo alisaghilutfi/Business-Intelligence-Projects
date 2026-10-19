@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "apr_risk_of_mortality"

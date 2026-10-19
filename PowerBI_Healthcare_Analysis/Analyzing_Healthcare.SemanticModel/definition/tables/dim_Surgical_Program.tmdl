@@ -1,11 +1,13 @@
-table surgical_program_size_summary
+/// Surgical program summary dimension. One row per hospital (facility). 151 rows. Contains total discharge count and surgeon count per facility. Source: derived from the SPARCS dataset. Used to classify hospitals by surgical program size (High/Medium/Low volume). Join key: facility_name → fact_Hospital_Discharges.
+table dim_Surgical_Program
 	lineageTag: 8721ce81-ed65-4aae-94c2-9f598e81505d
 
 	column facility_name
 		lineageTag: 3b974c39-5f7a-452d-a496-bc95c409f41b
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: hospital_discharges[facility_name]
+		sourceColumn: fact_Hospital_Discharges[facility_name]
+		columnOrigin: fact_Hospital_Discharges.facility_name
 
 		annotation SummarizationSetBy = Automatic
 
@@ -31,9 +33,9 @@ table surgical_program_size_summary
 
 	column 'Total Discharges (bins)' =
 			IF(
-			  ISBLANK('surgical_program_size_summary'[Total Discharges]),
+			  ISBLANK('dim_Surgical_Program'[Total Discharges]),
 			  BLANK(),
-			  INT('surgical_program_size_summary'[Total Discharges] / 200) * 200
+			  INT('dim_Surgical_Program'[Total Discharges] / 200) * 200
 			)
 		formatString: 0
 		lineageTag: 7de5cefd-b99a-4e34-8ae0-1bc703f7bf33
@@ -70,9 +72,9 @@ table surgical_program_size_summary
 			
 			SWITCH(
 			    TRUE(),
-			    surgical_program_size_summary[Total Discharges (bins)] = 0, "<200",
-			    surgical_program_size_summary[Total Discharges (bins)] = 200, "200-399",
-			    surgical_program_size_summary[Total Discharges (bins)] = 400, "400-599",
+			    dim_Surgical_Program[Total Discharges (bins)] = 0, "<200",
+			    dim_Surgical_Program[Total Discharges (bins)] = 200, "200-399",
+			    dim_Surgical_Program[Total Discharges (bins)] = 400, "400-599",
 			    ">=600"
 			)
 		lineageTag: e7a81887-8279-44e7-ab72-5817331a6117
@@ -86,7 +88,7 @@ table surgical_program_size_summary
 				
 				
 				SUMMARIZECOLUMNS(
-				    Hospital_Discharges[facility_name],
+				    fact_Hospital_Discharges[facility_name],
 				    "Total Discharges", [Total Discharges],
 				    "Total Surgeons", [Total Surgeons]
 				)

@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "facility_name"
@@ -126,7 +126,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "hospital_discharges"
+                "Entity": "fact_Hospital_Discharges"
               }
             },
             "Property": "facility_name"
@@ -145,7 +145,7 @@
                     "From": [
                       {
                         "Name": "h",
-                        "Entity": "hospital_discharges",
+                        "Entity": "fact_Hospital_Discharges",
                         "Type": 0
                       },
                       {
@@ -190,7 +190,7 @@
             },
             {
               "Name": "h",
-              "Entity": "hospital_discharges",
+              "Entity": "fact_Hospital_Discharges",
               "Type": 0
             }
           ],

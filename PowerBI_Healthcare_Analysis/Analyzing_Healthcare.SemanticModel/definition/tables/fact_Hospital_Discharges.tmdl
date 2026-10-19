@@ -1,4 +1,5 @@
-table hospital_discharges
+/// Fact table. One row per inpatient hip replacement discharge. Grain: individual patient stay. 26,286 rows. Source: New York State Department of Health SPARCS data, 2016. IMPORTANT: scope is elective hip-replacement discharges only — not all hospital discharges in the state. discharge_year is an integer (value: 2016 only) — there is no date column in this dataset; time intelligence is not applicable. Join key: facility_name → dim_Surgical_Program (text-based join — susceptible to name inconsistencies).
+table fact_Hospital_Discharges
 	lineageTag: f8757e69-f924-473a-aa88-d0f2b6c752df
 
 	column health_service_area
@@ -19,6 +20,7 @@ table hospital_discharges
 
 	column operating_certificate_number
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 289e8e8f-4044-40d4-af91-1f5cfdda0899
 		summarizeBy: sum
@@ -28,6 +30,7 @@ table hospital_discharges
 
 	column facility_id
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 126ac7fd-3f74-40fb-9281-6fbbe0cb17ba
 		summarizeBy: sum
@@ -119,6 +122,7 @@ table hospital_discharges
 
 	column ccs_diagnosis_code
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 90a874bc-d3c6-43a2-acb9-2e2dfc059d4a
 		summarizeBy: sum
@@ -187,6 +191,7 @@ table hospital_discharges
 
 	column apr_severity_of_illness_code
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 7e88d453-eee6-4e59-9a98-ce0d779d1c35
 		summarizeBy: sum
@@ -220,6 +225,7 @@ table hospital_discharges
 
 	column attending_provider_license_number
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 6c0609ed-1f6e-4514-9327-e42fd86dceef
 		summarizeBy: sum
@@ -229,6 +235,7 @@ table hospital_discharges
 
 	column operating_provider_license_number
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 5e82539a-c24b-43d1-8962-bdbcc7bd4c43
 		summarizeBy: sum
@@ -260,8 +267,8 @@ table hospital_discharges
 			
 			IF(
 			    OR(
-			        hospital_discharges[age_group] = "50 to 69",
-			        hospital_discharges[age_group] = "70 or Older"
+			        fact_Hospital_Discharges[age_group] = "50 to 69",
+			        fact_Hospital_Discharges[age_group] = "70 or Older"
 			    ),
 			    "Age 50+",
 			    "Age <50"

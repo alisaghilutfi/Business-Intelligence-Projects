@@ -6,20 +6,20 @@ Identify which New York hospitals are statistical outliers in length of stay and
 
 ## Metrics / KPIs
 
-- Average LOS Days (`AVERAGE(hospital_discharges[length_of_stay])`)
-- Average Cost per Discharge (`AVERAGE(hospital_discharges[total_costs])`)
+- Average LOS Days (`AVERAGE(fact_Hospital_Discharges[length_of_stay])`)
+- Average Cost per Discharge (`SUM(fact_Hospital_Discharges[total_costs]) / [Total Discharges]`)
 - % Var Average LOS Days vs. state average (2.65 days)
 - % Var Average Cost per Discharge vs. state average ($20,910)
 - Breakdowns by illness severity, mortality risk, age group, discharge disposition, geography
 
 ## Grain
 
-One row per inpatient stay (elective hip replacement discharge).
+One row per inpatient stay (`fact_Hospital_Discharges`). Grain: individual patient discharge.
 
 ## Data sources
 
-- `hospital_discharges` — 26,286 rows: facility, LOS, cost, age group, diagnosis, severity, mortality risk, disposition (New York State 2016)
-- `surgical_program_size_summary` — 151 rows: one row per hospital, total discharges, surgeon count
+- `fact_Hospital_Discharges` — 26,286 rows: facility, LOS, cost, age group, diagnosis, severity, mortality risk, disposition (New York State 2016, elective hip replacements only)
+- `dim_Surgical_Program` — 151 rows: one row per hospital, total discharges, surgeon count
 
 ## Stakeholders
 
@@ -32,3 +32,4 @@ Healthcare administrators and policy makers.
 - Text-based join on `facility_name` — susceptible to name inconsistencies between tables
 - Descriptive analysis only — causal conclusions require a controlled study design
 - NYC hospitals show structurally higher costs independent of case mix (labour/facility markets)
+- **`discharge_year` is an integer (value: 2016 only)** — there is no date column in this dataset; time intelligence measures are not applicable

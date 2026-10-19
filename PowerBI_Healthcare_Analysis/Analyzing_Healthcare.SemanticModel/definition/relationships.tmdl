@@ -1,4 +1,4 @@
 relationship a270e684-ec83-4fb7-89f7-f292742ccddf
-	fromColumn: hospital_discharges.facility_name
-	toColumn: surgical_program_size_summary.facility_name
+	fromColumn: fact_Hospital_Discharges.facility_name
+	toColumn: dim_Surgical_Program.facility_name
 

@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "apr_risk_of_mortality"
@@ -32,7 +32,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "apr_severity_of_illness_description"
@@ -45,7 +45,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "ccs_diagnosis_description"
@@ -58,7 +58,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "patient_disposition"
@@ -71,7 +71,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "gender"
@@ -84,7 +84,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "Age Bins"
@@ -97,7 +97,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "surgical_program_size_summary"
+                      "Entity": "dim_Surgical_Program"
                     }
                   },
                   "Property": "Surgical Program Size"
@@ -110,7 +110,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "hospital_discharges"
+                      "Entity": "fact_Hospital_Discharges"
                     }
                   },
                   "Property": "health_service_area"

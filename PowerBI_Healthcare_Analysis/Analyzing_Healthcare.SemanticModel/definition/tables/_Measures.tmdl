@@ -1,48 +1,60 @@
+/// Measure container table. Holds all DAX measures for the model. The Column column is hidden. No data rows are used from this table.
 table _Measures
 	lineageTag: 46cbde27-d646-4766-804b-84c2939c430e
 
+	/// Count of distinct hospitals (facility_id) in the current filter context. Counts unique facilities that performed hip replacement procedures matching the applied filters.
 	measure 'Total Hospitals' =
 			
 			DISTINCTCOUNT(
-			    hospital_discharges[facility_id]
+			    fact_Hospital_Discharges[facility_id]
 			)
 		formatString: 0
+		displayFolder: Volume
 		lineageTag: 150439f1-36f4-4fff-b714-2c51fa1c69b7
 
+	/// Total number of inpatient hip replacement discharges (rows) in fact_Hospital_Discharges within the current filter context. Scope is elective hip replacements only — not all hospital discharges.
 	measure 'Total Discharges' =
 			
 			COUNTROWS(
-			    hospital_discharges
+			    fact_Hospital_Discharges
 			)
 		formatString: 0
+		displayFolder: Volume
 		lineageTag: 3865b839-e4d3-4a8c-8b95-ec160ad03015
 
+	/// Mean length of stay in days across all discharges in the current filter context. Calculated as AVERAGE(fact_Hospital_Discharges[length_of_stay]). Use with % Var Average LOS Days to benchmark against the state average.
 	measure 'Average LOS Days' =
 			
 			AVERAGE(
-			    hospital_discharges[length_of_stay]
+			    fact_Hospital_Discharges[length_of_stay]
 			)
+		displayFolder: Length of Stay
 		lineageTag: af77b502-18c2-4826-bae8-9225409acf80
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Count of distinct operating surgeons (operating_provider_license_number) in the current filter context. A proxy for surgical workforce size at the selected facility or filter level.
 	measure 'Total Surgeons' =
 			
 			DISTINCTCOUNT(
-			    hospital_discharges[operating_provider_license_number]
+			    fact_Hospital_Discharges[operating_provider_license_number]
 			)
 		formatString: 0
+		displayFolder: Volume
 		lineageTag: 07fa8ac5-35c7-43c5-8858-d4fb8f39c85c
 
+	/// Mean cost per inpatient discharge: SUM(total_costs) / Total Discharges. Reflects total_costs (not total_charges) — i.e. estimated cost to the hospital, not billed amount. Use with % Var Average Cost per Discharge for benchmarking.
 	measure 'Average Cost per Discharge' =
 			
 			DIVIDE(
-			    SUM(hospital_discharges[total_costs]),
+			    SUM(fact_Hospital_Discharges[total_costs]),
 			    [Total Discharges]
 			)
 		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Cost
 		lineageTag: 3ccdf6d5-3a97-4c20-aae0-59942cf707c6
 
+	/// Percentage variance of Average Cost per Discharge vs. the overall state average for the dataset. The state average is computed using CALCULATE([Average Cost per Discharge], ALL()) which removes ALL filter context — facility, severity, age group, etc. Positive = above state average; negative = below. Benchmark is ~$20,910.
 	measure '% Var Average Cost per Discharge' =
 			
 			VAR vAVG = [Average Cost per Discharge]
@@ -51,8 +63,10 @@ table _Measures
 			RETURN
 			(vAVG-vAvgALL)/vAvgALL
 		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
 		lineageTag: 64e23335-a202-417f-b45d-5d14f01c4380
 
+	/// Percentage variance of Average LOS Days vs. the overall state average for the dataset. The state average is computed using CALCULATE([Average LOS Days], ALL()) which removes ALL filter context. Positive = above state average; negative = below. Benchmark is ~2.65 days.
 	measure '% Var Average LOS Days' =
 			
 			VAR vAVG = [Average LOS Days]
@@ -61,29 +75,41 @@ table _Measures
 			RETURN
 			(vAVG-vAvgALL)/vAvgALL
 		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
 		lineageTag: 13f5806f-bb18-4c35-80ed-b38ebb79bd92
 
+	/// State-wide average length of stay across all hip replacement discharges, ignoring all filter context. ALL() removes every filter — facility, severity, age group, geography, etc. Use as a stable benchmark line in visuals alongside the filtered Average LOS Days.
 	measure 'Average LOS Days ALL' =
-			
-			CALCULATE(
-			    [Average LOS Days],
-			    ALL()
-			)
+			VAR StateAvgLOS =
+			    CALCULATE(
+			        [Average LOS Days],
+			        ALL()
+			    )
+			RETURN
+			    StateAvgLOS
 		formatString: 0.00
+		displayFolder: Length of Stay
 		lineageTag: 3c77f048-957c-422c-bd57-176945db1968
 
+	/// State-wide average cost per discharge across all hip replacement discharges, ignoring all filter context. ALL() removes every filter — facility, severity, age group, geography, etc. Use as a stable benchmark line in visuals alongside the filtered Average Cost per Discharge.
 	measure 'Average Cost per Discharge ALL' =
-			
-			CALCULATE(
-			    [Average Cost per Discharge],
-			    ALL()
-			)
+			VAR StateAvgCost =
+			    CALCULATE(
+			        [Average Cost per Discharge],
+			        ALL()
+			    )
+			RETURN
+			    StateAvgCost
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Cost
 		lineageTag: e70b6ce3-2d6a-4cfe-b167-6052876b288d
 
+	/// Dynamic page title showing the selected facility name. Returns 'Hospital Profile: <name>' when exactly one facility is selected. Returns an error if multiple facilities are selected simultaneously — designed for single-facility drill-through context.
 	measure 'Title Selected Facility' =
-			
-			"Hospital Profile: " & VALUES(Hospital_Discharges[facility_name])
+			VAR FacilityName = VALUES(fact_Hospital_Discharges[facility_name])
+			RETURN
+			    "Hospital Profile: " & FacilityName
+		displayFolder: Labels
 		lineageTag: 606e7593-fa52-41f0-875c-2d8e6e24b7b6
 
 	column Column
