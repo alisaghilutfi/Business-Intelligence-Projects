@@ -48,9 +48,9 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 |---|---|---|---|
 | `finance-analysis` | `PowerBI_Finance_Analysis/` | PBIP ✓ | Registered |
 | `competitor-sales` | `PowerBI_Competitor_Sales_Analysis/` | PBIP ✓ | Registered |
-| `ecommerce-analysis` | `PowerBI_Ecommerce_Analysis/` | .pbix | Registered |
-| `healthcare-analysis` | `PowerBI_Healthcare_Analysis/` | .pbix | Registered |
-| `supply-chain` | `PowerBI_Supply_Chain_Analysis/` | .pbix | Registered |
+| `ecommerce-analysis` | `PowerBI_Ecommerce_Analysis/` | PBIP ✓ | Registered |
+| `healthcare-analysis` | `PowerBI_Healthcare_Analysis/` | PBIP ✓ | Registered |
+| `supply-chain` | `PowerBI_Supply_Chain_Analysis/` | PBIP ✓ | Registered |
 | `excel-customer-churn` | `Excel_Customer_Churn_Analysis/` | .xlsx | Registered |
 | `sql-nashville-housing` | `SQL_Nashville_Housing/` | .sql | Registered |
 | `sql-segmentation-cohorts` | `SQL_Segmentation_Cohorts_Retention/` | .sql | Registered |
