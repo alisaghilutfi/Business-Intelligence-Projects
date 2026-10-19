@@ -1,8 +1,10 @@
-table Quotes
+/// Fact table. One row per supplier quote (Part_Number × Supplier × Volume tier). Contains unit cost, non-recurring expenses, volume break point, and yield rate. Source: external supplier quote sheets (Widgetmakers Inc fictitious dataset). No temporal dimension — this model has no date or time columns.
+table fact_Quotes
 	lineageTag: 805206a2-3fd5-427a-b85d-7069edec04c8
 
 	column Supplier
 		dataType: string
+		isHidden
 		lineageTag: 9db5b732-35d3-4bbc-99da-fafae7a309c3
 		summarizeBy: none
 		sourceColumn: Supplier
@@ -11,6 +13,7 @@ table Quotes
 
 	column Part_Number
 		dataType: string
+		isHidden
 		lineageTag: 4c6ce8b7-5da1-4b51-9e4d-83c588eeefa2
 		summarizeBy: none
 		sourceColumn: Part_Number
@@ -60,7 +63,7 @@ table Quotes
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Extended Cost' = Quotes[Unit_Cost] * Quotes[Volume]
+	column 'Extended Cost' = fact_Quotes[Unit_Cost] * fact_Quotes[Volume]
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 8177616b-3c42-491b-8576-054d4e13aeb1
 		summarizeBy: none
@@ -71,7 +74,7 @@ table Quotes
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	column 'Full Cost' = Quotes[Extended Cost] + Quotes[Non_recurring_expenses]
+	column 'Full Cost' = fact_Quotes[Extended Cost] + fact_Quotes[Non_recurring_expenses]
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: cb3c05c8-2766-4b65-8e1d-95df1e5784ee
 		summarizeBy: none
@@ -80,7 +83,7 @@ table Quotes
 
 		annotation SummarizationSetBy = User
 
-	column 'Yield Rate' = FIRSTNONBLANK('Yield Rate'[Yield Rate], TRUE)
+	column 'Yield Rate' = FIRSTNONBLANK('dim_Yield_Rate'[Yield Rate], TRUE)
 		lineageTag: 3a4cc3bb-c5f5-4524-b3b8-ab6c6dca186d
 		summarizeBy: sum
 

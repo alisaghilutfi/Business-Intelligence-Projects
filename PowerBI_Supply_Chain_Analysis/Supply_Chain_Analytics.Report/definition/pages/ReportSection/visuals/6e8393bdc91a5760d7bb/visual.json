@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Volume"
@@ -62,7 +62,7 @@
                 "From": [
                   {
                     "Name": "q",
-                    "Entity": "Quotes",
+                    "Entity": "fact_Quotes",
                     "Type": 0
                   }
                 ],

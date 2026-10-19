@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Supplier"
@@ -32,7 +32,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Part_Number"

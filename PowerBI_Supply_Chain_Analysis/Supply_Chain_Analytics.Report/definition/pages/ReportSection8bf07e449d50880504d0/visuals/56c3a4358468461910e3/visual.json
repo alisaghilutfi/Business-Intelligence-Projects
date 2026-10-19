@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Product_Dimension"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Part_Name"
@@ -32,7 +32,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Product_Dimension"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Part_Number"
@@ -45,7 +45,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Machine_Model"
@@ -58,7 +58,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Existing_Capacity"
@@ -71,7 +71,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Unit_Capacity"
@@ -84,7 +84,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Additional Unit Capacity Required"
@@ -97,7 +97,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Capital Investment Required (Make)"
@@ -110,7 +110,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Internal_Mfg_Resource_Estimates"
+                      "Entity": "fact_Mfg_Estimates"
                     }
                   },
                   "Property": "Make Scenario Full Cost"

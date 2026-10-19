@@ -1,22 +1,55 @@
-table Internal_Mfg_Resource_Estimates
+/// Fact table. One row per machine model × part number combination. Contains internal manufacturing cost per unit, machine unit capacity, machine fixed cost, existing capacity, and fixed overhead rate. Source: internal manufacturing resource estimates. No temporal dimension — this model has no date or time columns.
+table fact_Mfg_Estimates
 	lineageTag: d172ab30-c789-4266-a064-9b8c6c57d729
 
-	measure 'Additional Unit Capacity Required' = MINX(Internal_Mfg_Resource_Estimates, MAX('Scenario Volume'[Scenario Volume Value] - Internal_Mfg_Resource_Estimates[Existing_Capacity],0))
+	/// Units of production capacity needed beyond existing capacity to meet the scenario volume. Calculated as MAX(Scenario Volume - Existing Capacity, 0) per machine model. Zero when existing capacity is sufficient.
+	measure 'Additional Unit Capacity Required' =
+			VAR ScenarioVol = 'Scenario Volume'[Scenario Volume Value]
+			VAR AdditionalCapacity =
+			    MINX(
+			        fact_Mfg_Estimates,
+			        MAX(ScenarioVol - fact_Mfg_Estimates[Existing_Capacity], 0)
+			    )
+			RETURN
+			    AdditionalCapacity
 		formatString: #,0
+		displayFolder: Make Scenario
 		lineageTag: bd6f7f1c-ea35-42c0-a48d-61643aa81762
 
 		changedProperty = FormatString
 
-	measure 'Capital Investment Required (Make)' = MINX(Internal_Mfg_Resource_Estimates, ROUNDUP([Additional Unit Capacity Required] / MIN(Internal_Mfg_Resource_Estimates[Unit_Capacity]),0) * Internal_Mfg_Resource_Estimates[Machine_Fixed_Cost])
+	/// Total capital expenditure required to add enough machine capacity to cover Additional Unit Capacity Required. Rounds up to whole machines (you cannot buy a fraction of a machine). Zero when no additional capacity is needed.
+	measure 'Capital Investment Required (Make)' =
+			VAR AdditionalCap = [Additional Unit Capacity Required]
+			VAR CapitalInvestment =
+			    MINX(
+			        fact_Mfg_Estimates,
+			        ROUNDUP(AdditionalCap / MIN(fact_Mfg_Estimates[Unit_Capacity]), 0)
+			            * fact_Mfg_Estimates[Machine_Fixed_Cost]
+			    )
+			RETURN
+			    CapitalInvestment
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Make Scenario
 		lineageTag: c438dfa5-fb2a-443d-ba36-927d816bca07
 
 		changedProperty = FormatString
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'Make Scenario Full Cost' = MINX(Internal_Mfg_Resource_Estimates, [Capital Investment Required (Make)] + Internal_Mfg_Resource_Estimates[Cost_per_Unit] * 'Scenario Volume'[Scenario Volume Value])
+	/// Total cost of manufacturing internally at the scenario volume: Capital Investment Required (Make) plus variable cost (Cost per Unit × Scenario Volume). Does not yet adjust for internal scrap rates.
+	measure 'Make Scenario Full Cost' =
+			VAR CapEx = [Capital Investment Required (Make)]
+			VAR ScenarioVol = 'Scenario Volume'[Scenario Volume Value]
+			VAR MakeCost =
+			    MINX(
+			        fact_Mfg_Estimates,
+			        CapEx + fact_Mfg_Estimates[Cost_per_Unit] * ScenarioVol
+			    )
+			RETURN
+			    MakeCost
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Make Scenario
 		lineageTag: 246502bf-ba91-4b63-9ca1-a0d18200e9cf
 
 		changedProperty = FormatString
@@ -33,6 +66,7 @@ table Internal_Mfg_Resource_Estimates
 
 	column Part_Number
 		dataType: string
+		isHidden
 		lineageTag: 7fec3175-c501-460a-be84-c67732e819c4
 		summarizeBy: none
 		sourceColumn: Part_Number

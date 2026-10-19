@@ -1,19 +1,55 @@
+/// What-if parameter table for the scenario volume slicer. One row per volume increment. Drives Scenario Volume Value and all cost measures. Not a data table — values are user-controlled inputs. No temporal dimension — this model has no date or time columns.
 table 'Scenario Volume'
 	lineageTag: 5a2d42b5-f1ab-49dd-a460-f1bfc8b90ef6
 
-	measure 'Scenario Volume Value' = SELECTEDVALUE('Scenario Volume'[Scenario Volume], 15000)
+	/// The production volume selected via the Scenario Volume slicer. Defaults to 15,000 units when nothing is selected. Used as the volume input for both Make and Buy cost calculations.
+	measure 'Scenario Volume Value' =
+			VAR SelectedVol = SELECTEDVALUE('Scenario Volume'[Scenario Volume], 15000)
+			RETURN
+			    SelectedVol
 		formatString: 0
+		displayFolder: Scenario
 		lineageTag: da42a76a-c27a-4c3f-a79f-dc3c38cd16a9
 
-	measure 'Buy Scenario Full Cost' = MINX(FILTER(Quotes, Quotes[Volume] <= 'Scenario Volume'[Scenario Volume Value]), ([Scenario Volume Value] * Quotes[Unit_Cost] / Quotes[Yield Rate]) + Quotes[Non_recurring_expenses])
+	/// Minimum total cost to buy at the scenario volume from any qualifying supplier. Filters to quotes where Volume <= Scenario Volume, then picks the cheapest: (Volume × Unit Cost / Yield Rate) + Non-recurring expenses. Yield rate adjusts for supplier defect rates.
+	measure 'Buy Scenario Full Cost' =
+			VAR ScenarioVol = 'Scenario Volume'[Scenario Volume Value]
+			VAR BuyCost =
+			    MINX(
+			        FILTER(fact_Quotes, fact_Quotes[Volume] <= ScenarioVol),
+			        (ScenarioVol * fact_Quotes[Unit_Cost] / fact_Quotes[Yield Rate])
+			            + fact_Quotes[Non_recurring_expenses]
+			    )
+			RETURN
+			    BuyCost
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Buy Scenario
 		lineageTag: d707a09a-902e-4244-8a67-95443d970354
 
-	measure 'Make vs Buy' = IF(ISBLANK([Make Scenario Full Cost]), BLANK(), IF([Make Scenario Full Cost] >= [Buy Scenario Full Cost], "Buy","Make"))
+	/// Make-or-Buy recommendation at the current scenario volume. Returns 'Make' when internal cost is lower, 'Buy' when external supplier cost is lower or equal, BLANK when Make Scenario Full Cost is unavailable.
+	measure 'Make vs Buy' =
+			VAR MakeCost = [Make Scenario Full Cost]
+			VAR BuyCost = [Buy Scenario Full Cost]
+			VAR Decision =
+			    IF(
+			        ISBLANK(MakeCost),
+			        BLANK(),
+			        IF(MakeCost >= BuyCost, "Buy", "Make")
+			    )
+			RETURN
+			    Decision
+		displayFolder: Decision
 		lineageTag: 89aa2b4a-c9d6-4848-8795-0e9bb685f309
 
-	measure 'Cost Avoidance' = ABS([Make Scenario Full Cost] -  [Buy Scenario Full Cost])
+	/// Absolute cost difference between Make and Buy scenarios at the current volume. Represents the savings achievable by choosing the lower-cost option. Always positive — use Make vs Buy to determine which option to choose.
+	measure 'Cost Avoidance' =
+			VAR MakeCost = [Make Scenario Full Cost]
+			VAR BuyCost = [Buy Scenario Full Cost]
+			VAR Savings = ABS(MakeCost - BuyCost)
+			RETURN
+			    Savings
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Decision
 		lineageTag: a46cb099-7a8d-40bd-9a3a-c2b4c9145f0f
 
 	column 'Scenario Volume'

@@ -1,14 +1,14 @@
 relationship 6516b6b1-fcbe-4b32-9fe7-4756f3c0fdee
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
-	fromColumn: Product_Dimension.Part_Number
-	toColumn: Internal_Mfg_Resource_Estimates.Part_Number
+	fromColumn: dim_Product.Part_Number
+	toColumn: fact_Mfg_Estimates.Part_Number
 
 relationship a2fd739a-b47c-4b20-9b2a-8d39280308d5
-	fromColumn: Quotes.Part_Number
-	toColumn: Product_Dimension.Part_Number
+	fromColumn: fact_Quotes.Part_Number
+	toColumn: dim_Product.Part_Number
 
 relationship e629ab16-0241-4dc1-adab-86b5eda076e6
-	fromColumn: Quotes.Supplier
-	toColumn: 'Yield Rate'.Supplier
+	fromColumn: fact_Quotes.Supplier
+	toColumn: dim_Yield_Rate.Supplier
 

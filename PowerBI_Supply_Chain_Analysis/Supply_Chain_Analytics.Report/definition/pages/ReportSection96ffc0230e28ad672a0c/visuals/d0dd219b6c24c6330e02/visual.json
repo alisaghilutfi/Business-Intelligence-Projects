@@ -21,7 +21,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Quotes"
+                          "Entity": "fact_Quotes"
                         }
                       },
                       "Property": "Non_recurring_expenses"
@@ -44,7 +44,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Quotes"
+                        "Entity": "fact_Quotes"
                       }
                     },
                     "Property": "Non_recurring_expenses"
@@ -84,7 +84,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Quotes"
+                "Entity": "fact_Quotes"
               }
             },
             "Property": "Quote_ID"
@@ -103,7 +103,7 @@
                     "From": [
                       {
                         "Name": "q",
-                        "Entity": "Quotes",
+                        "Entity": "fact_Quotes",
                         "Type": 0
                       },
                       {
@@ -148,7 +148,7 @@
             },
             {
               "Name": "q",
-              "Entity": "Quotes",
+              "Entity": "fact_Quotes",
               "Type": 0
             }
           ],

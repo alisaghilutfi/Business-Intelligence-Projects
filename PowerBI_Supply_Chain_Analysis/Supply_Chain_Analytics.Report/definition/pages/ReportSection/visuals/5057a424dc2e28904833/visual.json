@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Supplier"
@@ -32,7 +32,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Part_Number"
@@ -45,7 +45,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Volume"
@@ -60,7 +60,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Quotes"
+                          "Entity": "fact_Quotes"
                         }
                       },
                       "Property": "Non_recurring_expenses"
@@ -76,7 +76,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Unit_Cost"
@@ -89,7 +89,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Quotes"
+                      "Entity": "fact_Quotes"
                     }
                   },
                   "Property": "Full Cost"
@@ -107,7 +107,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Quotes"
+                    "Entity": "fact_Quotes"
                   }
                 },
                 "Property": "Volume"

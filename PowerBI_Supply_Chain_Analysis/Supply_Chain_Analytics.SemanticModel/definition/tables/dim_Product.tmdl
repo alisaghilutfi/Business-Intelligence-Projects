@@ -1,4 +1,5 @@
-table Product_Dimension
+/// Product dimension. One row per part number. Contains part name and project assignment. Join key: Part_Number → fact_Quotes (M:1) and → fact_Mfg_Estimates (1:1, BothDirections — required by Analysis Services for 1:1 cardinality). No temporal dimension — this model has no date or time columns.
+table dim_Product
 	lineageTag: 3b183d14-63c1-4c11-8b10-9b9e8259c9f7
 
 	column Part_Number

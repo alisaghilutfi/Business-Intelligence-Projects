@@ -1,7 +1,18 @@
+/// Secondary what-if parameter table providing the full volume range simultaneously for break-even chart rendering. Used only by Buy Scenario Full Cost (All). Note: this measure omits yield rate adjustment — see measure description. No temporal dimension — this model has no date or time columns.
 table 'Scenario Volumes (All)'
 	lineageTag: 81738127-dbf5-4981-b36a-2132197b6b40
 
-	measure 'Buy Scenario Full Cost (All)' = MINX(FILTER(Quotes, Quotes[Volume] <= MIN('Scenario Volumes (All)'[Scenario Volume])), MIN('Scenario Volumes (All)'[Scenario Volume]) * Quotes[Unit_Cost] + Quotes[Non_recurring_expenses])
+	/// Buy scenario cost across all scenario volumes simultaneously (used in the break-even line chart). Unlike Buy Scenario Full Cost, this measure does not apply Yield Rate adjustment — it uses raw Unit Cost × Volume. Used for the sensitivity analysis visual only.
+	measure 'Buy Scenario Full Cost (All)' =
+			VAR ScenarioVol = MIN('Scenario Volumes (All)'[Scenario Volume])
+			VAR BuyCostAll =
+			    MINX(
+			        FILTER(fact_Quotes, fact_Quotes[Volume] <= ScenarioVol),
+			        ScenarioVol * fact_Quotes[Unit_Cost] + fact_Quotes[Non_recurring_expenses]
+			    )
+			RETURN
+			    BuyCostAll
+		displayFolder: Buy Scenario
 		lineageTag: b613b89c-c35a-4d7f-8997-61df3f8d129d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -12,6 +23,7 @@ table 'Scenario Volumes (All)'
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: Scenario Volume[Scenario Volume]
+		columnOrigin: 'Scenario Volume'.'Scenario Volume'
 
 		annotation SummarizationSetBy = Automatic
 

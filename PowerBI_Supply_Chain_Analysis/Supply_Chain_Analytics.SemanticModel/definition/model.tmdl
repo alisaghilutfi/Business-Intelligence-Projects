@@ -10,15 +10,15 @@ annotation PBI_QueryOrder = ["Internal_Mfg_Resource_Estimates","Quotes","Product
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
 ref table DateTableTemplate_0e2b4434-136c-42c8-b2aa-bfd4f5b105cd
-ref table Internal_Mfg_Resource_Estimates
-ref table Quotes
-ref table Product_Dimension
+ref table fact_Mfg_Estimates
+ref table fact_Quotes
+ref table dim_Product
 ref table 'Scenario Volume'
 ref table 'Scenario Volumes (All)'
-ref table 'Yield Rate'
+ref table dim_Yield_Rate
 
 ref role 'Project Siliode Team Member'
 ref role 'Project Kerfuffle Team Member'

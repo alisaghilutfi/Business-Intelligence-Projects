@@ -15,14 +15,14 @@ Determine, for each part number and production volume, whether Widgetmakers Inc 
 
 ## Grain
 
-One row per supplier quote (part × supplier × volume).
+One row per supplier quote (`fact_Quotes`). Grain: Part_Number × Supplier × Volume tier.
 
 ## Data sources
 
-- `Quotes` (fact) — Supplier quotes: part, supplier, unit cost, volume, non-recurring expenses, yield rate
-- `Internal_Mfg_Resource_Estimates` — Internal cost per unit, existing capacity, machine unit capacity, machine fixed cost
-- `Product_Dimension` — Part number and product attributes
-- `Yield_Rate` — Yield rate dimension for quality-adjusted cost calculation
+- `fact_Quotes` — Supplier quotes: part, supplier, unit cost, volume, non-recurring expenses, yield rate
+- `fact_Mfg_Estimates` — Internal cost per unit, existing capacity, machine unit capacity, machine fixed cost
+- `dim_Product` — Part number, part name, and project assignment
+- `dim_Yield_Rate` — Supplier yield rates for quality-adjusted cost calculation
 
 ## Stakeholders
 
@@ -34,3 +34,4 @@ Widgetmakers Inc procurement team.
 - Non-recurring expenses treated as fully upfront (not amortised over contract term) — overstates cost disadvantage of high-setup Buy options at low volumes
 - No demand uncertainty modelled — volume is a known input via What-if parameter
 - Yield rate applied to Buy scenario only; Make scenario does not yet adjust for internal scrap rates
+- **No temporal dimension** — this model contains no date or time columns; time intelligence measures are not applicable

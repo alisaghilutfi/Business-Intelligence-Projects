@@ -1,6 +1,6 @@
 # State
 
-**Status:** Complete — archived
+**Status:** Complete — hygiene pass done
 **Last updated:** 2026-10-19
 
 ## Current focus
@@ -13,4 +13,4 @@ None
 
 ## Next actions
 
-- N/A — PBIP conversion complete
+- N/A — model hygiene pass complete (table renames, bi-directional filter fix attempt, hide columns, VAR/RETURN, display folders, Copilot descriptions, table descriptions, PBIR field refs)

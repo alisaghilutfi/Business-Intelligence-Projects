@@ -1,4 +1,5 @@
-table 'Yield Rate'
+/// Yield rate dimension. One row per supplier. Contains the supplier’s yield rate (defect-adjusted output fraction). Used to quality-adjust Buy Scenario Full Cost. Note: yield rate is also stored as a calculated column on fact_Quotes for row-level calculations. No temporal dimension — this model has no date or time columns.
+table dim_Yield_Rate
 	lineageTag: 46d5fa6f-b446-4057-a89a-270f294cffa5
 
 	column Supplier
