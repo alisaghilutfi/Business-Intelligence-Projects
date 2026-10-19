@@ -1,85 +1,109 @@
 # Business Intelligence Projects
 
-Power BI, DAX, and data modeling projects by [Ali Saghi](https://www.linkedin.com/in/ali-saghi-fabric/), DP-600 certified Microsoft Fabric Analytics Engineer and founder of [Lotusoftware](https://lotusoftware.hashnode.dev) — a data analytics consultancy in Vantaa, Finland.
+A BI-layer monorepo of Power BI, Excel, and SQL portfolio projects. All Power BI projects are in PBIP format with clean semantic models, Lotusoftware design system, and AI-ready measure libraries.
 
-Each project is framed through the **Analyst Mindset** (Jon Christiansen): every README states the business decision the analysis supports, names the outcome variable and question type, documents known data limitations, and ends with honest next-improvement steps. The goal is not to demonstrate that Power BI was used, but to demonstrate that the right question was asked and answered with appropriate rigour.
+## Agentic Workflow
 
-For end-to-end Microsoft Fabric projects (medallion architecture, PySpark, DirectLake semantic models, Data Agents), see the companion repo: [Fabric-Analytics-Projects](https://github.com/alisaghilutfi/Fabric-Analytics-Projects).
+This repo uses a two-agent system powered by Claude and MCP tooling:
 
----
+```mermaid
+flowchart TD
+    A([Ali — Product Owner]) -->|plans & reviews| PP(ProjectPlanner\nclaude.ai)
+    A -->|executes| FE(FabricEngineer\nClaude Code VS Code)
+
+    PP -->|issues execution briefs| FE
+
+    FE -->|reads & writes PBIP files| FS[filesystem MCP\nlocal repo]
+    FE -->|semantic model read/write| PBM[powerbi-modeling-mcp\nXMLA endpoint]
+
+    PBM -->|connects to| DM[(Power BI Desktop\nlive model)]
+    FS -->|syncs to| GH[(GitHub\norigin/main)]
+
+    subgraph Per-Project Workflow
+        MR[model-reviewer agent\n.claude/agents/]
+        CMD[slash commands\n/new-project · /status]
+        DS[Lotusoftware design system\n.claude/skills/]
+    end
+
+    FE -->|invokes| MR
+    FE -->|runs| CMD
+    FE -->|loads| DS
+```
+
+**ProjectPlanner** (`claude.ai`) — plans architecture, writes execution briefs, reviews audit results, issues prompts to FabricEngineer.
+
+**FabricEngineer** (`Claude Code, VS Code`) — executes file operations, semantic model writes via `powerbi-modeling-mcp`, PBIR JSON fixes, git commits.
+
+**model-reviewer** — subagent that audits any `.SemanticModel/` folder against star-schema, naming, DAX, and hygiene standards. Invoked before any model work.
 
 ## Projects
 
-### PowerBI_Competitor_Sales_Analysis — Competitive Sales Intelligence
+| Project | Format | Domain | Tables |
+|---|---|---|---|
+| [Finance Analysis](PowerBI_Finance_Analysis/) | PBIP ✓ | Personal finance / banking | `fact_Transactions`, `dim_Customer`, `dim_Date` |
+| [Competitor Sales](PowerBI_Competitor_Sales_Analysis/) | PBIP ✓ | Retail sales / market share | `fact_Sales`, `dim_Product`, `dim_Geography`, `dim_Manufacturer`, `dim_Date` |
+| [Ecommerce Analysis](PowerBI_Ecommerce_Analysis/) | PBIP ✓ | E-commerce / customer LTV | `fact_Sales`, `fact_Invoice_Totals`, `fact_Market_Baskets`, `dim_Customer`, `dim_Product`, `dim_State_Mapping`, `dim_Date` |
+| [Supply Chain](PowerBI_Supply_Chain_Analysis/) | PBIP ✓ | Make vs. buy / cost avoidance | `fact_Quotes`, `fact_Mfg_Estimates`, `dim_Product`, `dim_Yield_Rate` |
+| [Healthcare Analysis](PowerBI_Healthcare_Analysis/) | PBIP ✓ | Hospital discharges / LOS | `fact_Hospital_Discharges`, `dim_Surgical_Program` |
+| [Customer Churn](Excel_Customer_Churn_Analysis/) | Excel | Churn prediction | — |
+| [Nashville Housing](SQL_Nashville_Housing/) | SQL | Data cleaning | — |
+| [Segmentation & Cohorts](SQL_Segmentation_Cohorts_Retention/) | SQL | Customer analytics | — |
 
-**Type:** Business Intelligence · Competitive Analysis  
-**Stack:** Power BI · Power Query · Snowflake schema · DAX · AI visuals (Decomposition Tree, Key Influencers)  
-**Data:** ~1.8M sales transactions · 6 countries · 14 manufacturers · 2014–2021
+## Semantic Model Standards
 
-Where should Sintec focus product, geography, and pricing strategy to defend and grow market share? Revenue and share are compared across 13 competitors by country and segment, with AI visuals surfacing the drivers a static chart would miss. Sintec leads the US market (38.22% share) but trails globally (21.15%), with Artisans dominating Germany at >50% — pointing to distinct regional strategies rather than a single global play.
+All Power BI semantic models follow these standards:
 
----
+- **Star schema** — `fact_` (plural) and `dim_` (singular) naming
+- **Hidden columns** — all FK, ID, and operational columns hidden from report view
+- **DAX** — `VAR`/`RETURN` on all compound measures, display folders, Copilot descriptions on every measure
+- **Table descriptions** — grain, source, and key limitations on every table
+- **Design system** — Lotusoftware Layout Trifecta, `#197278` teal palette, max 4 intentional colours
 
-### PowerBI_Ecommerce_Analysis — E-Commerce Performance & Cost Optimisation
+## Repo Structure
 
-**Type:** Business Intelligence · Operations Analytics  
-**Stack:** Power BI · Power Query · Snowflake schema · DAX · What-if parameters · Market basket analysis  
-**Data:** Whiskique pet supply store · transaction-level sales and shipping data
+```
+.claude/
+  agents/model-reviewer.md        ← semantic model audit agent
+  commands/new-project.md         ← /new-project scaffold command
+  commands/status.md              ← /status summary command
+  skills/lotusoftware-dashboard-design/  ← design system (auto-loaded)
+  settings.json                   ← tool permissions
 
-Where can Whiskique reduce shipping costs without sacrificing revenue, and which product relationships support a cross-sell programme? Shipping costs ($385K baseline) are modelled against quantity-consolidation scenarios using What-if parameters, and a correlation-based market basket analysis identifies product pairs with the highest affinity scores for targeted promotion.
+_template/                        ← scaffold templates for new projects
+  CLAUDE.md                       ← project context template (includes Analyst Mindset checklist)
+  state.md
+  decisions.md
 
----
+projects/<slug>/                  ← per-project metadata
+  CLAUDE.md                       ← goal, metrics, grain, stakeholders
+  state.md                        ← current status and blockers
+  decisions.md                    ← dated design decision log
 
-### PowerBI_Supply_Chain_Analysis — Make-or-Buy Decision Support
+PowerBI_<Name>/                   ← PBIP files (Desktop save path)
+  <Name>.pbip
+  <Name>.Report/
+  <Name>.SemanticModel/
 
-**Type:** Business Intelligence · Operations Analytics · Scenario Planning  
-**Stack:** Power BI · Power Query · Snowflake schema · DAX · What-if parameters  
-**Data:** Widgetmakers Inc · supplier quotes · internal manufacturing cost estimates
+Analyst-Mindset-Framework.docx    ← project kickoff framework (Jon Christiansen, 27 episodes)
+learnings.md                      ← hard-won PBIR/TMDL/MCP gotchas
+```
 
-Should Widgetmakers manufacture a component internally or buy from an external supplier — and at what volume does the answer change? Full cost (extended + non-recurring) is modelled across four suppliers and a range of production volumes, with automated Make vs Buy recommendations and capital investment requirements calculated per scenario.
+## Key Learnings
 
----
+Hard-won lessons from this repo are logged in [`learnings.md`](learnings.md). Highlights:
 
-### PowerBI_Finance_Analysis — Financial Transactions Dashboard
+- PBIR JSON table renames require updates to both `"Entity"` values **and** `"queryRef"` dot-prefix strings
+- filesystem MCP writes UTF-8 BOM on Windows — always strip with Python after any `.Report/` JSON edit
+- TMDL partition names, `PBI_QueryOrder`, `diagramLayout.json` nodeIndex keys, and annotation embedded JSON all carry table names and must be updated after renames
 
-**Type:** Business Intelligence · Finance  
-**Stack:** Power BI · Power Query · DAX · Field parameters · Custom tooltips · Conditional formatting  
-**Data:** FinSight financial transactions · multi-segment, multi-region
+## Tools & MCP Servers
 
-How are transaction volumes, fees, and taxes trending across business segments and geographies, and where are the operational exceptions that warrant investigation? An F-pattern Executive Summary with field-parameter metric switching covers the macro view; a drill-through transaction ledger with conditional risk formatting handles the auditing use case; a custom monthly tooltip surfaces state-level density on hover.
-
----
-
-### PowerBI_Healthcare_Analysis — Hospital Efficiency Benchmarking
-
-**Type:** Business Intelligence · Healthcare Analytics  
-**Stack:** Power BI · Power Query · DAX · Benchmarking  
-**Data:** New York State hospital discharge data (2016) · 26,286 elective hip replacement cases · 151 hospitals
-
-Which New York hospitals are statistical outliers in length of stay and cost for elective hip replacement, and what patient and facility factors explain the variance? Illness severity and mortality risk are the dominant drivers; NYC hospitals show structurally higher costs independent of case mix; surgical programme size shows a weak efficiency correlation that warrants further investigation before being used as a policy lever.
-
----
-
-## Skills Demonstrated
-
-| Skill | Projects |
+| Tool | Purpose |
 |---|---|
-| DAX — time intelligence, market share, scenario measures | All Power BI projects |
-| Power Query ETL — multi-source, composite keys, data cleaning | All Power BI projects |
-| What-if parameters and scenario modelling | Ecommerce, Supply Chain |
-| Market basket analysis (correlation coefficients) | Ecommerce |
-| AI visuals (Decomposition Tree, Key Influencers) | Competitor Sales |
-| Snowflake schema design | Competitor Sales, Ecommerce, Supply Chain |
-| Benchmarking and outlier detection | Healthcare, Finance |
-| Field parameters and dynamic titles | Finance |
+| `powerbi-modeling-mcp` (local, `plugin:powerbi-authoring`) | Semantic model read/write via XMLA |
+| `filesystem` MCP | Read/write repo files |
+| Power BI Desktop | PBIP authoring, visual verification |
 
 ---
 
-## About Lotusoftware
-
-Lotusoftware is a data analytics consultancy founded by Ali Saghi in Vantaa, Finland, specialising in Microsoft Fabric, Power BI, and agentic analytics systems.
-
-- Blog: [lotusoftware.hashnode.dev](https://lotusoftware.hashnode.dev)
-- LinkedIn: [ali-saghi-fabric](https://www.linkedin.com/in/ali-saghi-fabric/)
-- GitHub: [alisaghilutfi](https://github.com/alisaghilutfi)
-- Fabric projects: [Fabric-Analytics-Projects](https://github.com/alisaghilutfi/Fabric-Analytics-Projects)
+*Ali Saghi · [Lotusoftware](https://lotusoftware.hashnode.dev) · [LinkedIn](https://linkedin.com/in/ali-saghi-fabric)*
