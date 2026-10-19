@@ -47,7 +47,7 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 | Slug | Folder | Format | Status |
 |---|---|---|---|
 | `finance-analysis` | `PowerBI_Finance_Analysis/` | PBIP ✓ | Registered |
-| `competitor-sales` | `PowerBI_Competitor_Sales_Analysis/` | .pbix | Registered |
+| `competitor-sales` | `PowerBI_Competitor_Sales_Analysis/` | PBIP ✓ | Registered |
 | `ecommerce-analysis` | `PowerBI_Ecommerce_Analysis/` | .pbix | Registered |
 | `healthcare-analysis` | `PowerBI_Healthcare_Analysis/` | .pbix | Registered |
 | `supply-chain` | `PowerBI_Supply_Chain_Analysis/` | .pbix | Registered |
