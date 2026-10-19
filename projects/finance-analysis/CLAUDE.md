@@ -6,22 +6,23 @@ Answer how transaction volumes, fees, and taxes trend across segments and geogra
 
 ## Metrics / KPIs
 
-- Total Amount (`SUM(Transactions[Amount])`)
+- Total Amount (`SUM(fact_Transactions[Amount])`)
 - Total Fees
 - Total Tax
 - Total Transactions
-- PY Amount (`CALCULATE([Total Amount], SAMEPERIODLASTYEAR('Calendar'[Date]))`)
+- PY Amount (`CALCULATE([Total Amount], SAMEPERIODLASTYEAR('dim_Date'[Date]))`)
 - YOY Amount and YOY% Amount
 - Dynamic metric switcher via `_Metrics` field parameter
 
 ## Grain
 
-One row per financial transaction (Transaction ID).
+One row per financial transaction (`fact_Transactions`).
 
 ## Data sources
 
-- `Transactions` — Transaction ID, amount, fees, tax, status, segment, state, transaction type, gender, date (FinSight fictitious dataset)
-- `Calendar` — generated date dimension for time intelligence
+- `fact_Transactions` — Transaction ID, amount, fees, tax, status, segment, state, transaction type, gender, date (FinSight fictitious dataset)
+- `dim_Customer` — Customer ID, gender, date of birth, city, state, occupation, customer segment, join date
+- `dim_Date` — generated date dimension (2023–2026) for time intelligence; marked as official date table
 
 ## Stakeholders
 
@@ -31,4 +32,4 @@ FinSight finance leadership (C-suite) and operations team.
 
 - Negative transaction amounts converted to absolute values — reversals cannot be distinguished without a transaction-type filter
 - Decimal precision fixed to two places
-- Calendar table is generated; gaps in transaction dates will silently affect YoY measures
+- `dim_Date` is generated (2023–2026); transactions outside this range produce blank PY and YOY measures

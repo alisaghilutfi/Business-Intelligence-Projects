@@ -28,8 +28,9 @@ One dashboard needs to serve both audiences without forcing either to navigate a
 
 | Source | Description |
 |--------|-------------|
-| `Transactions` | Transaction ID, amount, fees, tax, status, segment, state, transaction type, gender, date |
-| `Calendar` | Date dimension for time intelligence |
+| `fact_Transactions` | Transaction ID, amount, fees, tax, status, segment, state, transaction type, gender, date |
+| `dim_Customer` | Customer ID, gender, date of birth, city, state, occupation, customer segment, join date |
+| `dim_Date` | Generated date dimension (2023–2026) for time intelligence. Marked as official date table. |
 
 **ETL decisions with analytical consequences:**
 - **Negative transaction amounts converted to absolute values** — raw data contained negative integers for certain transaction types. Converting to absolute values prevents these from offsetting revenue totals, but it also means the report cannot distinguish between reversals and genuine charges without a separate transaction-type filter.
@@ -50,20 +51,22 @@ The **Monthly State Tooltip** is a micro-optimisation that eliminates a common d
 
 Key measures:
 ```dax
-Total Amount = SUM(Transactions[Amount])
-PY Amount = CALCULATE([Total Amount], SAMEPERIODLASTYEAR('Calendar'[Date]))
+Total Amount = SUM(fact_Transactions[Amount])
+PY Amount = CALCULATE([Total Amount], SAMEPERIODLASTYEAR('dim_Date'[Date]))
 YOY Amount = [Total Amount] - [PY Amount]
 YOY% Amount = DIVIDE([YOY Amount], [PY Amount])
 
 Dynamic Month Chart Title =
-SWITCH(
-    SELECTEDVALUE('_Metrics'[_Metrics Order]),
-    0, "Total Amount by Month",
-    1, "Total Fees by Month",
-    2, "Total Tax by Month",
-    3, "Total Transactions by Month",
-    "Financial Metric by Month"
-)
+VAR SelectedMetricOrder = SELECTEDVALUE('_Metrics'[_Metrics Order])
+RETURN
+    SWITCH(
+        SelectedMetricOrder,
+        0, "Total Amount by Month",
+        1, "Total Fees by Month",
+        2, "Total Tax by Month",
+        3, "Total Transactions by Month",
+        "Financial Metric by Month"
+    )
 ```
 
 ---
@@ -82,7 +85,7 @@ SWITCH(
 
 - **No anomaly detection:** The conditional formatting flags known failure statuses — it does not detect statistically unusual fee amounts or transaction patterns. A proper anomaly detection layer would require either Power BI Anomaly Detection on the time series or a DAX measure comparing each transaction to a rolling average threshold.
 - **Negative-to-absolute conversion loses reversal signal:** Converting negative amounts to absolute values for cleaner totals removes the ability to identify net revenue impact of reversals without re-introducing the original sign via a transaction type filter. This is a documented trade-off, not an oversight.
-- **Calendar table is generated, not provided:** Time intelligence depends on a complete calendar table with no gaps. If the transaction data has date gaps, the YoY measures will silently calculate against incomplete prior-year periods.
+- **dim_Date is generated, not provided:** Time intelligence depends on a complete date dimension with no gaps. `dim_Date` covers 2023–2026; transactions outside this range will produce blank PY and YOY measures.
 
 ---
 
