@@ -1,0 +1,121 @@
+table Sales
+	lineageTag: 1614289d-2d07-4c5f-bedd-01b55c65033a
+
+	measure 'PY Sales' =
+			CALCULATE (
+			    SUM (Sales[Revenue]),
+			    SAMEPERIODLASTYEAR ( 'Date'[Date] )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3dd2022e-bcb4-4ea0-8d99-14c5b77ebece
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% Growth' =
+			
+			DIVIDE(
+			SUM(Sales[Revenue])-[PY Sales],[PY Sales]
+			)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 6d8f95a7-18ca-48e2-9dfb-a0cfc6adea81
+
+		changedProperty = FormatString
+
+	measure 'Sintec Revenue' =
+			Calculate(
+			SUM(Sales[Revenue]), Manufacturer[ManufacturerID] = 4
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7e6e725a-0551-4aca-990e-0b7cff200e9b
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Sintec Market Share' =
+			DIVIDE(
+			Sales[Sintec Revenue],SUM(Sales[Revenue]),0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0d4b4ca7-061f-4c87-905c-37452b3d795f
+
+		changedProperty = FormatString
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1db8828-f49c-40fb-9865-7a08dae22555
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6c9997ab-f043-4720-bc84-da4a5b515ed6
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Zip
+		dataType: string
+		lineageTag: a6b5840f-ab8d-4ed0-8932-202005912a9a
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Units
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b1c776a-88cc-4ad2-ab7b-0420112f08c5
+		summarizeBy: sum
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 523275fc-fdf3-4790-b2ff-ebe11b7311da
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Country
+		dataType: string
+		lineageTag: 1d890116-95c9-4f4e-a75b-78794b3119bf
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCountry = Sales[Zip] & "," & Sales[Country]
+		lineageTag: 992b82c6-283a-43d4-b4c4-4e65cdc630ff
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales-9041355e-50f1-4be3-9aaa-25fb52145d9b = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://s3.amazonaws.com/assets.datacamp.com/production/repositories/6126/datasets/Datasets/Sales.csv "),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductID", Int64.Type}, {"Date", type date}, {"Zip", type text}, {"Units", Int64.Type}, {"Revenue", type number}}),
+				    #"Appended Query" = Table.Combine({#"Changed Type", #"International Sales"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Appended Query",null,"USA",Replacer.ReplaceValue,{"Country"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Value", each Date.IsInPreviousNYears([Date], 3))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

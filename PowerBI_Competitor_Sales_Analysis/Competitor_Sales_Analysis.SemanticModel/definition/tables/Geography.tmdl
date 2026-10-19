@@ -1,0 +1,73 @@
+table Geography
+	lineageTag: 8094a043-90b0-4522-b8d0-9c5fd829bbba
+
+	column Zip
+		dataType: string
+		lineageTag: 692c11c4-7131-403c-bb79-04a24713dd4a
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 643d4ce1-dd3d-41c6-82ba-41a19f402998
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: ea4bbb99-1bb2-4064-984b-dcd126e942e2
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 25542b35-9f95-49f1-ba81-3766d9df6423
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column District
+		dataType: string
+		lineageTag: ca74c9e3-a630-4e16-8e3e-9b5d6474a9eb
+		summarizeBy: none
+		sourceColumn: District
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: cf0feb5e-604e-44e7-87d1-4a9ba7c9dc0e
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCountry = Geography[Zip] & "," & Geography[Country]
+		lineageTag: 5298ffd2-32b4-44df-82eb-820f2e918862
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geography-33764da3-6196-4562-8cea-723d913e5e9d = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://s3.amazonaws.com/assets.datacamp.com/production/repositories/6126/datasets/Datasets/BI_dimensions.xlsx "), null, true),
+				    Geography_Sheet = Source{[Item="Geography",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Geography_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Source:", type text}, {"Public Database ", type any}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",2),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Zip", type text}, {"City", type text}, {"State", type text}, {"Region", type text}, {"District", type text}, {"Country", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

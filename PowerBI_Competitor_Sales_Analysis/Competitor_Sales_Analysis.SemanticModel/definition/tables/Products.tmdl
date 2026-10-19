@@ -1,0 +1,98 @@
+table Products
+	lineageTag: b06c5e07-ee5f-48c7-a2eb-c19d93418dd6
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 925dab8a-e8f6-46c0-840b-a785ee9a4a79
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 5ae361b5-dfa0-49a8-b1ca-de887858eda2
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 4374d000-532b-43a0-ac91-86e4060f792b
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 64847d4c-4ced-4c67-95ff-d6536c4de418
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ManufacturerID
+		dataType: int64
+		formatString: 0
+		lineageTag: aa8821a2-622c-4c36-8bb5-5620b6165944
+		summarizeBy: none
+		sourceColumn: ManufacturerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price Value'
+		dataType: decimal
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: fd7dff3d-39d0-420c-8244-c9239f43ca39
+		summarizeBy: sum
+		sourceColumn: Price Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column Currency
+		dataType: string
+		lineageTag: ea9623c0-140b-496d-9b7f-457db834a26b
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Category Hierarchy'
+		lineageTag: 0907e77a-6429-41e1-8422-cce4e4e47525
+
+		level Category
+			lineageTag: 86f7382f-e54a-46e7-9042-1c60cfe54abf
+			column: Category
+
+		level Segment
+			lineageTag: 7173bbd6-f4e1-492f-8819-f4fbc2cb0c15
+			column: Segment
+
+		level Product
+			lineageTag: b5f41aa1-c4e5-4e27-961c-4b04b27d72b5
+			column: Product
+
+	partition Products-8ab59733-a314-417a-a930-1ee68704154c = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://s3.amazonaws.com/assets.datacamp.com/production/repositories/6126/datasets/Datasets/BI_dimensions.xlsx "), null, true),
+				    Products_Table = Source{[Item="Products",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Products_Table,{{"ProductID", Int64.Type}, {"Product", type text}, {"Segment", type text}, {"Category", type text}, {"ManufacturerID", Int64.Type}, {"Price", type text}}),
+				    #"Filled Down" = Table.FillDown(#"Changed Type",{"Category"}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Filled Down", "Text After Delimiter", each Text.AfterDelimiter([Price], " "), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Inserted Text After Delimiter",{{"Text After Delimiter", "Price Value"}}),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Renamed Columns", "Text Before Delimiter", each Text.BeforeDelimiter([Price], " "), type text),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Text Before Delimiter",{{"Text Before Delimiter", "Currency"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Price Value", Currency.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Price"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

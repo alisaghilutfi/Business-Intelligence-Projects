@@ -1,0 +1,45 @@
+table Manufacturer
+	lineageTag: 4e66cca2-5b6f-4cdc-b315-856826540b2d
+
+	column ManufacturerID
+		dataType: int64
+		formatString: 0
+		lineageTag: e776c40b-be0b-4f68-84f9-a51d3d8e2d83
+		summarizeBy: none
+		sourceColumn: ManufacturerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: e5d72b17-cc6f-47e7-9809-2f516e4ea2ba
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Logo
+		dataType: string
+		lineageTag: 71751149-1b5c-498e-9af1-a63a52a53e25
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Logo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Manufacturer-86e6b734-0702-4721-84c8-b4ca51d4d0b1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://s3.amazonaws.com/assets.datacamp.com/production/repositories/6126/datasets/Datasets/BI_dimensions.xlsx "), null, true),
+				    Manufacturer_Sheet = Source{[Item="Manufacturer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Manufacturer_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Column1", type text}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}}),
+				    #"Transposed Table" = Table.Transpose(#"Changed Type"),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Transposed Table", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"ManufacturerID", Int64.Type}, {"Manufacturer", type text}, {"Logo", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
