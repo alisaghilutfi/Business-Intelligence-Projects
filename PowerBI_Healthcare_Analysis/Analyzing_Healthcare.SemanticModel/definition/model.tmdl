@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["hospital_discharges"]
+annotation PBI_QueryOrder = ["fact_Hospital_Discharges"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 

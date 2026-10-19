@@ -25,7 +25,7 @@
                   "Property": "apr_risk_of_mortality"
                 }
               },
-              "queryRef": "hospital_discharges.apr_risk_of_mortality"
+              "queryRef": "fact_Hospital_Discharges.apr_risk_of_mortality"
             },
             {
               "field": {
@@ -38,7 +38,7 @@
                   "Property": "apr_severity_of_illness_description"
                 }
               },
-              "queryRef": "hospital_discharges.apr_severity_of_illness_description"
+              "queryRef": "fact_Hospital_Discharges.apr_severity_of_illness_description"
             },
             {
               "field": {
@@ -51,7 +51,7 @@
                   "Property": "ccs_diagnosis_description"
                 }
               },
-              "queryRef": "hospital_discharges.ccs_diagnosis_description"
+              "queryRef": "fact_Hospital_Discharges.ccs_diagnosis_description"
             },
             {
               "field": {
@@ -64,7 +64,7 @@
                   "Property": "patient_disposition"
                 }
               },
-              "queryRef": "hospital_discharges.patient_disposition"
+              "queryRef": "fact_Hospital_Discharges.patient_disposition"
             },
             {
               "field": {
@@ -77,7 +77,7 @@
                   "Property": "gender"
                 }
               },
-              "queryRef": "hospital_discharges.gender"
+              "queryRef": "fact_Hospital_Discharges.gender"
             },
             {
               "field": {
@@ -90,7 +90,7 @@
                   "Property": "Age Bins"
                 }
               },
-              "queryRef": "hospital_discharges.Age Bins"
+              "queryRef": "fact_Hospital_Discharges.Age Bins"
             },
             {
               "field": {
@@ -103,7 +103,7 @@
                   "Property": "Surgical Program Size"
                 }
               },
-              "queryRef": "surgical_program_size_summary.Surgical Program Size"
+              "queryRef": "dim_Surgical_Program.Surgical Program Size"
             },
             {
               "field": {
@@ -116,7 +116,7 @@
                   "Property": "health_service_area"
                 }
               },
-              "queryRef": "hospital_discharges.health_service_area"
+              "queryRef": "fact_Hospital_Discharges.health_service_area"
             }
           ]
         },

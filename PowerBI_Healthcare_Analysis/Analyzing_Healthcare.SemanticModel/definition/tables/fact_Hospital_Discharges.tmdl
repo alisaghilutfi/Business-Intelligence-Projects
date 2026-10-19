@@ -278,7 +278,7 @@ table fact_Hospital_Discharges
 
 		annotation SummarizationSetBy = Automatic
 
-	partition hospital_discharges-fcbb8151-3c96-42d8-ae3c-29bfa865008e = m
+	partition fact_Hospital_Discharges-fcbb8151-3c96-42d8-ae3c-29bfa865008e = m
 		mode: import
 		source =
 				let

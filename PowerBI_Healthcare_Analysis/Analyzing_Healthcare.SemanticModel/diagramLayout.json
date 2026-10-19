@@ -13,7 +13,7 @@
             "x": 0,
             "y": 155
           },
-          "nodeIndex": "hospital_discharges",
+          "nodeIndex": "fact_Hospital_Discharges",
           "size": {
             "height": 300,
             "width": 234
@@ -37,7 +37,7 @@
             "x": 264.4,
             "y": 0
           },
-          "nodeIndex": "surgical_program_size_summary",
+          "nodeIndex": "dim_Surgical_Program",
           "size": {
             "height": 200,
             "width": 234

@@ -25,7 +25,7 @@
                   "Property": "apr_risk_of_mortality"
                 }
               },
-              "queryRef": "hospital_discharges.apr_risk_of_mortality",
+              "queryRef": "fact_Hospital_Discharges.apr_risk_of_mortality",
               "active": true
             }
           ]

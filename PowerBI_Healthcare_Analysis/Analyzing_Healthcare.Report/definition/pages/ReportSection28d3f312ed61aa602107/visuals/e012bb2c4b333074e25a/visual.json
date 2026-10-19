@@ -25,7 +25,7 @@
                   "Property": "facility_name"
                 }
               },
-              "queryRef": "hospital_discharges.facility_name",
+              "queryRef": "fact_Hospital_Discharges.facility_name",
               "active": true
             }
           ]
@@ -43,7 +43,7 @@
                   "Property": "health_service_area"
                 }
               },
-              "queryRef": "hospital_discharges.health_service_area"
+              "queryRef": "fact_Hospital_Discharges.health_service_area"
             }
           ]
         },

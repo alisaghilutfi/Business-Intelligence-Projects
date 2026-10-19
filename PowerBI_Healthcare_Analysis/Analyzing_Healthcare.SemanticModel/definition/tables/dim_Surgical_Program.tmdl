@@ -20,7 +20,7 @@ table dim_Surgical_Program
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"surgical_program_size_summary","TableItemName":"Total Discharges (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"dim_Surgical_Program","TableItemName":"Total Discharges (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
 
 	column 'Total Surgeons'
 		formatString: 0
@@ -49,7 +49,7 @@ table dim_Surgical_Program
 				      "Column": {
 				        "Expression": {
 				          "SourceRef": {
-				            "Entity": "surgical_program_size_summary"
+				            "Entity": "dim_Surgical_Program"
 				          }
 				        },
 				        "Property": "Total Discharges"
@@ -64,7 +64,7 @@ table dim_Surgical_Program
 				  }
 				}
 
-		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"surgical_program_size_summary"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}},"Size":200.0}}}}
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"dim_Surgical_Program"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}},"Size":200.0}}}}
 
 		annotation SummarizationSetBy = Automatic
 
@@ -82,7 +82,7 @@ table dim_Surgical_Program
 
 		annotation SummarizationSetBy = Automatic
 
-	partition surgical_program_size_summary-3c247cfb-4c9c-481d-8053-206e8593edb8 = calculated
+	partition dim_Surgical_Program-3c247cfb-4c9c-481d-8053-206e8593edb8 = calculated
 		mode: import
 		source =
 				
