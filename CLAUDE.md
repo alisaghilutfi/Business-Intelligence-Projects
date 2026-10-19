@@ -31,6 +31,17 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 - Hide all raw/foreign-key columns from report view
 - `_Measures` calculated table pattern for measure organisation
 
+## Project kickoff
+
+Before starting any new project or major feature, work through the Analyst Mindset
+Kickoff Checklist in `_template/CLAUDE.md`. It is pre-loaded into every project
+scaffold created by `/new-project`.
+
+Key discipline: answer "What decision does this analysis support?" in one sentence
+before touching data, writing DAX, or building any visual.
+
+Full framework: `Analyst-Mindset-Framework.docx` in the repo root.
+
 ## MCP servers (Claude Code)
 
 - `powerbi-modeling-mcp` — semantic model read/write (tables, measures, DAX, relationships)

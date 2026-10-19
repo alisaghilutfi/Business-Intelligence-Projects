@@ -1,9 +1,10 @@
-/// Financial transaction records.
-table Transactions
+/// Financial transaction records for FinSight. One row per transaction. Covers transaction amount, fees, tax, status, channel, and merchant category. Negative amounts have been converted to absolute values — reversals cannot be distinguished from genuine charges without a Transaction Type filter. Scope: import mode, CSV source.
+table fact_Transactions
 	lineageTag: da26b986-a733-4a9a-995d-39a0fdb18146
 
 	column 'Transaction ID'
 		dataType: string
+		isHidden
 		lineageTag: a5f364dd-9998-42f5-a8aa-005b497a4ac2
 		summarizeBy: none
 		sourceColumn: Transaction ID
@@ -23,6 +24,7 @@ table Transactions
 
 	column 'Account ID'
 		dataType: string
+		isHidden
 		lineageTag: 917d7bd5-1904-4ba6-bdef-5fd8e7f9f84d
 		summarizeBy: none
 		sourceColumn: Account ID
@@ -31,6 +33,7 @@ table Transactions
 
 	column 'Customer ID'
 		dataType: string
+		isHidden
 		lineageTag: 92845c77-dd03-4815-9763-a913737115be
 		summarizeBy: none
 		sourceColumn: Customer ID
@@ -115,6 +118,7 @@ table Transactions
 
 	column 'Risk Score'
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 96da6870-1302-4459-be27-0bef3ed00fdf
 		summarizeBy: sum
@@ -124,6 +128,7 @@ table Transactions
 
 	column 'Reference Number'
 		dataType: string
+		isHidden
 		lineageTag: 3604f46a-72b7-423a-8949-c2254e20455e
 		summarizeBy: none
 		sourceColumn: Reference Number

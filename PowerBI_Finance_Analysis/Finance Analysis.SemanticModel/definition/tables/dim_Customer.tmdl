@@ -1,9 +1,10 @@
-/// Customer demographic and profile data.
-table Customer
+/// Customer demographic and profile data. One row per customer. Contains customer segment, geography (city, state), gender, occupation, and join date. Linked to fact_Transactions via Customer ID. Date of Birth and Annual Income are hidden as they are not used in current report pages.
+table dim_Customer
 	lineageTag: 6bc047da-c7bf-45a4-bae8-f7b7716d97be
 
 	column 'Customer ID'
 		dataType: string
+		isHidden
 		lineageTag: 9deb8c2e-ea8e-4cd3-a9ca-529b4b8fff04
 		summarizeBy: none
 		sourceColumn: Customer ID
@@ -20,6 +21,7 @@ table Customer
 
 	column 'Date of Birth'
 		dataType: dateTime
+		isHidden
 		formatString: Long Date
 		lineageTag: fcd587f9-9c6b-42b7-9f6c-e6633fb374b2
 		summarizeBy: none
@@ -68,6 +70,7 @@ table Customer
 
 	column 'Annual Income'
 		dataType: double
+		isHidden
 		lineageTag: aea98e76-ce9d-478e-867c-9121d914aa76
 		summarizeBy: sum
 		sourceColumn: Annual Income

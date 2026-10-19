@@ -26,5 +26,6 @@ You are a Power BI semantic model reviewer. When invoked, read the `.SemanticMod
 - [ ] Display folders present on all measures
 - [ ] Copilot description on every measure (formatString or description field)
 - [ ] No unused columns
+- [ ] All tables have a description covering grain, source, and key limitations
 
 Output a scored checklist with PASS / FAIL / WARN per item and a summary of critical issues.

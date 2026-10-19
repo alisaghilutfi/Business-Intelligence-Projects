@@ -1,9 +1,11 @@
-/// Date table for transaction analysis.
-table Calendar
+/// Generated date dimension covering 2023-01-01 to 2026-12-31. One row per calendar date. Marked as the official date table. Supports time intelligence measures (SAMEPERIODLASTYEAR, YOY). If transaction dates fall outside this range, PY and YOY measures will return blank.
+table dim_Date
 	lineageTag: 0edf7576-7950-40ab-985b-1f50a56c33f4
+	dataCategory: Time
 
 	column Date
 		dataType: dateTime
+		isUnique
 		formatString: Long Date
 		lineageTag: 3d92ec2a-ab7b-4536-9824-40aafb62fa14
 		summarizeBy: none
