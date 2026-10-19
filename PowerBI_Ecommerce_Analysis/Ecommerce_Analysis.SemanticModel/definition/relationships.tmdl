@@ -1,34 +1,38 @@
 relationship e4a8090d-949b-4cc0-815b-c401ad049a36
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Sales.'Transaction Date'
+	fromColumn: fact_Sales.'Transaction Date'
 	toColumn: LocalDateTable_3b12500c-20c3-425c-b5ba-3e423cc50b23.Date
 
 relationship c759a4c8-17c7-4fc0-8659-b0425bbe2a12
-	fromColumn: Sales.'Customer ID'
-	toColumn: Customers.'Customer ID'
+	fromColumn: fact_Sales.'Customer ID'
+	toColumn: dim_Customer.'Customer ID'
 
 relationship 16078620-1944-4ff7-a810-d7af7bf314b1
-	fromColumn: Sales.'Stock Code'
-	toColumn: Products.'Stock Code'
+	fromColumn: fact_Sales.'Stock Code'
+	toColumn: dim_Product.'Stock Code'
 
 relationship 1c789442-838c-4ab4-87f1-4b7d7baf266c
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
-	fromColumn: 'State Mapping'.'Order State'
-	toColumn: Customers.'Order State'
+	fromColumn: dim_State_Mapping.'Order State'
+	toColumn: dim_Customer.'Order State'
 
 relationship 939f2d6e-adc9-4e1e-8ab8-14fa7774da9c
-	fromColumn: Sales.'Invoice No'
-	toColumn: 'Invoice Totals'.'Invoice No'
+	fromColumn: fact_Sales.'Invoice No'
+	toColumn: fact_Invoice_Totals.'Invoice No'
 
 relationship 5f524ddf-4c2f-491d-abf5-2f237a9b844f
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Market Basket'.'Transaction Date'
+	fromColumn: fact_Market_Baskets.'Transaction Date'
 	toColumn: LocalDateTable_0dc3eab1-8ff7-48e1-b902-d939221bdf02.Date
 
 relationship 49bdf82f-77d1-4010-ade1-499cf4ebd821
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
-	fromColumn: 'Market Basket'.'Invoice No'
-	toColumn: Sales.'Invoice No'
+	fromColumn: fact_Market_Baskets.'Invoice No'
+	toColumn: fact_Sales.'Invoice No'
+
+relationship 'fact_Sales_Transaction Date_dim_Date_Date'
+	fromColumn: fact_Sales.'Transaction Date'
+	toColumn: dim_Date.Date
 

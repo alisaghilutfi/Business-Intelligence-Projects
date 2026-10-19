@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "State"
@@ -40,7 +40,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Sales"
@@ -64,7 +64,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Sales"
+                        "Entity": "fact_Sales"
                       }
                     },
                     "Property": "Sales"

@@ -17,14 +17,17 @@ Identify where shipping costs can be reduced without hurting revenue, and which 
 
 ## Grain
 
-One row per sales transaction (product × customer × order).
+One row per line item sold (`fact_Sales`). Grain: Stock Code × Invoice No × Transaction Date.
 
 ## Data sources
 
-- `Sales` (fact) — Transactions: product, quantity, sales, COGS, shipping cost, customer, state
-- `Product` — Product name, category, description
-- `Customer` — Customer ID and attributes
-- `State Mapping` — State-to-region mapping
+- `fact_Sales` — ~500K rows: product, quantity, sales, COGS, shipping cost, customer, invoice (Dec 2020–Dec 2021)
+- `dim_Product` — Stock code, description, category, weight, landed cost, shipping cost per 1K miles
+- `dim_Customer` — Customer ID, order city, state, postal code, lat/lon
+- `dim_State_Mapping` — State-to-region lookup; M:M with dim_Customer on Order State (intentional BothDirections)
+- `fact_Invoice_Totals` — Invoice-level totals (Invoice No, total quantity, total sales)
+- `fact_Market_Baskets` — Calculated duplicate of fact_Sales for basket analysis; M:M with fact_Sales on Invoice No (intentional BothDirections)
+- `dim_Date` — Generated date dimension (2020-01-01 to 2021-12-31); marked as official date table
 
 ## Stakeholders
 

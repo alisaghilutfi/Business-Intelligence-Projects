@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "State"
@@ -39,7 +39,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "Region"
@@ -57,7 +57,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "Shipping (Baseline)"
@@ -77,7 +77,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Shipping (Baseline)"
@@ -89,7 +89,7 @@
                         "Measure": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Shipping (Baseline)"

@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Products"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Description"
@@ -41,7 +41,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Property": "Shipping_Cost_1000_mile"
@@ -65,7 +65,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Products"
+                        "Entity": "dim_Product"
                       }
                     },
                     "Property": "Shipping_Cost_1000_mile"

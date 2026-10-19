@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "State"
@@ -108,7 +108,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "State Mapping"
+                "Entity": "dim_State_Mapping"
               }
             },
             "Property": "State"
@@ -127,7 +127,7 @@
                     "From": [
                       {
                         "Name": "s",
-                        "Entity": "State Mapping",
+                        "Entity": "dim_State_Mapping",
                         "Type": 0
                       },
                       {
@@ -172,7 +172,7 @@
             },
             {
               "Name": "s",
-              "Entity": "State Mapping",
+              "Entity": "dim_State_Mapping",
               "Type": 0
             }
           ],
@@ -209,7 +209,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "State Mapping"
+                "Entity": "dim_State_Mapping"
               }
             },
             "Property": "State"

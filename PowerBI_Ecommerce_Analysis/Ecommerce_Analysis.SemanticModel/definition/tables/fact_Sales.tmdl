@@ -1,32 +1,109 @@
-table Sales
+/// Fact table. One row per line item sold (product × customer × invoice). Grain: Stock Code × Invoice No × Transaction Date. Contains quantity, sales revenue, unit price, shipping cost, COGS, and profit. ~500K rows, Dec 2020–Dec 2021 (Whiskique fictitious dataset).
+table fact_Sales
 	lineageTag: 24ef9dec-5759-49ec-a242-42b449b59d51
 
-	measure Total_Rows = COUNTROWS(Sales)
+	/// Total number of rows in fact_Sales. Used for data validation and QA checks.
+	measure Total_Rows =
+			VAR RowCount = COUNTROWS(fact_Sales)
+			RETURN
+			    RowCount
 		formatString: 0
+		displayFolder: Diagnostics
 		lineageTag: 79c9501f-3df4-4eae-918e-964111d1b487
 
-	measure 'Shipping (Baseline)' = SUMX(Sales, IF(Sales[Quantity]=1,Sales[Shipping Cost],Sales[Shipping Cost]+(((Sales[Quantity])-1)*(Sales[Shipping Cost]*0.7))))
+	/// Baseline shipping cost using a tiered model: first unit at full cost, each additional unit at 70% of unit shipping cost. This is the pre-optimisation benchmark.
+	measure 'Shipping (Baseline)' =
+			VAR ShippingBaseline =
+			    SUMX(
+			        fact_Sales,
+			        IF(
+			            fact_Sales[Quantity] = 1,
+			            fact_Sales[Shipping Cost],
+			            fact_Sales[Shipping Cost] + (((fact_Sales[Quantity]) - 1) * (fact_Sales[Shipping Cost] * 0.7))
+			        )
+			    )
+			RETURN
+			    ShippingBaseline
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Shipping
 		lineageTag: 4ce7fb25-dc74-4ef0-a16f-43f7d3665a53
 
-	measure 'Shipping (What-if)' = SUMX(Sales,IF(Sales[Quantity]=1,Sales[Shipping Cost],Sales[Shipping Cost]+(((Sales[Quantity])-1)*(Sales[Shipping Cost]*[Blended Shipping Cost Factor]))))
+	/// Projected shipping cost under the what-if blended cost factor parameter. Additional units beyond the first are discounted by the factor from the What-if quantity slicer.
+	measure 'Shipping (What-if)' =
+			VAR ShippingWhatIf =
+			    SUMX(
+			        fact_Sales,
+			        IF(
+			            fact_Sales[Quantity] = 1,
+			            fact_Sales[Shipping Cost],
+			            fact_Sales[Shipping Cost] + (((fact_Sales[Quantity]) - 1) * (fact_Sales[Shipping Cost] * [Blended Shipping Cost Factor]))
+			        )
+			    )
+			RETURN
+			    ShippingWhatIf
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Shipping
 		lineageTag: ee19cd41-4ec2-440d-b4c3-2507217420cb
 
-	measure 'Shipping (Difference)' = [Shipping (Baseline)] - [Shipping (What-if)]
+	/// Potential shipping cost saving from consolidation: Shipping (Baseline) minus Shipping (What-if). Positive values indicate cost reduction under the what-if scenario.
+	measure 'Shipping (Difference)' =
+			VAR Baseline = [Shipping (Baseline)]
+			VAR WhatIf = [Shipping (What-if)]
+			RETURN
+			    Baseline - WhatIf
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Shipping
 		lineageTag: 07a4163c-1136-472a-a802-5f7a0d694757
 
-	measure 'Baseline running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (Baseline)])
+	/// Cumulative baseline shipping cost up to the current date in context, using ALLSELECTED(fact_Sales) to respect page-level filters while ignoring visual-level date filters. Date boundary is driven by fact_Market_Baskets[Transaction Date].
+	measure 'Baseline running total' =
+			VAR CurrentDate = MAX(fact_Market_Baskets[Transaction Date])
+			VAR RunningTotal =
+			    SUMX(
+			        FILTER(
+			            ALLSELECTED(fact_Sales),
+			            fact_Sales[Transaction Date] <= CurrentDate
+			        ),
+			        [Shipping (Baseline)]
+			    )
+			RETURN
+			    RunningTotal
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Shipping
 		lineageTag: dc4b5dbc-da47-46c9-b51f-acb6f2517902
 
-	measure 'What-if running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (What-if)])
+	/// Cumulative what-if shipping cost up to the current date in context, using ALLSELECTED(fact_Sales) to respect page-level filters while ignoring visual-level date filters. Date boundary is driven by fact_Market_Baskets[Transaction Date].
+	measure 'What-if running total' =
+			VAR CurrentDate = MAX(fact_Market_Baskets[Transaction Date])
+			VAR RunningTotal =
+			    SUMX(
+			        FILTER(
+			            ALLSELECTED(fact_Sales),
+			            fact_Sales[Transaction Date] <= CurrentDate
+			        ),
+			        [Shipping (What-if)]
+			    )
+			RETURN
+			    RunningTotal
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Shipping
 		lineageTag: af65176d-21ed-402c-ab22-d39bd7da29bf
 
-	measure 'Difference running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (Difference)])
+	/// Cumulative shipping cost saving (Baseline minus What-if) up to the current date in context. Uses ALLSELECTED(fact_Sales) — respects page filters, ignores visual date axis. Date boundary driven by fact_Market_Baskets[Transaction Date].
+	measure 'Difference running total' =
+			VAR CurrentDate = MAX(fact_Market_Baskets[Transaction Date])
+			VAR RunningTotal =
+			    SUMX(
+			        FILTER(
+			            ALLSELECTED(fact_Sales),
+			            fact_Sales[Transaction Date] <= CurrentDate
+			        ),
+			        [Shipping (Difference)]
+			    )
+			RETURN
+			    RunningTotal
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Shipping
 		lineageTag: 3fcbc3e7-adc5-467b-83b3-5bd3f93c8944
 
 	column 'Transaction Date'
@@ -45,6 +122,7 @@ table Sales
 
 	column 'Customer ID'
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 24c28bf6-1a69-48aa-98d5-5b8bfa88522b
 		summarizeBy: none
@@ -62,6 +140,7 @@ table Sales
 
 	column 'Stock Code'
 		dataType: string
+		isHidden
 		lineageTag: 9dfb4556-5a05-4bda-a573-d4f324ed8d5c
 		summarizeBy: none
 		sourceColumn: Stock Code
@@ -70,6 +149,7 @@ table Sales
 
 	column 'Invoice No'
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 5eead3ef-0949-480a-98a9-85776e529ada
 		summarizeBy: none
@@ -106,21 +186,21 @@ table Sales
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Shipping Cost' = RELATED(Products[Shipping_Cost_1000_mile])
+	column 'Shipping Cost' = RELATED(dim_Product[Shipping_Cost_1000_mile])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: 958d867f-3c4c-4f9e-8366-5cf24ea1854d
 		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
-	column COGS = Sales[Quantity]*RELATED(Products[Landed Cost])
+	column COGS = fact_Sales[Quantity]*RELATED(dim_Product[Landed Cost])
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: ae91ba08-8e5a-4bcb-8c6f-5d5bc282b013
 		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Profit (Baseline)' = Sales[Sales]-Sales[COGS]-[Shipping (Baseline)]
+	column 'Profit (Baseline)' = fact_Sales[Sales]-fact_Sales[COGS]-[Shipping (Baseline)]
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: bbfcb7bb-b230-41b5-aa4d-03ea572ad322
 		summarizeBy: sum

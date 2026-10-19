@@ -1,4 +1,5 @@
-table Products
+/// Product dimension. One row per stock-keeping unit. Contains stock code, description, category, weight, landed cost, and shipping cost per 1,000 miles. Join key: Stock Code → fact_Sales.
+table dim_Product
 	lineageTag: 7f80cf0b-f068-41e3-912c-f712ce84927e
 
 	column 'Stock Code'

@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Market Basket"
+                      "Entity": "fact_Market_Baskets"
                     }
                   },
                   "Property": "Description"
@@ -41,7 +41,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Market Basket"
+                          "Entity": "fact_Market_Baskets"
                         }
                       },
                       "Property": "Description"
@@ -65,7 +65,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Market Basket"
+                        "Entity": "fact_Market_Baskets"
                       }
                     },
                     "Property": "Description"

@@ -1,8 +1,10 @@
-table Customers
+/// Customer dimension. One row per customer. Contains customer ID, order city, state, postal code, and lat/lon. Join key: Customer ID → fact_Sales. Also joined to dim_State_Mapping via Order State (M:M, BothDirections — intentional for geographic enrichment).
+table dim_Customer
 	lineageTag: b9eb9791-99b5-44ff-b69a-0c39e2068805
 
 	column 'Customer ID'
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 9af09689-5231-4235-8fa1-0724106a3377
 		summarizeBy: none

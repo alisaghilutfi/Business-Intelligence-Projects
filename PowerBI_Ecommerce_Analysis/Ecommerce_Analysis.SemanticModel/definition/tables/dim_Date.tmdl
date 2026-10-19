@@ -1,0 +1,39 @@
+/// Date dimension. One row per calendar date (2020-01-01 to 2021-12-31). Marked as official date table for time intelligence. Generated via CALENDAR(). Contains Year, Month, Month Name, Quarter, Day Name. Use dim_Date[Date] in all time intelligence calculations.
+table dim_Date
+	lineageTag: bfc8c415-bc51-4174-9cf6-af9ca27e95d5
+	dataCategory: Time
+
+	column Date
+		isUnique
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Year = YEAR('dim_Date'[Date])
+		dataType: int64
+		lineageTag: c0951ccb-85da-47c5-90d5-d1dca90f47c6
+		summarizeBy: none
+
+	column Month = MONTH('dim_Date'[Date])
+		dataType: int64
+		lineageTag: 50504724-1106-4dde-bfb2-7f1ca37fafe3
+		summarizeBy: none
+
+	column 'Month Name' = FORMAT('dim_Date'[Date], "MMMM")
+		dataType: string
+		lineageTag: bfebc291-ac8d-4eaf-94d0-3aa1d3de1716
+		summarizeBy: none
+
+	column Quarter = "Q" & QUARTER('dim_Date'[Date])
+		dataType: string
+		lineageTag: a2c7afc1-5958-4362-b816-6d95b9e3bbf0
+		summarizeBy: none
+
+	column 'Day Name' = FORMAT('dim_Date'[Date], "dddd")
+		dataType: string
+		lineageTag: 9f6de405-4d67-46cc-b1dc-a1c1bdce1c30
+		summarizeBy: none
+
+	partition dim_Date = calculated
+		mode: import
+		source = CALENDAR(DATE(2020,1,1), DATE(2021,12,31))
+

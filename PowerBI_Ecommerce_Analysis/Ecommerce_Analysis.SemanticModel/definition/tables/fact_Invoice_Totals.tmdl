@@ -1,4 +1,5 @@
-table 'Invoice Totals'
+/// Invoice-level aggregation fact. One row per invoice (Invoice No). Contains total quantity and total sales per invoice. Used for invoice-level shipping consolidation analysis. Join key: Invoice No → fact_Sales (Many:One).
+table fact_Invoice_Totals
 	lineageTag: 20177f86-654e-4218-9117-c8ea63e021fb
 
 	column 'Invoice No'

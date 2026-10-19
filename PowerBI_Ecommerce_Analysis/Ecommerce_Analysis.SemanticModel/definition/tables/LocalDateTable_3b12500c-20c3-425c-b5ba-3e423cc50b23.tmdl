@@ -98,7 +98,7 @@ table LocalDateTable_3b12500c-20c3-425c-b5ba-3e423cc50b23
 
 	partition LocalDateTable_3b12500c-20c3-425c-b5ba-3e423cc50b23-c52ddf8a-b3af-427a-8b1d-99b772d24700 = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('Sales'[Transaction Date])), 1, 1), Date(Year(MAX('Sales'[Transaction Date])), 12, 31))
+		source = Calendar(Date(Year(MIN('fact_Sales'[Transaction Date])), 1, 1), Date(Year(MAX('fact_Sales'[Transaction Date])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 

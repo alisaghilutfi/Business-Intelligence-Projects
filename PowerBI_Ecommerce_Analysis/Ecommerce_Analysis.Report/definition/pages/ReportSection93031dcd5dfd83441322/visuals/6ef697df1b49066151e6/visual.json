@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "Quantity"
@@ -43,7 +43,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Sales"
@@ -60,7 +60,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Sales"
+                                  "Entity": "fact_Sales"
                                 }
                               },
                               "Property": "Sales"
@@ -88,7 +88,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Sales"
+                    "Entity": "fact_Sales"
                   }
                 },
                 "Property": "Quantity"
@@ -124,7 +124,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Sales"
+                "Entity": "fact_Sales"
               }
             },
             "Property": "Quantity"
@@ -136,7 +136,7 @@
           "From": [
             {
               "Name": "s",
-              "Entity": "Sales",
+              "Entity": "fact_Sales",
               "Type": 0
             }
           ],
@@ -174,7 +174,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Sales"
+                    "Entity": "fact_Sales"
                   }
                 },
                 "Property": "Sales"

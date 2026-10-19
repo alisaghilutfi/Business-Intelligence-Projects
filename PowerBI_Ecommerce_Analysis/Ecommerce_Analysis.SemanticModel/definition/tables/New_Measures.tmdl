@@ -1,20 +1,39 @@
+/// Calculated table used as a measure container. Holds customer and profitability measures not naturally housed on a single fact table. The Value column is hidden.
 table New_Measures
 	lineageTag: d58e0f32-9c73-476c-a8e7-a8476bffca78
 
-	measure 'Number of Customers' = DISTINCTCOUNTNOBLANK(Sales[Customer ID])
+	/// Count of distinct customer IDs in fact_Sales within the current filter context. Uses DISTINCTCOUNTNOBLANK to exclude blank Customer IDs.
+	measure 'Number of Customers' =
+			VAR UniqueCustomers = DISTINCTCOUNTNOBLANK(fact_Sales[Customer ID])
+			RETURN
+			    UniqueCustomers
 		formatString: 0
+		displayFolder: Customers
 		lineageTag: fb191a4b-03f0-4355-b663-09c7628d42ab
 
-	measure 'Customer LTV (avg)' = SUM(Sales[Sales])/[Number of Customers]
+	/// Average customer lifetime value: total sales divided by number of distinct customers. Simple average — does not account for purchase frequency or tenure.
+	measure 'Customer LTV (avg)' =
+			VAR TotalSales = SUM(fact_Sales[Sales])
+			VAR CustomerCount = [Number of Customers]
+			RETURN
+			    DIVIDE(TotalSales, CustomerCount)
+		displayFolder: Customers
 		lineageTag: 9c06152f-e69f-45b5-b3d9-9a43a1415e08
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Profit %' = SUM(Sales[Profit (Baseline)])/SUM(Sales[Sales])
+	/// Baseline profit margin: total Profit (Baseline) divided by total Sales. Based on the COGS-derived profit column, not the what-if shipping scenario.
+	measure 'Profit %' =
+			VAR TotalProfit = SUM(fact_Sales[Profit (Baseline)])
+			VAR TotalSales = SUM(fact_Sales[Sales])
+			RETURN
+			    DIVIDE(TotalProfit, TotalSales)
 		formatString: #,0.00\ %;-#,0.00\ %;#,0.00\ %
+		displayFolder: Profitability
 		lineageTag: ab63c971-0e38-41cf-b223-490a67da8ff7
 
 	column Value
+		isHidden
 		formatString: 0
 		lineageTag: b52d55b0-7065-4bfc-b117-af2a74b35fcd
 		summarizeBy: sum

@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "State"
@@ -39,7 +39,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "State Mapping"
+                      "Entity": "dim_State_Mapping"
                     }
                   },
                   "Property": "Region"
@@ -95,7 +95,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "State Mapping"
+                "Entity": "dim_State_Mapping"
               }
             },
             "Property": "State"

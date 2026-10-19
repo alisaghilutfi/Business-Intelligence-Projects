@@ -1,4 +1,5 @@
-table 'State Mapping'
+/// State-to-region lookup. One row per state abbreviation. Contains state name, region, and abbreviation. Joined to dim_Customer via Order State with M:M BothDirections — intentional: multiple customers share the same state, and cross-filtering in both directions enables slicing customers by region.
+table dim_State_Mapping
 	lineageTag: bb58b8b0-ca0f-4f54-a0be-7dd2ac308cb2
 
 	column 'Order State'

@@ -1,4 +1,5 @@
-table 'Market Basket'
+/// Calculated duplicate of fact_Sales for market basket analysis. Same grain and columns as fact_Sales. The M:M relationship with fact_Sales on Invoice No (BothDirections) is intentional — it enables co-purchase correlation: filtering one product in fact_Sales propagates across the M:M join to surface other products bought on the same invoice in fact_Market_Baskets.
+table fact_Market_Baskets
 	lineageTag: d6fcc938-85a2-4f0a-8648-d90027fa63a8
 
 	column 'Transaction Date'
@@ -6,7 +7,8 @@ table 'Market Basket'
 		lineageTag: 348bc108-b0dc-4cd6-95e9-a84751942dd1
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: Sales[Transaction Date]
+		sourceColumn: fact_Sales[Transaction Date]
+		columnOrigin: fact_Sales.'Transaction Date'
 
 		variation Variation
 			isDefault
@@ -20,7 +22,8 @@ table 'Market Basket'
 		lineageTag: 54d2c2f2-5d1d-49b1-b5f5-9dff5338d466
 		summarizeBy: count
 		isNameInferred
-		sourceColumn: Sales[Customer ID]
+		sourceColumn: fact_Sales[Customer ID]
+		columnOrigin: fact_Sales.'Customer ID'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -28,7 +31,8 @@ table 'Market Basket'
 		lineageTag: 7379be81-0df3-4bb2-8266-2be3b635896f
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: Sales[Description]
+		sourceColumn: fact_Sales[Description]
+		columnOrigin: fact_Sales.Description
 
 		annotation SummarizationSetBy = Automatic
 
@@ -36,7 +40,8 @@ table 'Market Basket'
 		lineageTag: da85a9bf-94e0-4ae7-b292-55212dd3701d
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: Sales[Stock Code]
+		sourceColumn: fact_Sales[Stock Code]
+		columnOrigin: fact_Sales.'Stock Code'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -45,7 +50,8 @@ table 'Market Basket'
 		lineageTag: 302a05c7-44f8-4dde-8cb2-09426c120fa7
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: Sales[Invoice No]
+		sourceColumn: fact_Sales[Invoice No]
+		columnOrigin: fact_Sales.'Invoice No'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -54,7 +60,8 @@ table 'Market Basket'
 		lineageTag: 51283a30-327a-41a6-9a2b-4e39b5b62d18
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[Quantity]
+		sourceColumn: fact_Sales[Quantity]
+		columnOrigin: fact_Sales.Quantity
 
 		annotation SummarizationSetBy = Automatic
 
@@ -62,7 +69,8 @@ table 'Market Basket'
 		lineageTag: 78813641-61cc-45f3-a3bb-10ffd5059358
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[Sales]
+		sourceColumn: fact_Sales[Sales]
+		columnOrigin: fact_Sales.Sales
 
 		annotation SummarizationSetBy = Automatic
 
@@ -72,7 +80,8 @@ table 'Market Basket'
 		lineageTag: 2c1a5a71-a014-4c42-a0dc-5e7e47f5281b
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[Unit Price]
+		sourceColumn: fact_Sales[Unit Price]
+		columnOrigin: fact_Sales.'Unit Price'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -82,7 +91,8 @@ table 'Market Basket'
 		lineageTag: c014aaad-dbbc-41ca-9c3b-88b66fe6848f
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[Shipping Cost]
+		sourceColumn: fact_Sales[Shipping Cost]
+		columnOrigin: fact_Sales.'Shipping Cost'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -92,7 +102,8 @@ table 'Market Basket'
 		lineageTag: 54e0bcac-7a10-4441-8dd7-8c0f4931c4ee
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[COGS]
+		sourceColumn: fact_Sales[COGS]
+		columnOrigin: fact_Sales.COGS
 
 		annotation SummarizationSetBy = Automatic
 
@@ -102,7 +113,8 @@ table 'Market Basket'
 		lineageTag: fbee0727-6ad9-4be0-930c-33f2ddc59328
 		summarizeBy: sum
 		isNameInferred
-		sourceColumn: Sales[Profit (Baseline)]
+		sourceColumn: fact_Sales[Profit (Baseline)]
+		columnOrigin: fact_Sales.'Profit (Baseline)'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -110,7 +122,7 @@ table 'Market Basket'
 
 	partition 'Market Basket-0fff53d4-4d8e-4a49-b3e9-47fcb4979426' = calculated
 		mode: import
-		source = Sales
+		source = fact_Sales
 
 	annotation PBI_Id = 2b4a75f8f7d04e84ab12e0e171524d1c
 

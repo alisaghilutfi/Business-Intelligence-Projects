@@ -10,19 +10,20 @@ annotation PBI_QueryOrder = ["Sales","Customers","Products","State Mapping","Inv
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
-ref table Sales
+ref table fact_Sales
 ref table DateTableTemplate_677af254-d4db-4ef3-9262-079293cb8473
 ref table LocalDateTable_3b12500c-20c3-425c-b5ba-3e423cc50b23
-ref table Customers
-ref table Products
-ref table 'State Mapping'
+ref table dim_Customer
+ref table dim_Product
+ref table dim_State_Mapping
 ref table New_Measures
-ref table 'Invoice Totals'
-ref table 'Market Basket'
+ref table fact_Invoice_Totals
+ref table fact_Market_Baskets
 ref table LocalDateTable_0dc3eab1-8ff7-48e1-b902-d939221bdf02
 ref table 'What-if quantity'
+ref table dim_Date
 
 ref cultureInfo en-US
 
