@@ -1,7 +1,10 @@
-table Date
+/// Date dimension. One row per calendar date (2017–2021). Marked as official date table for time intelligence. Use dim_Date[Date] in all SAMEPERIODLASTYEAR and DATEADD calculations.
+table dim_Date
 	lineageTag: 607e3e29-705f-45b4-9da3-e78bfe01abe7
+	dataCategory: Time
 
 	column Date
+		isUnique
 		formatString: Long Date
 		lineageTag: 5868d17b-23a9-4e6c-b22e-1006a1a55aee
 		summarizeBy: none

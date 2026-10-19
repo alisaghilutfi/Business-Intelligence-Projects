@@ -1,4 +1,5 @@
-table Manufacturer
+/// Manufacturer dimension. One row per manufacturer. Contains manufacturer name and logo. Sintec is ManufacturerID = 4.
+table dim_Manufacturer
 	lineageTag: 4e66cca2-5b6f-4cdc-b315-856826540b2d
 
 	column ManufacturerID

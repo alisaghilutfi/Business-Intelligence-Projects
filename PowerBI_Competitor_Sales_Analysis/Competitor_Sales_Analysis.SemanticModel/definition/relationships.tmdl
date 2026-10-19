@@ -1,21 +1,21 @@
 relationship f33e41bf-1c9f-4028-9d93-d1958139e188
-	fromColumn: Sales.ProductID
-	toColumn: Products.ProductID
+	fromColumn: fact_Sales.ProductID
+	toColumn: dim_Product.ProductID
 
 relationship 230d6b17-cb6d-4e6e-b83b-81c9492b81e4
-	fromColumn: Products.ManufacturerID
-	toColumn: Manufacturer.ManufacturerID
+	fromColumn: dim_Product.ManufacturerID
+	toColumn: dim_Manufacturer.ManufacturerID
 
 relationship 502081e2-d912-4135-be26-0ae8b2eb23e8
-	fromColumn: Sales.ZipCountry
-	toColumn: Geography.ZipCountry
+	fromColumn: fact_Sales.ZipCountry
+	toColumn: dim_Geography.ZipCountry
 
 relationship d1b057ef-3bc9-4d12-aa37-77e14c4a4391
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Date.Date
+	fromColumn: dim_Date.Date
 	toColumn: LocalDateTable_7266f647-3651-4259-ade9-6fa5e8b9f1bc.Date
 
 relationship 1039f37c-c849-4c1c-b6c9-38065a7df2f9
-	fromColumn: Sales.Date
-	toColumn: Date.Date
+	fromColumn: fact_Sales.Date
+	toColumn: dim_Date.Date
 

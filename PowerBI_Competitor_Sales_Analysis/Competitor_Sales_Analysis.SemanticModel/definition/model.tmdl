@@ -19,14 +19,14 @@ annotation PBI_QueryOrder = ["Sales","Products","Geography","Manufacturer","Inte
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
-ref table Sales
+ref table fact_Sales
 ref table DateTableTemplate_df9f37ce-de6c-4c77-a05a-845715bf1a98
-ref table Products
-ref table Geography
-ref table Manufacturer
-ref table Date
+ref table dim_Product
+ref table dim_Geography
+ref table dim_Manufacturer
+ref table dim_Date
 ref table LocalDateTable_7266f647-3651-4259-ade9-6fa5e8b9f1bc
 
 ref cultureInfo en-US

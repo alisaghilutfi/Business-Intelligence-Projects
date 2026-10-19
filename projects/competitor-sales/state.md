@@ -1,6 +1,6 @@
 # State
 
-**Status:** Complete — archived
+**Status:** Complete — hygiene pass done
 **Last updated:** 2026-10-19
 
 ## Current focus
@@ -13,4 +13,4 @@ None
 
 ## Next actions
 
-- N/A — PBIP conversion complete
+- N/A — hygiene pass complete (table renames, MarkAsDateTable, column hides, VAR/RETURN, display folders, Copilot descriptions, table descriptions)

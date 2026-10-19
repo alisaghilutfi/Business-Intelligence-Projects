@@ -1,4 +1,5 @@
-table Geography
+/// Geography dimension. One row per ZIP+Country composite key. Contains city, state, region, district, and country. Used to slice sales by location.
+table dim_Geography
 	lineageTag: 8094a043-90b0-4522-b8d0-9c5fd829bbba
 
 	column Zip
@@ -49,7 +50,8 @@ table Geography
 
 		annotation SummarizationSetBy = Automatic
 
-	column ZipCountry = Geography[Zip] & "," & Geography[Country]
+	column ZipCountry = dim_Geography[Zip] & "," & dim_Geography[Country]
+		isHidden
 		lineageTag: 5298ffd2-32b4-44df-82eb-820f2e918862
 		summarizeBy: none
 

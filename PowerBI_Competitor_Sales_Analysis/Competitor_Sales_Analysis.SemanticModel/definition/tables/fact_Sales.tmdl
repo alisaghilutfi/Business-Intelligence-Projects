@@ -1,50 +1,69 @@
-table Sales
+/// Fact table. One row per product sale. Grain: product × date × geography. Contains revenue and units sold across all manufacturers (2017–2021, ~1.8M rows). Join keys: ProductID → dim_Product, Zip+Country → dim_Geography, Date → dim_Date.
+table fact_Sales
 	lineageTag: 1614289d-2d07-4c5f-bedd-01b55c65033a
 
+	/// Total revenue for the same period in the prior year, using SAMEPERIODLASTYEAR time intelligence. Used as the base for % Growth calculations.
 	measure 'PY Sales' =
-			CALCULATE (
-			    SUM (Sales[Revenue]),
-			    SAMEPERIODLASTYEAR ( 'Date'[Date] )
-			)
+			VAR PriorYearRevenue =
+			    CALCULATE(
+			        SUM(fact_Sales[Revenue]),
+			        SAMEPERIODLASTYEAR('dim_Date'[Date])
+			    )
+			RETURN
+			    PriorYearRevenue
 		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Revenue
 		lineageTag: 3dd2022e-bcb4-4ea0-8d99-14c5b77ebece
 
 		changedProperty = FormatString
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	/// Year-over-year revenue growth rate: (Current Revenue - PY Sales) / PY Sales. Returns BLANK when prior year revenue is zero.
 	measure '% Growth' =
-			
-			DIVIDE(
-			SUM(Sales[Revenue])-[PY Sales],[PY Sales]
-			)
+			VAR CurrentRevenue = SUM(fact_Sales[Revenue])
+			VAR PriorRevenue = [PY Sales]
+			RETURN
+			    DIVIDE(CurrentRevenue - PriorRevenue, PriorRevenue)
 		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Market Share
 		lineageTag: 6d8f95a7-18ca-48e2-9dfb-a0cfc6adea81
 
 		changedProperty = FormatString
 
+	/// Total revenue attributed to Sintec (ManufacturerID = 4). Used as the numerator for Sintec Market Share.
 	measure 'Sintec Revenue' =
-			Calculate(
-			SUM(Sales[Revenue]), Manufacturer[ManufacturerID] = 4
-			)
+			VAR SintecManufacturerID = 4
+			VAR SintecRevenue =
+			    CALCULATE(
+			        SUM(fact_Sales[Revenue]),
+			        dim_Manufacturer[ManufacturerID] = SintecManufacturerID
+			    )
+			RETURN
+			    SintecRevenue
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Revenue
 		lineageTag: 7e6e725a-0551-4aca-990e-0b7cff200e9b
 
 		changedProperty = FormatString
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	/// Sintec's share of total revenue in the current filter context: Sintec Revenue / Total Revenue. Returns 0 when total revenue is zero.
 	measure 'Sintec Market Share' =
-			DIVIDE(
-			Sales[Sintec Revenue],SUM(Sales[Revenue]),0
-			)
+			VAR SintecRev = [Sintec Revenue]
+			VAR TotalRev = SUM(fact_Sales[Revenue])
+			RETURN
+			    DIVIDE(SintecRev, TotalRev, 0)
 		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Market Share
 		lineageTag: 0d4b4ca7-061f-4c87-905c-37452b3d795f
 
 		changedProperty = FormatString
 
 	column ProductID
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: f1db8828-f49c-40fb-9865-7a08dae22555
 		summarizeBy: none
@@ -92,13 +111,15 @@ table Sales
 
 	column Country
 		dataType: string
+		isHidden
 		lineageTag: 1d890116-95c9-4f4e-a75b-78794b3119bf
 		summarizeBy: none
 		sourceColumn: Country
 
 		annotation SummarizationSetBy = Automatic
 
-	column ZipCountry = Sales[Zip] & "," & Sales[Country]
+	column ZipCountry = fact_Sales[Zip] & "," & fact_Sales[Country]
+		isHidden
 		lineageTag: 992b82c6-283a-43d4-b4c4-4e65cdc630ff
 		summarizeBy: none
 
