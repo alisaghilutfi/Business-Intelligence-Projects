@@ -31,12 +31,12 @@
                               "From": [
                                 {
                                   "Name": "m",
-                                  "Entity": "Manufacturer",
+                                  "Entity": "dim_Manufacturer",
                                   "Type": 0
                                 },
                                 {
                                   "Name": "s",
-                                  "Entity": "Sales",
+                                  "Entity": "fact_Sales",
                                   "Type": 0
                                 }
                               ],
@@ -81,7 +81,7 @@
                       },
                       {
                         "Name": "m",
-                        "Entity": "Manufacturer",
+                        "Entity": "dim_Manufacturer",
                         "Type": 0
                       }
                     ],
@@ -115,7 +115,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Manufacturer"
+                          "Entity": "dim_Manufacturer"
                         }
                       },
                       "Property": "Manufacturer"
@@ -132,7 +132,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -150,7 +150,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Country"
@@ -195,7 +195,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -212,7 +212,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Country"
@@ -233,17 +233,17 @@
                     "From": [
                       {
                         "Name": "m",
-                        "Entity": "Manufacturer",
+                        "Entity": "dim_Manufacturer",
                         "Type": 0
                       },
                       {
                         "Name": "s",
-                        "Entity": "Sales",
+                        "Entity": "fact_Sales",
                         "Type": 0
                       },
                       {
                         "Name": "p",
-                        "Entity": "Products",
+                        "Entity": "dim_Product",
                         "Type": 0
                       },
                       {
@@ -255,12 +255,12 @@
                               "From": [
                                 {
                                   "Name": "sm",
-                                  "Entity": "Manufacturer",
+                                  "Entity": "dim_Manufacturer",
                                   "Type": 0
                                 },
                                 {
                                   "Name": "ss",
-                                  "Entity": "Sales",
+                                  "Entity": "fact_Sales",
                                   "Type": 0
                                 }
                               ],
@@ -357,7 +357,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Manufacturer"
+                          "Entity": "dim_Manufacturer"
                         }
                       },
                       "Property": "ManufacturerID"
@@ -375,7 +375,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -393,7 +393,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "PY Sales"
@@ -415,7 +415,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -442,7 +442,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -468,7 +468,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -494,7 +494,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -520,7 +520,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -544,7 +544,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -562,7 +562,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "% Growth"
@@ -620,7 +620,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -650,7 +650,7 @@
                             "PropertyVariationSource": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Date"
+                                  "Entity": "dim_Date"
                                 }
                               },
                               "Name": "Variation",
@@ -680,7 +680,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Manufacturer"
+                          "Entity": "dim_Manufacturer"
                         }
                       },
                       "Property": "Logo"
@@ -703,7 +703,7 @@
                             "From": [
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -762,7 +762,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Manufacturer"
+                          "Entity": "dim_Manufacturer"
                         }
                       },
                       "Property": "Logo"
@@ -782,7 +782,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Date"
+                          "Entity": "dim_Date"
                         }
                       },
                       "Property": "Date"
@@ -818,7 +818,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Date"
+                          "Entity": "dim_Date"
                         }
                       },
                       "Property": "Date"
@@ -832,7 +832,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Date"
+                          "Entity": "dim_Date"
                         }
                       },
                       "Property": "Date"
@@ -854,7 +854,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -874,7 +874,7 @@
                         "Hierarchy": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Products"
+                              "Entity": "dim_Product"
                             }
                           },
                           "Hierarchy": "Category Hierarchy"
@@ -894,7 +894,7 @@
                         "Hierarchy": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Products"
+                              "Entity": "dim_Product"
                             }
                           },
                           "Hierarchy": "Category Hierarchy"
@@ -914,7 +914,7 @@
                         "Hierarchy": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Products"
+                              "Entity": "dim_Product"
                             }
                           },
                           "Hierarchy": "Category Hierarchy"
@@ -932,7 +932,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "PY Sales"
@@ -947,7 +947,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "% Growth"
@@ -966,7 +966,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Sales"
+                                  "Entity": "fact_Sales"
                                 }
                               },
                               "Property": "Revenue"
@@ -983,7 +983,7 @@
                                 "Column": {
                                   "Expression": {
                                     "SourceRef": {
-                                      "Entity": "Sales"
+                                      "Entity": "fact_Sales"
                                     }
                                   },
                                   "Property": "Revenue"
@@ -1013,7 +1013,7 @@
                         "Hierarchy": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Products"
+                              "Entity": "dim_Product"
                             }
                           },
                           "Hierarchy": "Category Hierarchy"
@@ -1028,7 +1028,7 @@
                         "Hierarchy": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Products"
+                              "Entity": "dim_Product"
                             }
                           },
                           "Hierarchy": "Category Hierarchy"
@@ -1082,7 +1082,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Sintec Market Share"
@@ -1102,7 +1102,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Sintec Market Share"

@@ -13,7 +13,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Sales"
+                "Entity": "fact_Sales"
               }
             },
             "Property": "Country"
@@ -35,7 +35,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Sales"
+                "Entity": "fact_Sales"
               }
             },
             "Property": "Country"

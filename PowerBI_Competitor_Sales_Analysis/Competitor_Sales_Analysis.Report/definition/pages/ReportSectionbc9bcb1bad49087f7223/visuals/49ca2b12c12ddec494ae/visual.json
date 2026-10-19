@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "% Growth"
@@ -37,7 +37,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Sales"
+                    "Entity": "fact_Sales"
                   }
                 },
                 "Property": "% Growth"

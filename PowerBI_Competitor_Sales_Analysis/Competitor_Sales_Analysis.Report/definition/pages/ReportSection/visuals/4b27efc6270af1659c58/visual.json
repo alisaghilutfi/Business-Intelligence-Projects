@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "Country"
@@ -37,7 +37,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Manufacturer"
+                      "Entity": "dim_Manufacturer"
                     }
                   },
                   "Property": "Manufacturer"
@@ -56,7 +56,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Revenue"
@@ -79,7 +79,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Sales"
+                        "Entity": "fact_Sales"
                       }
                     },
                     "Property": "Revenue"
@@ -146,7 +146,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Manufacturer"
+                "Entity": "dim_Manufacturer"
               }
             },
             "Property": "Manufacturer"
@@ -165,12 +165,12 @@
                     "From": [
                       {
                         "Name": "m",
-                        "Entity": "Manufacturer",
+                        "Entity": "dim_Manufacturer",
                         "Type": 0
                       },
                       {
                         "Name": "s",
-                        "Entity": "Sales",
+                        "Entity": "fact_Sales",
                         "Type": 0
                       }
                     ],
@@ -215,7 +215,7 @@
             },
             {
               "Name": "m",
-              "Entity": "Manufacturer",
+              "Entity": "dim_Manufacturer",
               "Type": 0
             }
           ],

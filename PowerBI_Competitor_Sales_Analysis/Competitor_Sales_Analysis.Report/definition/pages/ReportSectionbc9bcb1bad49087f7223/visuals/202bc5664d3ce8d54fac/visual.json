@@ -26,12 +26,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -617,12 +617,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -1208,12 +1208,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -1799,12 +1799,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -2390,12 +2390,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -2981,12 +2981,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -3572,12 +3572,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -4163,12 +4163,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -4754,12 +4754,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -5345,12 +5345,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -5936,12 +5936,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -6527,12 +6527,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -7118,12 +7118,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -7709,12 +7709,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -8300,12 +8300,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -8891,12 +8891,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -9482,12 +9482,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -10073,12 +10073,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -10664,12 +10664,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],
@@ -11255,12 +11255,12 @@
                             "From": [
                               {
                                 "Name": "s",
-                                "Entity": "Sales",
+                                "Entity": "fact_Sales",
                                 "Type": 0
                               },
                               {
                                 "Name": "m",
-                                "Entity": "Manufacturer",
+                                "Entity": "dim_Manufacturer",
                                 "Type": 0
                               }
                             ],

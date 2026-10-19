@@ -21,7 +21,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -40,7 +40,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -59,7 +59,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -82,7 +82,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Revenue"
@@ -98,7 +98,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "PY Sales"
@@ -111,7 +111,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "% Growth"
@@ -128,7 +128,7 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Sales"
+                              "Entity": "fact_Sales"
                             }
                           },
                           "Property": "Revenue"
@@ -145,7 +145,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Sales"
+                                  "Entity": "fact_Sales"
                                 }
                               },
                               "Property": "Revenue"
@@ -182,7 +182,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Products"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Category"
@@ -261,7 +261,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"
@@ -281,7 +281,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"
@@ -312,7 +312,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"
@@ -332,7 +332,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"
@@ -363,7 +363,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"
@@ -383,7 +383,7 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "Sales"
+                                          "Entity": "fact_Sales"
                                         }
                                       },
                                       "Property": "% Growth"

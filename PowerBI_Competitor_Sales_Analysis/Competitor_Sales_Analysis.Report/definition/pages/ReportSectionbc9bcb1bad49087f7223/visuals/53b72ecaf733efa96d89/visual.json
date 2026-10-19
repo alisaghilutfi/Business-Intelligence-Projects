@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Manufacturer"
+                      "Entity": "dim_Manufacturer"
                     }
                   },
                   "Property": "Manufacturer"
@@ -36,7 +36,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -60,7 +60,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -84,7 +84,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -108,7 +108,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -130,7 +130,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -148,7 +148,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -166,7 +166,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -186,7 +186,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "Revenue"

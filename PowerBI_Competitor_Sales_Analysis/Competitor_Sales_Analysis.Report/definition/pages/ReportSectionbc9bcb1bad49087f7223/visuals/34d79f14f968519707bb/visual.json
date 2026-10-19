@@ -21,7 +21,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Revenue"
@@ -43,7 +43,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -62,7 +62,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -81,7 +81,7 @@
                     "Hierarchy": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products"
+                          "Entity": "dim_Product"
                         }
                       },
                       "Hierarchy": "Category Hierarchy"
@@ -105,7 +105,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Sales"
+                        "Entity": "fact_Sales"
                       }
                     },
                     "Property": "Revenue"
@@ -136,7 +136,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Products"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Category"
@@ -155,7 +155,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Products"
+                      "Entity": "dim_Product"
                     }
                   },
                   "Property": "Segment"
@@ -228,7 +228,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "Sales"
+                                  "Entity": "fact_Sales"
                                 }
                               },
                               "Property": "Revenue"

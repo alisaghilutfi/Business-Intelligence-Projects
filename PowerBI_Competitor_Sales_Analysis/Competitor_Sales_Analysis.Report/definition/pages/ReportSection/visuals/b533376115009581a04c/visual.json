@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Manufacturer"
+                      "Entity": "dim_Manufacturer"
                     }
                   },
                   "Property": "Logo"
@@ -62,7 +62,7 @@
                 "From": [
                   {
                     "Name": "m",
-                    "Entity": "Manufacturer",
+                    "Entity": "dim_Manufacturer",
                     "Type": 0
                   }
                 ],

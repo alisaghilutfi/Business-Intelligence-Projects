@@ -19,7 +19,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Date"
+                      "Entity": "dim_Date"
                     }
                   },
                   "Property": "Date"
@@ -38,7 +38,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Date"
+                    "Entity": "dim_Date"
                   }
                 },
                 "Property": "Date"

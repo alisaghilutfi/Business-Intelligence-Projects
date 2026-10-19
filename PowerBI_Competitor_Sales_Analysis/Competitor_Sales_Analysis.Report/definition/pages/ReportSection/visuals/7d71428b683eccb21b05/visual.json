@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "PY Sales"
@@ -38,7 +38,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Revenue"
@@ -61,7 +61,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "Sales"
+                        "Entity": "fact_Sales"
                       }
                     },
                     "Property": "Revenue"
@@ -115,7 +115,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Manufacturer"
+                "Entity": "dim_Manufacturer"
               }
             },
             "Property": "ManufacturerID"
@@ -133,17 +133,17 @@
           "From": [
             {
               "Name": "m",
-              "Entity": "Manufacturer",
+              "Entity": "dim_Manufacturer",
               "Type": 0
             },
             {
               "Name": "s",
-              "Entity": "Sales",
+              "Entity": "fact_Sales",
               "Type": 0
             },
             {
               "Name": "p",
-              "Entity": "Products",
+              "Entity": "dim_Product",
               "Type": 0
             },
             {
@@ -155,12 +155,12 @@
                     "From": [
                       {
                         "Name": "sm",
-                        "Entity": "Manufacturer",
+                        "Entity": "dim_Manufacturer",
                         "Type": 0
                       },
                       {
                         "Name": "ss",
-                        "Entity": "Sales",
+                        "Entity": "fact_Sales",
                         "Type": 0
                       }
                     ],

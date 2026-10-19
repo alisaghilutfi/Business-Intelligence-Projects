@@ -23,7 +23,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -48,7 +48,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -73,7 +73,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -98,7 +98,7 @@
                         "PropertyVariationSource": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "Date"
+                              "Entity": "dim_Date"
                             }
                           },
                           "Name": "Variation",
@@ -125,7 +125,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Sales"
+                          "Entity": "fact_Sales"
                         }
                       },
                       "Property": "Revenue"
@@ -145,7 +145,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Sales"
+                      "Entity": "fact_Sales"
                     }
                   },
                   "Property": "% Growth"
