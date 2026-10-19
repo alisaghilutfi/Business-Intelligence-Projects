@@ -1,0 +1,69 @@
+table Products
+	lineageTag: 7f80cf0b-f068-41e3-912c-f712ce84927e
+
+	column 'Stock Code'
+		dataType: string
+		lineageTag: f8e4b4c6-841b-429b-8ed2-dc7036cce651
+		summarizeBy: none
+		sourceColumn: Stock Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: double
+		lineageTag: ef69c441-6d3f-4d8a-ba14-84fe53d7860d
+		summarizeBy: none
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Landed Cost'
+		dataType: double
+		lineageTag: 8d0e908f-5b96-4667-99dc-d27737dc0718
+		summarizeBy: none
+		sourceColumn: Landed Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Shipping_Cost_1000_mile
+		dataType: double
+		lineageTag: 93edf484-f453-4fd5-846a-48cdddee13e0
+		summarizeBy: none
+		sourceColumn: Shipping_Cost_1000_mile
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Description
+		dataType: string
+		lineageTag: ba8caea0-3a3c-40d2-a80c-f6c54ec294c8
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 6dd31ddd-6567-4692-b3bb-ff1c13b9d52c
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products-3d4e7473-c660-46ef-8659-34b4e56c210d = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://assets.datacamp.com/production/repositories/6373/datasets/4a82e56be9c59e84abdca0e12a9914957a02cc3a/dim_products.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Stock Code", type text}, {"Weight", type number}, {"Landed Cost", type number}, {"Shipping_Cost_1000_mile", type number}, {"Description", type text}, {"Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

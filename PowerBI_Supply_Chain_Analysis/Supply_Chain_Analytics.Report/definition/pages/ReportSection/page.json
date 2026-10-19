@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection",
+  "displayName": "Supplier Selection",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "6e8393bdc91a5760d7bb",
+      "target": "efe8a3debb0a68c9e27b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6e8393bdc91a5760d7bb",
+      "target": "c846ed5881a2de069b84",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6e8393bdc91a5760d7bb",
+      "target": "fd03cb932085976c443a",
+      "type": "NoFilter"
+    }
+  ]
+}

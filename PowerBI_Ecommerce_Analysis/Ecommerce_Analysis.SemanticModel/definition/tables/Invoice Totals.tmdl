@@ -1,0 +1,47 @@
+table 'Invoice Totals'
+	lineageTag: 20177f86-654e-4218-9117-c8ea63e021fb
+
+	column 'Invoice No'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5997fb2d-74b5-4b57-8911-6081eb81fd32
+		summarizeBy: none
+		sourceColumn: Invoice No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Quantity'
+		dataType: double
+		lineageTag: 36cae707-4b43-432b-bf15-d1b21241a37c
+		summarizeBy: none
+		sourceColumn: Total Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Sales'
+		dataType: double
+		lineageTag: df43412d-8f39-4fcb-aa40-98f4c431eae2
+		summarizeBy: none
+		sourceColumn: Total Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Invoice Totals-6afe98d0-f3dc-45a0-9493-ccfa3a8b0688' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://assets.datacamp.com/production/repositories/6373/datasets/545278032258b36d166ec10f99d5651b3c8f13f4/fact_sales.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction Date", type datetime}, {"Customer ID", Int64.Type}, {"Description", type text}, {"Stock Code", type text}, {"Invoice No", Int64.Type}, {"Quantity", Int64.Type}, {"Sales", type number}, {"Unit Price", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Invoice No] <> null)),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","Indoor Pet Camera (Wi-Fi)","Indoor Pet Camera",Replacer.ReplaceText,{"Description"}),
+				    #"Grouped Rows" = Table.Group(#"Replaced Value", {"Invoice No"}, {{"Total Quantity", each List.Sum([Quantity]), type nullable number}, {"Total Sales", each List.Sum([Sales]), type nullable number}})
+				in
+				    #"Grouped Rows"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,124 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 492,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "24ef9dec-5759-49ec-a242-42b449b59d51",
+          "size": {
+            "height": 379,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 516.4,
+            "y": 305
+          },
+          "nodeIndex": "Products",
+          "nodeLineageTag": "7f80cf0b-f068-41e3-912c-f712ce84927e",
+          "size": {
+            "height": 351,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 405.7,
+            "y": 0
+          },
+          "nodeIndex": "Customers",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 791.9875,
+            "y": 0
+          },
+          "nodeIndex": "State Mapping",
+          "nodeLineageTag": "bb58b8b0-ca0f-4f54-a0be-7dd2ac308cb2",
+          "size": {
+            "height": 234,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1188.2,
+            "y": 0
+          },
+          "nodeIndex": "New_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1563.6,
+            "y": 0
+          },
+          "nodeIndex": "Invoice Totals",
+          "nodeLineageTag": "20177f86-654e-4218-9117-c8ea63e021fb",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 833.8,
+            "y": 282
+          },
+          "nodeIndex": "Market Basket",
+          "nodeLineageTag": "d6fcc938-85a2-4f0a-8648-d90027fa63a8",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1969.3,
+            "y": 0
+          },
+          "nodeIndex": "What-if quantity",
+          "nodeLineageTag": "877f5b89-6131-4f82-bfad-c10582a4e1d2",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

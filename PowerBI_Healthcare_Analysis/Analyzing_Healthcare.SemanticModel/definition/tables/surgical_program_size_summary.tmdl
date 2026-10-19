@@ -1,0 +1,95 @@
+table surgical_program_size_summary
+	lineageTag: 8721ce81-ed65-4aae-94c2-9f598e81505d
+
+	column facility_name
+		lineageTag: 3b974c39-5f7a-452d-a496-bc95c409f41b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: hospital_discharges[facility_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Discharges'
+		formatString: 0
+		lineageTag: 3bed9087-bf93-4601-a33e-e3fed26372b2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Total Discharges]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"surgical_program_size_summary","TableItemName":"Total Discharges (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Total Surgeons'
+		formatString: 0
+		lineageTag: bfc20b3a-e6dd-4f8c-bb2c-cc4fbd480c2d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Total Surgeons]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Discharges (bins)' =
+			IF(
+			  ISBLANK('surgical_program_size_summary'[Total Discharges]),
+			  BLANK(),
+			  INT('surgical_program_size_summary'[Total Discharges] / 200) * 200
+			)
+		formatString: 0
+		lineageTag: 7de5cefd-b99a-4e34-8ae0-1bc703f7bf33
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "surgical_program_size_summary"
+				          }
+				        },
+				        "Property": "Total Discharges"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 200.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"s","Entity":"surgical_program_size_summary"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Total Discharges"}},"Size":200.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Surgical Program Size' =
+			
+			SWITCH(
+			    TRUE(),
+			    surgical_program_size_summary[Total Discharges (bins)] = 0, "<200",
+			    surgical_program_size_summary[Total Discharges (bins)] = 200, "200-399",
+			    surgical_program_size_summary[Total Discharges (bins)] = 400, "400-599",
+			    ">=600"
+			)
+		lineageTag: e7a81887-8279-44e7-ab72-5817331a6117
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition surgical_program_size_summary-3c247cfb-4c9c-481d-8053-206e8593edb8 = calculated
+		mode: import
+		source =
+				
+				
+				SUMMARIZECOLUMNS(
+				    Hospital_Discharges[facility_name],
+				    "Total Discharges", [Total Discharges],
+				    "Total Surgeons", [Total Surgeons]
+				)
+
+	annotation PBI_Id = 65a419514933462f80cc7c9a31bb4ab4
+

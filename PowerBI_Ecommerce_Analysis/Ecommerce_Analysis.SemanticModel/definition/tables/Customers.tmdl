@@ -1,0 +1,68 @@
+table Customers
+	lineageTag: b9eb9791-99b5-44ff-b69a-0c39e2068805
+
+	column 'Customer ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9af09689-5231-4235-8fa1-0724106a3377
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order City'
+		dataType: string
+		lineageTag: 18176178-a3c5-48c7-b10e-9fbdcb984a95
+		summarizeBy: none
+		sourceColumn: Order City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Postal'
+		dataType: string
+		lineageTag: 38c6514b-ab57-4335-952f-13e435dae904
+		summarizeBy: none
+		sourceColumn: Order Postal
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order State'
+		dataType: string
+		lineageTag: f8617f8a-80a3-468f-a5b4-ab688d0fce1b
+		summarizeBy: none
+		sourceColumn: Order State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 7ba4f9a4-0e68-4400-bb9c-313364b5064b
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 6e2f33ef-21b9-4464-a172-9f1d71a0a501
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Customers-362971cd-4d46-423e-9ad2-302aa3e7676a = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://assets.datacamp.com/production/repositories/6373/datasets/95944ee7485227bb18a7e024461cf20680bf7b9b/dim_customers.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer ID", Int64.Type}, {"Order City", type text}, {"Order Postal", type text}, {"Order State", type text}, {"Latitude", type number}, {"Longitude", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "2a2be6b8640d7b53e686",
+  "position": {
+    "x": 348.76404494382024,
+    "y": 13.183520599250937,
+    "z": 2000,
+    "height": 109.06367041198502,
+    "width": 456.62921348314609
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Make versus Buy",
+                    "textStyle": {
+                      "fontFamily": "Arial Black",
+                      "fontSize": "36pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

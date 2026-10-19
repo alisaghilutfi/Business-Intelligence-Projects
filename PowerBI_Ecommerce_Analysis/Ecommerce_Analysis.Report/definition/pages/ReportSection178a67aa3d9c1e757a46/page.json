@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection178a67aa3d9c1e757a46",
+  "displayName": "Customer Info",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

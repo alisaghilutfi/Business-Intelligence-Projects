@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Internal_Mfg_Resource_Estimates","Quotes","Product_Dimension","Yield Rate"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_0e2b4434-136c-42c8-b2aa-bfd4f5b105cd
+ref table Internal_Mfg_Resource_Estimates
+ref table Quotes
+ref table Product_Dimension
+ref table 'Scenario Volume'
+ref table 'Scenario Volumes (All)'
+ref table 'Yield Rate'
+
+ref role 'Project Siliode Team Member'
+ref role 'Project Kerfuffle Team Member'
+
+ref cultureInfo en-US
+

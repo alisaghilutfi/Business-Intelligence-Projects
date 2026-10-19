@@ -1,0 +1,31 @@
+table New_Measures
+	lineageTag: d58e0f32-9c73-476c-a8e7-a8476bffca78
+
+	measure 'Number of Customers' = DISTINCTCOUNTNOBLANK(Sales[Customer ID])
+		formatString: 0
+		lineageTag: fb191a4b-03f0-4355-b663-09c7628d42ab
+
+	measure 'Customer LTV (avg)' = SUM(Sales[Sales])/[Number of Customers]
+		lineageTag: 9c06152f-e69f-45b5-b3d9-9a43a1415e08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit %' = SUM(Sales[Profit (Baseline)])/SUM(Sales[Sales])
+		formatString: #,0.00\ %;-#,0.00\ %;#,0.00\ %
+		lineageTag: ab63c971-0e38-41cf-b223-490a67da8ff7
+
+	column Value
+		formatString: 0
+		lineageTag: b52d55b0-7065-4bfc-b117-af2a74b35fcd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition New_Measures-c039d19e-41da-43dd-aa2a-22b9d94e1653 = calculated
+		mode: import
+		source = {BLANK()}
+
+	annotation PBI_Id = 092185591c084d22a2c800223b576fbf
+

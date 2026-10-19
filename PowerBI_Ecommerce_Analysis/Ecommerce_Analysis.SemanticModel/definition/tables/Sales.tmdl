@@ -1,0 +1,145 @@
+table Sales
+	lineageTag: 24ef9dec-5759-49ec-a242-42b449b59d51
+
+	measure Total_Rows = COUNTROWS(Sales)
+		formatString: 0
+		lineageTag: 79c9501f-3df4-4eae-918e-964111d1b487
+
+	measure 'Shipping (Baseline)' = SUMX(Sales, IF(Sales[Quantity]=1,Sales[Shipping Cost],Sales[Shipping Cost]+(((Sales[Quantity])-1)*(Sales[Shipping Cost]*0.7))))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 4ce7fb25-dc74-4ef0-a16f-43f7d3665a53
+
+	measure 'Shipping (What-if)' = SUMX(Sales,IF(Sales[Quantity]=1,Sales[Shipping Cost],Sales[Shipping Cost]+(((Sales[Quantity])-1)*(Sales[Shipping Cost]*[Blended Shipping Cost Factor]))))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: ee19cd41-4ec2-440d-b4c3-2507217420cb
+
+	measure 'Shipping (Difference)' = [Shipping (Baseline)] - [Shipping (What-if)]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 07a4163c-1136-472a-a802-5f7a0d694757
+
+	measure 'Baseline running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (Baseline)])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: dc4b5dbc-da47-46c9-b51f-acb6f2517902
+
+	measure 'What-if running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (What-if)])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: af65176d-21ed-402c-ab22-d39bd7da29bf
+
+	measure 'Difference running total' = SUMX(FILTER(ALLSELECTED(Sales), Sales[Transaction Date] <=MAX('Market Basket'[Transaction Date])), [Shipping (Difference)])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 3fcbc3e7-adc5-467b-83b3-5bd3f93c8944
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89930a80-e89a-4f9e-8a7c-ebfd42f515f4
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: e4a8090d-949b-4cc0-815b-c401ad049a36
+			defaultHierarchy: LocalDateTable_3b12500c-20c3-425c-b5ba-3e423cc50b23.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 24c28bf6-1a69-48aa-98d5-5b8bfa88522b
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 92eaf87a-7fae-4577-a33d-cd27f157bab4
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Code'
+		dataType: string
+		lineageTag: 9dfb4556-5a05-4bda-a573-d4f324ed8d5c
+		summarizeBy: none
+		sourceColumn: Stock Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice No'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eead3ef-0949-480a-98a9-85776e529ada
+		summarizeBy: none
+		sourceColumn: Invoice No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cb32cd8-07ba-4620-8e6a-c6885dc4e3d7
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 58f6f49b-1aff-4c66-b5e0-2620146d4a5e
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Unit Price'
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 88148d33-bad4-4bc7-a4c6-dc0e7dba68f3
+		summarizeBy: sum
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Cost' = RELATED(Products[Shipping_Cost_1000_mile])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 958d867f-3c4c-4f9e-8366-5cf24ea1854d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column COGS = Sales[Quantity]*RELATED(Products[Landed Cost])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ae91ba08-8e5a-4bcb-8c6f-5d5bc282b013
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Profit (Baseline)' = Sales[Sales]-Sales[COGS]-[Shipping (Baseline)]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: bbfcb7bb-b230-41b5-aa4d-03ea572ad322
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales-b13d9aba-0a35-4617-b112-36660d071eaa = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://assets.datacamp.com/production/repositories/6373/datasets/545278032258b36d166ec10f99d5651b3c8f13f4/fact_sales.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction Date", type datetime}, {"Customer ID", Int64.Type}, {"Description", type text}, {"Stock Code", type text}, {"Invoice No", Int64.Type}, {"Quantity", Int64.Type}, {"Sales", type number}, {"Unit Price", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Invoice No] <> null)),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","Indoor Pet Camera (Wi-Fi)","Indoor Pet Camera",Replacer.ReplaceText,{"Description"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

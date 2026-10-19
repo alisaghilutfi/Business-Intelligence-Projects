@@ -1,0 +1,23 @@
+table 'Scenario Volumes (All)'
+	lineageTag: 81738127-dbf5-4981-b36a-2132197b6b40
+
+	measure 'Buy Scenario Full Cost (All)' = MINX(FILTER(Quotes, Quotes[Volume] <= MIN('Scenario Volumes (All)'[Scenario Volume])), MIN('Scenario Volumes (All)'[Scenario Volume]) * Quotes[Unit_Cost] + Quotes[Non_recurring_expenses])
+		lineageTag: b613b89c-c35a-4d7f-8997-61df3f8d129d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scenario Volume'
+		formatString: 0
+		lineageTag: 5e164911-0d98-478b-9b3c-13cb420cb1fe
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Scenario Volume[Scenario Volume]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Scenario Volumes (All)-c0fdd03f-ed67-4dac-a7c4-4fefcd3fedf7' = calculated
+		mode: import
+		source = 'Scenario Volume'
+
+	annotation PBI_Id = 2ae029fac3e740889ef11629bfa96246
+

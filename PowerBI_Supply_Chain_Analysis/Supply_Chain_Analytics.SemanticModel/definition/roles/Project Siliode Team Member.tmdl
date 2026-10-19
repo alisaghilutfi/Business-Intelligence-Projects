@@ -1,0 +1,7 @@
+role 'Project Siliode Team Member'
+	modelPermission: read
+
+	tablePermission Product_Dimension = [Project] = "Siliode"
+
+	annotation PBI_Id = fe6934f068294930a6135978cfacee7c
+

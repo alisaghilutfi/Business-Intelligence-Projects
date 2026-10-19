@@ -1,0 +1,31 @@
+table 'What-if quantity'
+	lineageTag: 877f5b89-6131-4f82-bfad-c10582a4e1d2
+
+	measure 'What-if quantity Value' = SELECTEDVALUE('What-if quantity'[What-if quantity], 5)
+		formatString: 0
+		lineageTag: cfc37dba-000e-43fe-bc74-681d5c6750e0
+
+	measure 'Blended Shipping Cost Factor' = IF('What-if quantity'[What-if quantity Value]<=1,1,IF('What-if quantity'[What-if quantity Value]<=2,0.8,IF('What-if quantity'[What-if quantity Value]<=4,0.6,IF('What-if quantity'[What-if quantity Value]<=7,0.5,IF('What-if quantity'[What-if quantity Value]<=9,0.4,0.3)))))
+		lineageTag: 93eba94b-fa6c-4006-8eab-1730d1364560
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'What-if quantity'
+		formatString: 0
+		lineageTag: 5bfde7ab-b806-4155-a155-189d2cc5dcd0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'What-if quantity-8f133ef9-b1ca-44bf-9c94-f01fca6323b7' = calculated
+		mode: import
+		source = GENERATESERIES(1, 20, 1)
+
+	annotation PBI_Id = abeb38ac8fd347c885876e625eaadbfe
+

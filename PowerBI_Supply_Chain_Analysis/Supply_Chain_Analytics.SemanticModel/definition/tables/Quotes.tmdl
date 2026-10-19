@@ -1,0 +1,108 @@
+table Quotes
+	lineageTag: 805206a2-3fd5-427a-b85d-7069edec04c8
+
+	column Supplier
+		dataType: string
+		lineageTag: 9db5b732-35d3-4bbc-99da-fafae7a309c3
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Part_Number
+		dataType: string
+		lineageTag: 4c6ce8b7-5da1-4b51-9e4d-83c588eeefa2
+		summarizeBy: none
+		sourceColumn: Part_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Volume
+		dataType: int64
+		formatString: 0
+		lineageTag: ec13026b-09db-43c0-b0b7-8c493b8b18f5
+		summarizeBy: none
+		sourceColumn: Volume
+
+		annotation SummarizationSetBy = User
+
+	column Non_recurring_expenses
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e438bdee-54de-45e5-82d2-e4d722e85ecb
+		summarizeBy: sum
+		sourceColumn: Non_recurring_expenses
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Unit_Cost
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5e825c93-03a4-436b-a2fb-c6b4c703eccd
+		summarizeBy: none
+		sourceColumn: Unit_Cost
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Quote_ID
+		dataType: string
+		lineageTag: 4300d987-2ebd-455a-a5da-34d9666b2df8
+		summarizeBy: none
+		sourceColumn: Quote_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Extended Cost' = Quotes[Unit_Cost] * Quotes[Volume]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8177616b-3c42-491b-8576-054d4e13aeb1
+		summarizeBy: none
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Full Cost' = Quotes[Extended Cost] + Quotes[Non_recurring_expenses]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: cb3c05c8-2766-4b65-8e1d-95df1e5784ee
+		summarizeBy: none
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+	column 'Yield Rate' = FIRSTNONBLANK('Yield Rate'[Yield Rate], TRUE)
+		lineageTag: 3a4cc3bb-c5f5-4524-b3b8-ab6c6dca186d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Quotes-a56ab085-73c4-4370-8eb5-a2669f8e2966 = m
+		mode: import
+		source =
+				let
+				Source = Excel.Workbook(Web.Contents("https://assets.datacamp.com/production/repositories/6235/datasets/c9ac53727f1464026b44bd37c60e2de5caef0df9/Fictitious%20RFP%20Responses%20for%20Make%20vs%20Buy.xlsx"), null, true),   Quotes_Sheet = Source{[Item="Quotes",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Quotes_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Supplier", type text}, {"Part_Number", type text}, {"Volume", Int64.Type}, {"Unit_Cost", type number}, {"Non_recurring_expenses", type number}, {"Quote_ID", type text}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Supplier", "Part_Number", "Volume", "Unit_Cost", "Non_recurring_expenses","Quote_ID"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Other Columns", each ([Supplier] <> null))
+				in
+				    #"Filtered Rows"
+				
+				    //Hi Marlo, Alma, Val and Hugo
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSectiondc4b0dcdbb97a37920a1",
+  "displayName": "Market Basket Analysis",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "0d08252873b881de2505",
+      "target": "59dfca6f7365f650acdd",
+      "type": "DataFilter"
+    }
+  ]
+}

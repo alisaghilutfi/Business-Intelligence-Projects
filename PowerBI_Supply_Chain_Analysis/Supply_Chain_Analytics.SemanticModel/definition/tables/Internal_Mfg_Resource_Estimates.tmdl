@@ -1,0 +1,103 @@
+table Internal_Mfg_Resource_Estimates
+	lineageTag: d172ab30-c789-4266-a064-9b8c6c57d729
+
+	measure 'Additional Unit Capacity Required' = MINX(Internal_Mfg_Resource_Estimates, MAX('Scenario Volume'[Scenario Volume Value] - Internal_Mfg_Resource_Estimates[Existing_Capacity],0))
+		formatString: #,0
+		lineageTag: bd6f7f1c-ea35-42c0-a48d-61643aa81762
+
+		changedProperty = FormatString
+
+	measure 'Capital Investment Required (Make)' = MINX(Internal_Mfg_Resource_Estimates, ROUNDUP([Additional Unit Capacity Required] / MIN(Internal_Mfg_Resource_Estimates[Unit_Capacity]),0) * Internal_Mfg_Resource_Estimates[Machine_Fixed_Cost])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c438dfa5-fb2a-443d-ba36-927d816bca07
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Make Scenario Full Cost' = MINX(Internal_Mfg_Resource_Estimates, [Capital Investment Required (Make)] + Internal_Mfg_Resource_Estimates[Cost_per_Unit] * 'Scenario Volume'[Scenario Volume Value])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 246502bf-ba91-4b63-9ca1-a0d18200e9cf
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Machine_Model
+		dataType: string
+		lineageTag: 82586ebe-f4a0-4e1c-ac5c-473a1465ce0d
+		summarizeBy: none
+		sourceColumn: Machine_Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Part_Number
+		dataType: string
+		lineageTag: 7fec3175-c501-460a-be84-c67732e819c4
+		summarizeBy: none
+		sourceColumn: Part_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost_per_Unit
+		dataType: double
+		lineageTag: 6eeed9c3-242e-4239-befd-e130886838db
+		summarizeBy: sum
+		sourceColumn: Cost_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Unit_Capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 078094f1-31f4-4bac-be44-4e1cd1fd139f
+		summarizeBy: sum
+		sourceColumn: Unit_Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_Fixed_Cost
+		dataType: int64
+		formatString: 0
+		lineageTag: fc7dab32-4748-4ec5-8eaa-4e9bc6c11ba0
+		summarizeBy: sum
+		sourceColumn: Machine_Fixed_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column Existing_Capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 43d19e84-db88-4155-afa5-e4623e30fe99
+		summarizeBy: sum
+		sourceColumn: Existing_Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_Fixed_Overhead_Rate
+		dataType: double
+		lineageTag: 52431dbe-cf06-4a52-b574-769944b659ce
+		summarizeBy: sum
+		sourceColumn: Machine_Fixed_Overhead_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Internal_Mfg_Resource_Estimates-3b80261c-d2a7-4348-b961-5bb3c7391623 = m
+		mode: import
+		source =
+				let
+				Source = Excel.Workbook(Web.Contents("https://assets.datacamp.com/production/repositories/6235/datasets/c9ac53727f1464026b44bd37c60e2de5caef0df9/Fictitious%20RFP%20Responses%20for%20Make%20vs%20Buy.xlsx"), null, true),    Internal_Mfg_Resource_Estimates_Sheet = Source{[Item="Internal_Mfg_Resource_Estimates",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Internal_Mfg_Resource_Estimates_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Machine_Model", type text}, {"Part_Number", type text}, {"Cost_per_Unit", type number}, {"Unit_Capacity", Int64.Type}, {"Machine_Fixed_Cost", Int64.Type}, {"Existing_Capacity", Int64.Type}, {"Machine_Fixed_Overhead_Rate", type number}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type any}, {"Column26", type any}, {"Column27", type any}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Machine_Model", "Part_Number", "Cost_per_Unit", "Unit_Capacity", "Machine_Fixed_Cost", "Existing_Capacity", "Machine_Fixed_Overhead_Rate"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

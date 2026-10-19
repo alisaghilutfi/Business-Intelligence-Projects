@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9d7d8f2f6226c9c288a3",
+  "position": {
+    "x": 628.66995073891621,
+    "y": 469.064039408867,
+    "z": 6000,
+    "height": 250.935960591133,
+    "width": 651.72413793103453,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "map",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "State Mapping"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "State Mapping.State",
+              "nativeQueryRef": "State",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "State Mapping"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "State Mapping.Region",
+              "nativeQueryRef": "Region"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Shipping (Baseline)"
+                }
+              },
+              "queryRef": "Sales.Shipping (Baseline)",
+              "nativeQueryRef": "Shipping (Baseline)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Arithmetic": {
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Sales"
+                        }
+                      },
+                      "Property": "Shipping (Baseline)"
+                    }
+                  },
+                  "Right": {
+                    "ScopedEval": {
+                      "Expression": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Sales"
+                            }
+                          },
+                          "Property": "Shipping (Baseline)"
+                        }
+                      },
+                      "Scope": []
+                    }
+                  },
+                  "Operator": 3
+                }
+              },
+              "queryRef": "Divide(Sales.Shipping (Baseline), ScopedEval(Sales.Shipping (Baseline), []))",
+              "nativeQueryRef": "%GT Shipping (Baseline)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shipping Cost by State and Region'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

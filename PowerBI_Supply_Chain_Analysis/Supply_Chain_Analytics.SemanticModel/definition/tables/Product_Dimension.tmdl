@@ -1,0 +1,42 @@
+table Product_Dimension
+	lineageTag: 3b183d14-63c1-4c11-8b10-9b9e8259c9f7
+
+	column Part_Number
+		dataType: string
+		lineageTag: 9550a69e-ce64-46d6-a817-a13f93bae87c
+		summarizeBy: none
+		sourceColumn: Part_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Part_Name
+		dataType: string
+		lineageTag: 124322a6-b1c7-48eb-9575-86d8da786e38
+		summarizeBy: none
+		sourceColumn: Part_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project
+		dataType: string
+		lineageTag: 48e54474-134b-43ce-ae94-17270dbab03a
+		summarizeBy: none
+		sourceColumn: Project
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_Dimension-a4554d3a-4a88-407f-9e41-1de80f5f0cd5 = m
+		mode: import
+		source =
+				let
+				Source = Excel.Workbook(Web.Contents("https://assets.datacamp.com/production/repositories/6235/datasets/c9ac53727f1464026b44bd37c60e2de5caef0df9/Fictitious%20RFP%20Responses%20for%20Make%20vs%20Buy.xlsx"), null, true),    Product_Dimension_Sheet = Source{[Item="Product_Dimension",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_Dimension_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Part_Number", type text}, {"Part_Name", type text}, {"Project", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type any}, {"Column26", type any}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Part_Number", "Part_Name", "Project"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

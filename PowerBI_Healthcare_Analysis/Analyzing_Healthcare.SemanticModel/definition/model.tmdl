@@ -1,0 +1,21 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-CA
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["hospital_discharges"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table hospital_discharges
+ref table DateTableTemplate_f4d2a8c4-4f97-4b5c-b7f5-21bd6413940c
+ref table _Measures
+ref table surgical_program_size_summary
+
+ref cultureInfo en-US
+

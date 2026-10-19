@@ -1,0 +1,7 @@
+role 'Project Kerfuffle Team Member'
+	modelPermission: read
+
+	tablePermission Product_Dimension = [Project] = "Kerfuffle"
+
+	annotation PBI_Id = f042d5a96c3844e89a54fa8566d54b5e
+

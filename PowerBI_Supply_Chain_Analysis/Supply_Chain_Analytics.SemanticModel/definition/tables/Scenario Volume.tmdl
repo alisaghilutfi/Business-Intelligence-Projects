@@ -1,0 +1,37 @@
+table 'Scenario Volume'
+	lineageTag: 5a2d42b5-f1ab-49dd-a460-f1bfc8b90ef6
+
+	measure 'Scenario Volume Value' = SELECTEDVALUE('Scenario Volume'[Scenario Volume], 15000)
+		formatString: 0
+		lineageTag: da42a76a-c27a-4c3f-a79f-dc3c38cd16a9
+
+	measure 'Buy Scenario Full Cost' = MINX(FILTER(Quotes, Quotes[Volume] <= 'Scenario Volume'[Scenario Volume Value]), ([Scenario Volume Value] * Quotes[Unit_Cost] / Quotes[Yield Rate]) + Quotes[Non_recurring_expenses])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d707a09a-902e-4244-8a67-95443d970354
+
+	measure 'Make vs Buy' = IF(ISBLANK([Make Scenario Full Cost]), BLANK(), IF([Make Scenario Full Cost] >= [Buy Scenario Full Cost], "Buy","Make"))
+		lineageTag: 89aa2b4a-c9d6-4848-8795-0e9bb685f309
+
+	measure 'Cost Avoidance' = ABS([Make Scenario Full Cost] -  [Buy Scenario Full Cost])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a46cb099-7a8d-40bd-9a3a-c2b4c9145f0f
+
+	column 'Scenario Volume'
+		formatString: 0
+		lineageTag: 7feee673-759d-4848-a7bd-a0502adb7a0a
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Scenario Volume-a23139bd-f3f0-4901-b246-bde8632aa8d8' = calculated
+		mode: import
+		source = GENERATESERIES(1000, 100000, 500)
+
+	annotation PBI_Id = d08c7c5830974aeba1782f288a29bfee
+

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "45d2501512a089d0b4dc",
+  "position": {
+    "x": 298.66666666666669,
+    "y": 166.4,
+    "z": 1000,
+    "height": 173.51111111111112,
+    "width": 375.46666666666664
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quotes"
+                    }
+                  },
+                  "Property": "Supplier"
+                }
+              },
+              "queryRef": "Quotes.Supplier"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quotes"
+                    }
+                  },
+                  "Property": "Part_Number"
+                }
+              },
+              "queryRef": "Quotes.Part_Number"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario Volume"
+                    }
+                  },
+                  "Property": "Buy Scenario Full Cost"
+                }
+              },
+              "queryRef": "Scenario Volume.Scenario Full Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Scenario Volume"
+                  }
+                },
+                "Property": "Buy Scenario Full Cost"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

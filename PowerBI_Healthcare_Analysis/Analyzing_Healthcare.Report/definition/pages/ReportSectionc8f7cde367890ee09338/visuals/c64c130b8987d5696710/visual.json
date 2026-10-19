@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c64c130b8987d5696710",
+  "position": {
+    "x": 27.444345801437212,
+    "y": 253.8601986632942,
+    "z": 3000,
+    "height": 454.20392301378587,
+    "width": 369.1264510293305
+  },
+  "visual": {
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "apr_risk_of_mortality"
+                }
+              },
+              "queryRef": "hospital_discharges.apr_risk_of_mortality"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "apr_severity_of_illness_description"
+                }
+              },
+              "queryRef": "hospital_discharges.apr_severity_of_illness_description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "ccs_diagnosis_description"
+                }
+              },
+              "queryRef": "hospital_discharges.ccs_diagnosis_description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "patient_disposition"
+                }
+              },
+              "queryRef": "hospital_discharges.patient_disposition"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "gender"
+                }
+              },
+              "queryRef": "hospital_discharges.gender"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "Age Bins"
+                }
+              },
+              "queryRef": "hospital_discharges.Age Bins"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "surgical_program_size_summary"
+                    }
+                  },
+                  "Property": "Surgical Program Size"
+                }
+              },
+              "queryRef": "surgical_program_size_summary.Surgical Program Size"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "hospital_discharges"
+                    }
+                  },
+                  "Property": "health_service_area"
+                }
+              },
+              "queryRef": "hospital_discharges.health_service_area"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average LOS Days"
+                }
+              },
+              "queryRef": "_Measures.Average LOS Days"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Average LOS Days"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "targetValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Extreme'''"
+                }
+              }
+            },
+            "allowKeyDriversCounting": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'keyInfluencers'"
+                }
+              }
+            },
+            "selectedSort": {
+              "expr": {
+                "Literal": {
+                  "Value": "'impact'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

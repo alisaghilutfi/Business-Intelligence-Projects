@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d819585c1b03297750ab",
+  "position": {
+    "x": 703.044776119403,
+    "y": 0,
+    "z": 2000,
+    "height": 719.60199004975129,
+    "width": 576.955223880597,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "State Mapping"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "State Mapping.State",
+              "nativeQueryRef": "State"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Customer ID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Customers.Customer ID",
+              "nativeQueryRef": "Count of Customer ID"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

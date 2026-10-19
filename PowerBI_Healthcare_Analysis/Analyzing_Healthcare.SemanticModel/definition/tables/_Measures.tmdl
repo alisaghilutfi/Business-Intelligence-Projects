@@ -1,0 +1,104 @@
+table _Measures
+	lineageTag: 46cbde27-d646-4766-804b-84c2939c430e
+
+	measure 'Total Hospitals' =
+			
+			DISTINCTCOUNT(
+			    hospital_discharges[facility_id]
+			)
+		formatString: 0
+		lineageTag: 150439f1-36f4-4fff-b714-2c51fa1c69b7
+
+	measure 'Total Discharges' =
+			
+			COUNTROWS(
+			    hospital_discharges
+			)
+		formatString: 0
+		lineageTag: 3865b839-e4d3-4a8c-8b95-ec160ad03015
+
+	measure 'Average LOS Days' =
+			
+			AVERAGE(
+			    hospital_discharges[length_of_stay]
+			)
+		lineageTag: af77b502-18c2-4826-bae8-9225409acf80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Surgeons' =
+			
+			DISTINCTCOUNT(
+			    hospital_discharges[operating_provider_license_number]
+			)
+		formatString: 0
+		lineageTag: 07fa8ac5-35c7-43c5-8858-d4fb8f39c85c
+
+	measure 'Average Cost per Discharge' =
+			
+			DIVIDE(
+			    SUM(hospital_discharges[total_costs]),
+			    [Total Discharges]
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3ccdf6d5-3a97-4c20-aae0-59942cf707c6
+
+	measure '% Var Average Cost per Discharge' =
+			
+			VAR vAVG = [Average Cost per Discharge]
+			VAR vAvgALL = CALCULATE([Average Cost per Discharge],ALL())
+			
+			RETURN
+			(vAVG-vAvgALL)/vAvgALL
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 64e23335-a202-417f-b45d-5d14f01c4380
+
+	measure '% Var Average LOS Days' =
+			
+			VAR vAVG = [Average LOS Days]
+			VAR vAvgALL = CALCULATE([Average LOS Days],ALL())
+			
+			RETURN
+			(vAVG-vAvgALL)/vAvgALL
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 13f5806f-bb18-4c35-80ed-b38ebb79bd92
+
+	measure 'Average LOS Days ALL' =
+			
+			CALCULATE(
+			    [Average LOS Days],
+			    ALL()
+			)
+		formatString: 0.00
+		lineageTag: 3c77f048-957c-422c-bd57-176945db1968
+
+	measure 'Average Cost per Discharge ALL' =
+			
+			CALCULATE(
+			    [Average Cost per Discharge],
+			    ALL()
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e70b6ce3-2d6a-4cfe-b167-6052876b288d
+
+	measure 'Title Selected Facility' =
+			
+			"Hospital Profile: " & VALUES(Hospital_Discharges[facility_name])
+		lineageTag: 606e7593-fa52-41f0-875c-2d8e6e24b7b6
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 69d96cc7-dcb4-45a5-9a33-6bb787556895
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures-5ae3ff67-4a7b-40d6-ae79-dfa97736bf78 = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 26e2d72ac7b34c1c818e0225a1f4d779
+

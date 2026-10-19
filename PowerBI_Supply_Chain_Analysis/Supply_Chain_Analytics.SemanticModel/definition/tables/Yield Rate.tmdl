@@ -1,0 +1,34 @@
+table 'Yield Rate'
+	lineageTag: 46d5fa6f-b446-4057-a89a-270f294cffa5
+
+	column Supplier
+		dataType: string
+		lineageTag: f5f65394-7ffb-45d0-b855-c2f418bbcf19
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Yield Rate'
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: 0ab7ce18-b0c2-4a55-a1e4-5b51cea9fd07
+		summarizeBy: none
+		sourceColumn: Yield Rate
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Yield Rate-03bb67cc-2f44-4b4b-b589-a4510e17976b' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCs9MSU8tyU3MTi0q1lHwzEtW0lHSMzdSitWJVgrKzEvPV/DLL0sECVoYgwVDnVNzcnQUwlMVfIGaQBKWFmAJ14qC1JzMfJhILAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Supplier = _t, #"YIeld Rate" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Supplier", type text}, {"YIeld Rate", type number}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"YIeld Rate", "Yield Rate"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

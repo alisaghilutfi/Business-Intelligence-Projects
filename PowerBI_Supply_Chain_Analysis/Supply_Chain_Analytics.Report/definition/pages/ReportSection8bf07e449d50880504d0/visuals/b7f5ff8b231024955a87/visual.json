@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b7f5ff8b231024955a87",
+  "position": {
+    "x": 577.67790262172286,
+    "y": 467.41573033707868,
+    "z": 4000,
+    "height": 238.50187265917603,
+    "width": 681.94756554307116
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quotes"
+                    }
+                  },
+                  "Property": "Supplier"
+                }
+              },
+              "queryRef": "Quotes.Supplier",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product_Dimension"
+                    }
+                  },
+                  "Property": "Part_Number"
+                }
+              },
+              "queryRef": "Product_Dimension.Part_Number"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario Volume"
+                    }
+                  },
+                  "Property": "Buy Scenario Full Cost"
+                }
+              },
+              "queryRef": "Scenario Volume.Buy Scenario Full Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Scenario Volume"
+                  }
+                },
+                "Property": "Buy Scenario Full Cost"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,116 @@
+table 'Market Basket'
+	lineageTag: d6fcc938-85a2-4f0a-8648-d90027fa63a8
+
+	column 'Transaction Date'
+		formatString: General Date
+		lineageTag: 348bc108-b0dc-4cd6-95e9-a84751942dd1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Transaction Date]
+
+		variation Variation
+			isDefault
+			relationship: 5f524ddf-4c2f-491d-abf5-2f237a9b844f
+			defaultHierarchy: LocalDateTable_0dc3eab1-8ff7-48e1-b902-d939221bdf02.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		formatString: 0
+		lineageTag: 54d2c2f2-5d1d-49b1-b5f5-9dff5338d466
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: Sales[Customer ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		lineageTag: 7379be81-0df3-4bb2-8266-2be3b635896f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Code'
+		lineageTag: da85a9bf-94e0-4ae7-b292-55212dd3701d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Stock Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice No'
+		formatString: 0
+		lineageTag: 302a05c7-44f8-4dde-8cb2-09426c120fa7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Invoice No]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		formatString: 0
+		lineageTag: 51283a30-327a-41a6-9a2b-4e39b5b62d18
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Quantity]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		lineageTag: 78813641-61cc-45f3-a3bb-10ffd5059358
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Sales]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Price'
+		lineageTag: 2c1a5a71-a014-4c42-a0dc-5e7e47f5281b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Unit Price]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Shipping Cost'
+		lineageTag: c014aaad-dbbc-41ca-9c3b-88b66fe6848f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Shipping Cost]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COGS
+		lineageTag: 54e0bcac-7a10-4441-8dd7-8c0f4931c4ee
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[COGS]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Profit (Baseline)'
+		lineageTag: fbee0727-6ad9-4be0-930c-33f2ddc59328
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Profit (Baseline)]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Market Basket-0fff53d4-4d8e-4a49-b3e9-47fcb4979426' = calculated
+		mode: import
+		source = Sales
+
+	annotation PBI_Id = 2b4a75f8f7d04e84ab12e0e171524d1c
+

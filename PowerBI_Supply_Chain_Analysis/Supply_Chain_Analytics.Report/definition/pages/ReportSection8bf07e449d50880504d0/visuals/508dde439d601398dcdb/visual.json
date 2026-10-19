@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "508dde439d601398dcdb",
+  "position": {
+    "x": 37.153558052434455,
+    "y": 467.41573033707868,
+    "z": 3000,
+    "height": 238.50187265917603,
+    "width": 515.35580524344573
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product_Dimension"
+                    }
+                  },
+                  "Property": "Part_Name"
+                }
+              },
+              "queryRef": "Product_Dimension.Part_Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product_Dimension"
+                    }
+                  },
+                  "Property": "Part_Number"
+                }
+              },
+              "queryRef": "Product_Dimension.Part_Number"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario Volume"
+                    }
+                  },
+                  "Property": "Make vs Buy"
+                }
+              },
+              "queryRef": "Scenario Volume.Make vs Buy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario Volume"
+                    }
+                  },
+                  "Property": "Cost Avoidance"
+                }
+              },
+              "queryRef": "Scenario Volume.Cost Avoidance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario Volume"
+                    }
+                  },
+                  "Property": "Buy Scenario Full Cost"
+                }
+              },
+              "queryRef": "Scenario Volume.Buy Scenario Full Cost"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
