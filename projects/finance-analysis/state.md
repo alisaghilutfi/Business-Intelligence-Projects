@@ -1,16 +1,13 @@
-# State
+# Project State — finance-analysis
 
-**Status:** Complete — archived
-**Last updated:** 2026-10-19
-
-## Current focus
-
-N/A — archived project
+**Status:** active — PBIP present
 
 ## Blockers
+- None
 
-None
+## In Progress
+- Nothing active
 
-## Next actions
-
-- Convert to PBIP before any model/report work
+## Completed
+- Full model hygiene pass (2026-10-19)
+- PBIP consolidated into project folder (2026-10-23)

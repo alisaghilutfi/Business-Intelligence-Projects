@@ -35,3 +35,24 @@ Widgetmakers Inc procurement team.
 - No demand uncertainty modelled — volume is a known input via What-if parameter
 - Yield rate applied to Buy scenario only; Make scenario does not yet adjust for internal scrap rates
 - **No temporal dimension** — this model contains no date or time columns; time intelligence measures are not applicable
+
+## Notes from original README
+
+**Problem statement:** Widgetmakers' procurement team needs to decide, for each part number and production volume, whether to manufacture internally or buy from one of four external suppliers — and the answer changes as volume scales. The wrong decision at any volume point means unnecessary capital investment or avoidable unit cost premium.
+
+**Architecture:** Snowflake schema. `fact_Quotes` as central fact joined to `fact_Mfg_Estimates`, `dim_Product`, and `dim_Yield_Rate`. Fictitious Widgetmakers Inc dataset.
+
+**Key design decisions:**
+- What-if parameter (Scenario Volume) — all cost measures recalculate dynamically; cost curves plotted across volume range making break-even points visible without manual calculation.
+- Three-page decision progression: Supplier Selection (fixed-volume cheapest supplier) → Scenario Analysis (volume-varying cost curves) → Make vs. Buy (full cost comparison with capital investment visibility). Mirrors the actual procurement analyst workflow.
+- `Buy Scenario Full Cost` uses `MINX + FILTER` on Quotes — selects minimum full cost supplier at scenario volume, not just unit cost; extends cost breakdown to show whether advantage is from unit price or setup cost (two different negotiation levers).
+- Capital Investment Required (Make) calculation exposed on Make vs. Buy page — prevents "Make looks cheaper" conclusion from hiding machine investment payback period.
+- Yield rate applied to Buy scenario only (quality-adjusted cost = unit cost / yield rate); Make scenario does not yet adjust for internal scrap rates — documented asymmetry.
+
+**Key findings:**
+- Widgetmakers Inc is the lowest-cost Buy option across most part numbers and volumes — unit cost advantage compounds at higher volumes.
+- Make becomes preferable above a volume threshold specific to each part — break-even is not uniform; high-machine-capacity parts reach Make viability at lower volumes.
+- Non-recurring expenses vary significantly between suppliers — extended cost alone is a misleading comparison metric at low volumes.
+- Capital investment requirements are material — payback period calculation requires a demand forecast not present in this dataset.
+
+**Probable next improvements:** Payback period calculation on Make vs. Buy page; demand uncertainty via second What-if parameter (low/base/high); supplier risk score dimension.
