@@ -5,6 +5,7 @@ table dim_Date
 
 	column Date
 		isUnique
+		lineageTag: 0a59f039-1ae8-4a38-9d21-8088b7e9b35b
 		isNameInferred
 		sourceColumn: [Date]
 

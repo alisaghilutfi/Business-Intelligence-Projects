@@ -8,7 +8,6 @@ table fact_Market_Baskets
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: fact_Sales[Transaction Date]
-		columnOrigin: fact_Sales.'Transaction Date'
 
 		variation Variation
 			isDefault
@@ -23,7 +22,6 @@ table fact_Market_Baskets
 		summarizeBy: count
 		isNameInferred
 		sourceColumn: fact_Sales[Customer ID]
-		columnOrigin: fact_Sales.'Customer ID'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -32,7 +30,6 @@ table fact_Market_Baskets
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: fact_Sales[Description]
-		columnOrigin: fact_Sales.Description
 
 		annotation SummarizationSetBy = Automatic
 
@@ -41,7 +38,6 @@ table fact_Market_Baskets
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: fact_Sales[Stock Code]
-		columnOrigin: fact_Sales.'Stock Code'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -51,7 +47,6 @@ table fact_Market_Baskets
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: fact_Sales[Invoice No]
-		columnOrigin: fact_Sales.'Invoice No'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -61,7 +56,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[Quantity]
-		columnOrigin: fact_Sales.Quantity
 
 		annotation SummarizationSetBy = Automatic
 
@@ -70,7 +64,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[Sales]
-		columnOrigin: fact_Sales.Sales
 
 		annotation SummarizationSetBy = Automatic
 
@@ -81,7 +74,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[Unit Price]
-		columnOrigin: fact_Sales.'Unit Price'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -92,7 +84,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[Shipping Cost]
-		columnOrigin: fact_Sales.'Shipping Cost'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -103,7 +94,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[COGS]
-		columnOrigin: fact_Sales.COGS
 
 		annotation SummarizationSetBy = Automatic
 
@@ -114,7 +104,6 @@ table fact_Market_Baskets
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: fact_Sales[Profit (Baseline)]
-		columnOrigin: fact_Sales.'Profit (Baseline)'
 
 		annotation SummarizationSetBy = Automatic
 

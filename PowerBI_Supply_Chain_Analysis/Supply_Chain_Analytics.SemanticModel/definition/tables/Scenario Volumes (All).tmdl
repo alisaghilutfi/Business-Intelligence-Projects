@@ -23,7 +23,6 @@ table 'Scenario Volumes (All)'
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: Scenario Volume[Scenario Volume]
-		columnOrigin: 'Scenario Volume'.'Scenario Volume'
 
 		annotation SummarizationSetBy = Automatic
 

@@ -54,7 +54,7 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "q",
+                    "Name": "f",
                     "Entity": "fact_Quotes",
                     "Type": 0
                   }
@@ -68,7 +68,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "q"
+                                  "Source": "f"
                                 }
                               },
                               "Property": "Part_Number"

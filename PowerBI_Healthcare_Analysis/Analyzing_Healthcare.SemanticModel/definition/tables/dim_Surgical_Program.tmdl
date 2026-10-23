@@ -2,15 +2,6 @@
 table dim_Surgical_Program
 	lineageTag: 8721ce81-ed65-4aae-94c2-9f598e81505d
 
-	column facility_name
-		lineageTag: 3b974c39-5f7a-452d-a496-bc95c409f41b
-		summarizeBy: none
-		isNameInferred
-		sourceColumn: fact_Hospital_Discharges[facility_name]
-		columnOrigin: fact_Hospital_Discharges.facility_name
-
-		annotation SummarizationSetBy = Automatic
-
 	column 'Total Discharges'
 		formatString: 0
 		lineageTag: 3bed9087-bf93-4601-a33e-e3fed26372b2
@@ -79,6 +70,14 @@ table dim_Surgical_Program
 			)
 		lineageTag: e7a81887-8279-44e7-ab72-5817331a6117
 		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column facility_name
+		lineageTag: 3b974c39-5f7a-452d-a496-bc95c409f41b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: fact_Hospital_Discharges[facility_name]
 
 		annotation SummarizationSetBy = Automatic
 
