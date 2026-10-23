@@ -1,16 +1,13 @@
-# State
+# Project State — competitor-sales
 
-**Status:** Complete — hygiene pass done
-**Last updated:** 2026-10-19
-
-## Current focus
-
-N/A — archived project
+**Status:** active — PBIP present
 
 ## Blockers
+- Data source credentials need re-setting in Power BI Desktop after repo move — Transform Data shows "Please specify how to connect" on dim_Manufacturer and other queries. Fix: Transform Data → Data source settings → Edit credentials → point to datasets/ CSVs at new path.
 
-None
+## In Progress
+- Nothing active
 
-## Next actions
-
-- N/A — hygiene pass complete (table renames, MarkAsDateTable, column hides, VAR/RETURN, display folders, Copilot descriptions, table descriptions)
+## Completed
+- Full model hygiene pass (2026-10-19)
+- PBIP consolidated into project folder (2026-10-23)

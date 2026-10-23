@@ -1,3 +1,5 @@
 *.abf
+*.pbix
+.pbi/
 **/.pbi/localSettings.json
 **/unappliedChanges.json
