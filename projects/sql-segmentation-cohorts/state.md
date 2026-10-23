@@ -1,16 +1,13 @@
-# State
+# Project State — sql-segmentation-cohorts
 
-**Status:** Complete — archived
-**Last updated:** 2026-10-19
-
-## Current focus
-
-N/A — archived project
+**Status:** active — SQL scripts present
 
 ## Blockers
+- None
 
-None
+## In Progress
+- Nothing active
 
-## Next actions
-
-- N/A — SQL project, no PBIP conversion required
+## Completed
+- Monorepo registration (2026-10-18)
+- SQL scripts consolidated into project folder (2026-10-23)

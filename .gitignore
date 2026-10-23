@@ -3,3 +3,8 @@
 .pbi/
 **/.pbi/localSettings.json
 **/unappliedChanges.json
+
+# DBeaver IDE
+.dbeaver/
+.project
+.settings/

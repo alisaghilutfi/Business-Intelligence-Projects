@@ -1,16 +1,13 @@
-# State
+# Project State — excel-customer-churn
 
-**Status:** Complete — archived
-**Last updated:** 2026-10-19
-
-## Current focus
-
-N/A — archived project
+**Status:** active — Excel workbook present
 
 ## Blockers
+- None
 
-None
+## In Progress
+- Nothing active
 
-## Next actions
-
-- N/A — Excel project, no PBIP conversion required
+## Completed
+- Monorepo registration (2026-10-18)
+- Excel workbook consolidated into project folder (2026-10-23)
