@@ -3,7 +3,7 @@
 **Status:** active — PBIP present
 
 ## Blockers
-- None
+- Data source credentials need re-setting in Power BI Desktop after repo move — Transform Data shows "Please specify how to connect" on dim_Manufacturer and other queries. Fix: Transform Data → Data source settings → Edit credentials → point to datasets/ CSVs at new path.
 
 ## In Progress
 - Nothing active
