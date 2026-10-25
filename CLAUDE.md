@@ -1,13 +1,18 @@
 # Business-Intelligence-Projects
 
+Global guardrails: ~/.claude/CLAUDE.md (source: private repo dev-environment).
+
 BI portfolio monorepo. Power BI Desktop / PBIP reports across Finance, Ecommerce, Supply Chain, Healthcare, Competitor Sales, plus Excel and SQL projects.
 
 ## Naming conventions
 
 | Prefix | Artefact |
 |---|---|
-| `projects/<kebab-case>/` | Project metadata (CLAUDE.md, state.md, decisions.md) |
-| `PowerBI_<Name>/` | PBIP files (Desktop save path — do not move) |
+| `projects/<kebab-case>/` | Project folder — metadata (CLAUDE.md, state.md, decisions.md) and PBIP files (Desktop save path) co-located |
+
+## Git
+
+- Branching: short-lived branches (`feat/<slug>-<topic>`, `docs/…`, `chore/…`) → PR → `main`. No dev/test chain (no Fabric workspace sync). Never push directly to `main`.
 
 ## Workflow
 
@@ -44,12 +49,13 @@ Full framework: `Analyst-Mindset-Framework.docx` in the repo root.
 
 ## MCP servers (Claude Code)
 
-- `powerbi-modeling-mcp` — semantic model read/write (tables, measures, DAX, relationships)
-- `filesystem` — read/write this repo
+- `plugin:powerbi-authoring:powerbi-modeling-mcp` (local) — connects to the open Power BI Desktop instance; the write path for semantic model changes.
+- The remote `plugin:fabric-skills` powerbi server is read-only and only for Fabric workspace models — not used in this repo.
+- After MCP writes, save in Power BI Desktop (Ctrl+S) before reviewing git diff (the drift hook reminds you).
 
 ## Known gotchas
 
-- PBIP files live at their Desktop save path (`PowerBI_<Name>/`); project metadata lives under `projects/<kebab-case>/`. Claude navigates between both.
+- PBIP files and project metadata are co-located under `projects/<slug>/` — there is no separate `PowerBI_<Name>/` root.
 - Do not commit `localSettings.json` or `unappliedChanges.json` — they are in `.gitignore`.
 - `.pbix` files are binary and cannot be diffed. Convert to PBIP before any model/report work.
 
@@ -57,11 +63,11 @@ Full framework: `Analyst-Mindset-Framework.docx` in the repo root.
 
 | Slug | Folder | Format | Status |
 |---|---|---|---|
-| `finance-analysis` | `PowerBI_Finance_Analysis/` | PBIP ✓ | Registered |
-| `competitor-sales` | `PowerBI_Competitor_Sales_Analysis/` | PBIP ✓ | Registered |
-| `ecommerce-analysis` | `PowerBI_Ecommerce_Analysis/` | PBIP ✓ | Registered |
-| `healthcare-analysis` | `PowerBI_Healthcare_Analysis/` | PBIP ✓ | Registered |
-| `supply-chain` | `PowerBI_Supply_Chain_Analysis/` | PBIP ✓ | Registered |
-| `excel-customer-churn` | `Excel_Customer_Churn_Analysis/` | .xlsx | Registered |
-| `sql-nashville-housing` | `SQL_Nashville_Housing/` | .sql | Registered |
-| `sql-segmentation-cohorts` | `SQL_Segmentation_Cohorts_Retention/` | .sql | Registered |
+| `finance-analysis` | `projects/finance-analysis/` | PBIP ✓ | Registered |
+| `competitor-sales` | `projects/competitor-sales/` | PBIP ✓ | Registered |
+| `ecommerce-analysis` | `projects/ecommerce-analysis/` | PBIP ✓ | Registered |
+| `healthcare-analysis` | `projects/healthcare-analysis/` | PBIP ✓ | Registered |
+| `supply-chain` | `projects/supply-chain/` | PBIP ✓ | Registered |
+| `excel-customer-churn` | `projects/excel-customer-churn/` | .xlsx | Registered |
+| `sql-nashville-housing` | `projects/sql-nashville-housing/` | .sql | Registered |
+| `sql-segmentation-cohorts` | `projects/sql-segmentation-cohorts/` | .sql | Registered |
