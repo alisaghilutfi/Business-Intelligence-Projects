@@ -1,38 +1,40 @@
 {
-    "permissions":  {
-                        "allow":  [
-                                      "Bash(git *)",
-                                      "Bash(powerbi-report-author *)"
-                                  ]
-                    },
-    "enabledPlugins":  {
-                           "finance@synced":  false,
-                           "marketing@synced":  false,
-                           "sales@synced":  false
-                       },
-    "hooks":  {
-                  "SessionStart":  [
-                                       {
-                                           "matcher":  "startup",
-                                           "hooks":  [
-                                                         {
-                                                             "type":  "command",
-                                                             "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/alisa/DS-ML-DL/Business-Intelligence-Projects/.claude/hooks/session-start.ps1",
-                                                             "timeout":  90
-                                                         }
-                                                     ]
-                                       }
-                                   ],
-                  "PostToolUse":  [
-                                      {
-                                          "matcher":  "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__.*",
-                                          "hooks":  [
-                                                        {
-                                                            "type":  "command",
-                                                            "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/alisa/DS-ML-DL/Business-Intelligence-Projects/.claude/hooks/post-mcp-write.ps1"
-                                                        }
-                                                    ]
-                                      }
-                                  ]
-              }
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(powerbi-report-author *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/alisa/DS-ML-DL/Business-Intelligence-Projects/.claude/hooks/session-start.ps1",
+            "timeout": 90
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__plugin_powerbi-authoring_powerbi-modeling-mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/alisa/DS-ML-DL/Business-Intelligence-Projects/.claude/hooks/post-mcp-write.ps1"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "finance@synced": false,
+    "marketing@synced": false,
+    "sales@synced": false,
+    "pbip@power-bi-agentic-development": true,
+    "pbi-desktop@power-bi-agentic-development": true
+  }
 }

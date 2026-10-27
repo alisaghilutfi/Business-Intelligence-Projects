@@ -59,6 +59,10 @@ Full framework: `Analyst-Mindset-Framework.docx` in the repo root.
 - Do not commit `localSettings.json` or `unappliedChanges.json` — they are in `.gitignore`.
 - `.pbix` files are binary and cannot be diffed. Convert to PBIP before any model/report work.
 
+## Repo structure
+
+- HARNESS.md — workflow patterns, PBIP gotchas, session learnings. Read at session start.
+
 ## Projects
 
 | Slug | Folder | Format | Status |

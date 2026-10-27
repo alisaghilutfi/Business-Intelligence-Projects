@@ -54,3 +54,12 @@ for f in report_dir.rglob("*.json"):
 ```
 
 **Rule going forward:** Any PBIR fix script must replace BOTH `"Entity"` AND `"queryRef"` prefixes in a single pass. Search for old table name strings without anchoring to `"Entity":` to catch all occurrences.
+
+---
+
+## Known Gotchas
+
+| Trigger | Consequence — what to do instead |
+|---|---|
+| `diagramLayout.json` edited manually | Desktop regenerates and overwrites it on next save — never hand-edit |
+| `DateTableTemplate_*` or `LocalDateTable_*` TMDL edited | Desktop-managed auto date tables; edits are silently overwritten |

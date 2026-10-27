@@ -85,12 +85,12 @@ PowerBI_<Name>/                   ← PBIP files (Desktop save path)
   <Name>.SemanticModel/
 
 Analyst-Mindset-Framework.docx    ← project kickoff framework (Jon Christiansen, 27 episodes)
-learnings.md                      ← hard-won PBIR/TMDL/MCP gotchas
+HARNESS.md                        ← hard-won PBIR/TMDL/MCP gotchas
 ```
 
 ## Key Learnings
 
-Hard-won lessons from this repo are logged in [`learnings.md`](learnings.md). Highlights:
+Hard-won lessons from this repo are logged in [`HARNESS.md`](HARNESS.md). Highlights:
 
 - PBIR JSON table renames require updates to both `"Entity"` values **and** `"queryRef"` dot-prefix strings
 - filesystem MCP writes UTF-8 BOM on Windows — always strip with Python after any `.Report/` JSON edit
