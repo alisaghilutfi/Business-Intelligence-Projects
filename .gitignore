@@ -8,3 +8,12 @@
 .dbeaver/
 .project
 .settings/
+
+# Dependencies and secrets
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Power BI local model diagram layout
+**/diagramLayout.json
