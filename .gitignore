@@ -8,3 +8,9 @@
 .dbeaver/
 .project
 .settings/
+
+# Dependencies and secrets
+node_modules/
+.env
+.env.*
+!.env.example
