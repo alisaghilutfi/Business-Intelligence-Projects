@@ -1,4 +1,4 @@
-# Business-Intelligence-Projects
+# Business-Intelligence-Projects — repo rules
 
 Global guardrails: ~/.claude/CLAUDE.md (source: private repo dev-environment).
 
