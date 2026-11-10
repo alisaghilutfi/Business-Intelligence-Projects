@@ -207,4 +207,20 @@ for f in report_dir.rglob("*.json"):
 
 ---
 
-*Last updated: 2026-10-28*
+## Implementation Log
+
+### Wave 3 — PBIP Git Hooks (complete 2026-11-10)
+
+Pre-commit hook deployed at `.githooks/pre-commit` via PR #9 (`d33d9a1`).
+
+Guards active:
+- Blocks `database.tmdl` / `model.tmdl` (Desktop-managed, never commit)
+- Blocks `localSettings.json` / `unappliedChanges.json` (machine-local state)
+- Warns (non-blocking) on UTF-8 BOM in `.Report/*.json` files
+- Blocks Azure SP client secrets, SAS tokens, bearer tokens, plaintext passwords
+
+Hook uses `$SECRET_PAT` variable pattern (single-line grep) — avoids broken `\` continuation in POSIX sh.
+
+---
+
+*Last updated: 2026-11-10*
