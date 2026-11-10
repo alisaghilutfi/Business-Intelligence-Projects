@@ -39,7 +39,9 @@ scaffold created by `/new-project`.
 Key discipline: answer "What decision does this analysis support?" in one sentence
 before touching data, writing DAX, or building any visual.
 
-Full framework: `Analyst-Mindset-Framework.docx` in the repo root.
+Full framework: the global `analyst-mindset` skill (source: dev-environment
+`claude/skills/analyst-mindset/`). `Analyst-Mindset-Framework.docx` in the repo root is
+the original reference document.
 
 ### Git
 
