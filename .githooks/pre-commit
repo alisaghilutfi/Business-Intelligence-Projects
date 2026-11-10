@@ -1,11 +1,56 @@
 #!/bin/sh
-# Block commits that add placeholder Fabric IDs (Fabric artifacts only; docs and tooling excluded).
-hits=$(git diff --cached -U0 --diff-filter=ACM -- . ':(exclude).githooks/*' ':(exclude).claude/*' ':(exclude)*.md' \
-  | grep -E '^\+.*("logicalId"[[:space:]]*:[[:space:]]*"00000000-0000-0000-0000-000000000000"|ONT_WorkspaceId[[:space:]]*=[[:space:]]*00000000-0000-0000-0000-000000000000|_PLACEHOLDER)')
-if [ -n "$hits" ]; then
-  echo "Blocked: placeholder IDs in staged changes:"
-  echo "$hits"
-  echo "Replace with real workspace/item IDs (override: git commit --no-verify)."
+# PBIP profile pre-commit — blocks Power BI Desktop managed files and secrets.
+
+# Block database.tmdl and model.tmdl — always Desktop-managed, never hand-edit.
+tmdl_hits=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E '(^|/)database\.tmdl$|(^|/)model\.tmdl$')
+if [ -n "$tmdl_hits" ]; then
+  echo "Blocked: database.tmdl / model.tmdl must not be committed."
+  echo "$tmdl_hits"
+  echo "These files are Desktop-managed. Revert with: git restore --staged <file>"
   exit 1
 fi
+
+# Block Power BI local-state files.
+local_hits=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E '(^|/)localSettings\.json$|(^|/)unappliedChanges\.json$')
+if [ -n "$local_hits" ]; then
+  echo "Blocked: localSettings.json / unappliedChanges.json are machine-local state:"
+  echo "$local_hits"
+  echo "Add them to .gitignore if not already present."
+  exit 1
+fi
+
+# Warn on BOM in staged Report JSON files (does not block).
+bom_hits=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E '\.Report/.*\.json$' \
+  | while read f; do
+      if git show ":$f" 2>/dev/null | head -c 3 | od -An -tx1 | grep -q 'ef bb bf'; then
+        echo "  $f"
+      fi
+    done)
+if [ -n "$bom_hits" ]; then
+  bom_count=$(echo "$bom_hits" | wc -l | tr -d ' ')
+  echo "Warning: $bom_count staged Report JSON file(s) have a UTF-8 BOM — may cause PBIP parse errors:"
+  echo "$bom_hits"
+  echo "(Commit not blocked. Fix: sed -i '1s/^\xEF\xBB\xBF//' <file>)"
+fi
+
+# Secret scanning — block Azure SP secrets, connection strings, bearer tokens.
+secrets=$(git diff --cached -U0 --diff-filter=ACM \
+  | grep -E '^\+' \
+  | grep -ivE '^\+\+\+' \
+  | grep -E \
+    '"client[Ss]ecret"[[:space:]]*:[[:space:]]*"[^"]{8,}"|'\
+    'AccountKey=[A-Za-z0-9+/]{20,}={0,2}|'\
+    'SharedAccessSignature=[^"&[:space:]]{20,}|'\
+    '[Bb]earer[[:space:]]+ey[A-Za-z0-9._-]{20,}|'\
+    'password[[:space:]]*=[[:space:]]*[A-Za-z0-9!@#$%^&*]{8,}')
+if [ -n "$secrets" ]; then
+  echo "Blocked: possible secrets in staged changes:"
+  echo "$secrets"
+  echo "Remove secrets before committing (override: git commit --no-verify)."
+  exit 1
+fi
+
 exit 0
