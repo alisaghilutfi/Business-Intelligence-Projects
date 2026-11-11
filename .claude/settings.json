@@ -3,6 +3,17 @@
     "allow": [
       "Bash(git *)",
       "Bash(powerbi-report-author *)"
+    ],
+    "deny": [
+      "Edit(**/tables/LocalDateTable_*.tmdl)",
+      "Edit(**/tables/DateTableTemplate_*.tmdl)",
+      "Edit(**/diagramLayout.json)",
+      "Edit(**/*.pbix)",
+      "Bash(git push origin main*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git push * -f*)"
     ]
   },
   "hooks": {
