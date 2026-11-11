@@ -105,6 +105,8 @@ This prevents silent drift in long sessions where the original goal gets lost ac
 
 `analyst-mindset` is a global skill (`~/.claude/skills/`, source dev-environment `claude/skills/`); AI-readiness guidance comes from the `fabric-skills` plugin.
 
+- **Deny rules** (`.claude/settings.json`, `permissions.deny`): blocks edits to Desktop-managed auto-date TMDL tables (`LocalDateTable_*`, `DateTableTemplate_*`), `diagramLayout.json`, and `.pbix` binaries; blocks `git push origin main`, `git push --force`, and all `git push -f` variants. These rules govern Claude Code's built-in Edit/Write/Bash tools only — they do not apply to Bash subprocesses or your own terminal. Source: `dev-environment/templates/pbip/settings.fragment.json`.
+
 ---
 
 ## Report Design Workflow
