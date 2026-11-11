@@ -27,8 +27,11 @@ BI portfolio monorepo. Power BI Desktop / PBIP reports across Finance, Ecommerce
 
 1. Before starting any project: read `projects/<name>/CLAUDE.md` and `state.md`
 2. Run `model-reviewer` agent before any semantic model changes
-3. After any session: update `projects/<name>/state.md` with current status and blockers
-4. Log design decisions in `projects/<name>/decisions.md` with date
+3. Run `pbir-reviewer` agent before committing PBIR JSON edits (BOM, Entity+queryRef, theme)
+4. Run `project-state-reviewer` to check state.md staleness across all active projects
+5. Run `session-recap-writer` at end of session to update state.md and propose a commit
+6. After any session: update `projects/<name>/state.md` with current status and blockers
+7. Log design decisions in `projects/<name>/decisions.md` with date
 
 ### Project kickoff
 
@@ -92,6 +95,9 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 ## Common commands
 
 `/new-project <slug>` -- scaffold projects/<slug>/ (CLAUDE.md, state.md, decisions.md, docs/validations/) from _template and add the project to the Projects table (project command).
+`/session-start <slug>` -- read-only session-start report: current status, blockers, and next step for a project (project command).
+`/end-session <slug>` -- trigger the session-recap-writer agent: updates state.md and decisions.md, then commits on a feature branch and pushes (project command).
+`/validate <slug>` -- pre-commit checklist: Desktop-managed TMDL changes, BOM in staged PBIR JSON, powerbi-report-author validate (project command).
 `/status` -- one-line summary per project from projects/<slug>/state.md: slug | status | blockers | next action (project command).
 
 ---
@@ -99,3 +105,4 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 ## Directories and files to avoid
 
 - Do not commit `localSettings.json` or `unappliedChanges.json` — they are in `.gitignore`.
+- `database.tmdl` and `model.tmdl` are required PBIP files: commit them when a project is added. Review modified ones before committing (the pre-commit hook warns, it does not block). Never hand-edit them.

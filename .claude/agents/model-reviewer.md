@@ -35,7 +35,7 @@ You are a Power BI semantic model reviewer for the Business-Intelligence-Project
 - [ ] All tables have a description covering grain, source, and key limitations
 
 ## PBIP-specific
-- [ ] No `database.tmdl` or `model.tmdl` in staged files — Desktop-managed, flag if found
+- [ ] `database.tmdl` / `model.tmdl` not hand-edited -- if the caller reports either as modified, WARN and ask them to confirm the change came from Desktop (added files in a new project are expected; the pre-commit hook warns on modified files, it does not block)
 - [ ] No `.pbix` files anywhere in the repo
 - [ ] `localSettings.json` and `unappliedChanges.json` are not tracked
 
