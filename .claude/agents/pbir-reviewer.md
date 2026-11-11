@@ -41,7 +41,7 @@ Use that document as the authoritative standard. Do not rely on memory.
 | 4 | Theme filename matches hashed name after Fabric sync | If a `customTheme` reference under `RegisteredResources` contains `Lotusoftware_Base_Theme.json` without a hash suffix, report WARNING — Fabric renames theme files with a hash on first sync | WARNING |
 | 5 | Visual position field names are correct | Grep for `"Horizontal"` or `"Vertical"` as position field names inside visual JSON — PBIR uses `"x"`, `"y"`, `"z"`, `"height"`, `"width"`. Report as ERROR if found | ERROR |
 | 6 | Config JSON is not double-escaped | Grep for `"config": "{\\\"` — config value that is a stringified JSON object. Report as WARNING — config should be a plain JSON object | WARNING |
-| 7 | `database.tmdl` and `model.tmdl` not staged | Grep for `database.tmdl` or `model.tmdl` in any staged diff output. If the caller has provided a `git diff --cached` output, check it; otherwise report NOT CHECKED — these are Desktop-managed files that must be reverted before every commit (`git checkout -- "*.Report/definition/database.tmdl"`) | NOT CHECKED without staged diff |
+| 7 | Modified `database.tmdl` / `model.tmdl` reviewed | Only if the caller provides `git diff --cached --name-status` output: a line with status `M` for `*.SemanticModel/definition/database.tmdl` or `model.tmdl` is POSSIBLE -- the caller confirms the change came from Desktop and is intended (the pre-commit hook warns, it does not block). Status `A` is expected for a new project. Without that output report NOT CHECKED | POSSIBLE / NOT CHECKED without staged diff |
 
 ## Output format
 
