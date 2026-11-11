@@ -1,5 +1,5 @@
 ---
-description: Pre-commit validation checklist for a PBIP project. Checks for Desktop-managed TMDL files staged, BOM in staged PBIR JSON, and runs powerbi-report-author validate on the project Report folder.
+description: Pre-commit validation checklist for a PBIP project. Warns on modified Desktop-managed TMDL files, checks for BOM in staged PBIR JSON, and runs powerbi-report-author validate on the project Report folder.
 argument-hint: <project-slug e.g. competitor-sales>
 ---
 
@@ -15,19 +15,22 @@ Run this validation checklist for project `$ARGUMENTS` before committing. Work t
 
 Run:
 ```
-git diff --cached --name-only
+git diff --cached --name-status
 ```
 
-If the output includes any file matching `*.Report/definition/database.tmdl` or `*.Report/definition/model.tmdl`:
+Look for files matching `*.SemanticModel/definition/database.tmdl` or `*.SemanticModel/definition/model.tmdl`.
 
-> ⚠️ TMDL WARNING: Desktop-managed file(s) staged:
-> <list files>
-> These are owned by Power BI Desktop. Revert with:
->   git checkout -- "projects/$ARGUMENTS/*.Report/definition/database.tmdl"
->   git checkout -- "projects/$ARGUMENTS/*.Report/definition/model.tmdl"
-> Do not commit these unless the change was intentional (e.g. a manual measure edit via the Bridge).
+- **Status A (added):** OK — print:
+  > ✅ database.tmdl / model.tmdl added (new project) -- expected.
 
-If none found: `✅ No Desktop-managed TMDL files staged.`
+- **Status M (modified):** warning — print:
+  > ⚠️ TMDL WARNING: Desktop-managed file(s) modified:
+  > <list files>
+  > Review with: git diff --cached -- <file>
+  > If unintended, unstage with: git restore --staged <file>
+  > Expected when a table was added (model.tmdl) or the compatibility level changed (database.tmdl). The pre-commit hook warns on these and does not block.
+
+- **Neither staged:** `✅ No Desktop-managed TMDL changes staged.`
 
 ---
 

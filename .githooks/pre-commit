@@ -1,14 +1,14 @@
 #!/bin/sh
-# PBIP profile pre-commit — blocks Power BI Desktop managed files and secrets.
+# PBIP profile pre-commit -- warns on modified Desktop-managed TMDL, blocks local-state files and secrets.
 
-# Block database.tmdl and model.tmdl — always Desktop-managed, never hand-edit.
-tmdl_hits=$(git diff --cached --name-only --diff-filter=ACM \
-  | grep -E '(^|/)database\.tmdl$|(^|/)model\.tmdl$')
-if [ -n "$tmdl_hits" ]; then
-  echo "Blocked: database.tmdl / model.tmdl must not be committed."
-  echo "$tmdl_hits"
-  echo "These files are Desktop-managed. Revert with: git restore --staged <file>"
-  exit 1
+# database.tmdl / model.tmdl are required PBIP files owned by Power BI Desktop.
+# Added files pass. Modified files warn only (does not block).
+TMDL_PAT='(^|/)(database|model)\.tmdl$'
+tmdl_mod=$(git diff --cached --name-only --diff-filter=M | grep -E "$TMDL_PAT")
+if [ -n "$tmdl_mod" ]; then
+  echo "Warning: Desktop-managed TMDL file(s) modified in this commit:" >&2
+  echo "$tmdl_mod" | sed 's/^/  /' >&2
+  echo "(Commit not blocked. Review: git diff --cached -- <file>  Unstage: git restore --staged <file>)" >&2
 fi
 
 # Block Power BI local-state files.
@@ -36,7 +36,7 @@ if [ -n "$bom_hits" ]; then
   echo "(Commit not blocked. Fix: sed -i '1s/^\xEF\xBB\xBF//' <file>)"
 fi
 
-# Secret scanning — block Azure SP secrets, connection strings, bearer tokens.
+# Secret scanning -- block Azure SP secrets, connection strings, bearer tokens.
 SECRET_PAT='"client[Ss]ecret"[[:space:]]*:[[:space:]]*"[^"]{8,}"|AccountKey=[A-Za-z0-9+/]{20,}={0,2}|SharedAccessSignature=[^"&[:space:]]{20,}|[Bb]earer[[:space:]]+ey[A-Za-z0-9._-]{20,}|password[[:space:]]*=[[:space:]]*[A-Za-z0-9!@#$%^&*]{8,}'
 secrets=$(git diff --cached -U0 --diff-filter=ACM \
   | grep -E '^\+' \
