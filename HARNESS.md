@@ -48,6 +48,8 @@ Never executes                      Never makes architectural decisions
 5. Confirm the next step before executing anything
 ```
 
+`/session-start <slug>` runs this read-only checklist and reports status, blockers, and next step.
+
 ### End-of-session (FabricEngineer)
 
 ```
@@ -58,6 +60,8 @@ Never executes                      Never makes architectural decisions
 2. git add + commit to feature branch
 3. Open PR to main
 ```
+
+`/end-session <slug>` triggers session-recap-writer to update state.md and propose the commit. Run `/validate <slug>` before committing.
 
 ---
 
@@ -99,6 +103,8 @@ This prevents silent drift in long sessions where the original goal gets lost ac
 | `powerbi-modeling-mcp` | Both | Local .exe v1.0.0; read-only in ProjectPlanner; read-write via plugin in FabricEngineer |
 | Desktop Bridge CLI | FabricEngineer | `@microsoft/powerbi-desktop-bridge-cli` — must open `.pbip` not `.pbix` |
 
+`analyst-mindset` is a global skill (`~/.claude/skills/`, source dev-environment `claude/skills/`); AI-readiness guidance comes from the `fabric-skills` plugin.
+
 ---
 
 ## Report Design Workflow
@@ -133,11 +139,13 @@ validate → reload → screenshot → adjust → next page
 ### Phase 5: Cleanup before commit
 
 ```bash
-git checkout -- "*.Report/definition/database.tmdl"
-git checkout -- "*.Report/definition/model.tmdl"
+git diff -- "projects/<slug>/*.SemanticModel/definition/database.tmdl" "projects/<slug>/*.SemanticModel/definition/model.tmdl"
+# Unintended Desktop change: discard it
+git restore -- "projects/<slug>/*.SemanticModel/definition/model.tmdl"
 ```
 
-Desktop auto-modifies `database.tmdl` and `model.tmdl` on every save. Revert these before committing unless the change was intentional.
+Desktop can rewrite database.tmdl and model.tmdl on save. Both are required PBIP files. Review the diff: keep intended changes (a table was added, the compatibility level changed) and restore the rest. The pre-commit hook warns on modified copies and does not block; /validate reports the same.
+Before committing, run the git diff line against one real project to confirm the pathspec resolves (no output is fine, an error is not).
 
 ---
 
@@ -214,13 +222,15 @@ for f in report_dir.rglob("*.json"):
 Pre-commit hook deployed at `.githooks/pre-commit` via PR #9 (`d33d9a1`).
 
 Guards active:
-- Blocks `database.tmdl` / `model.tmdl` (Desktop-managed, never commit)
+- Warns (non-blocking) on modified `database.tmdl` / `model.tmdl`; added files pass
 - Blocks `localSettings.json` / `unappliedChanges.json` (machine-local state)
 - Warns (non-blocking) on UTF-8 BOM in `.Report/*.json` files
 - Blocks Azure SP client secrets, SAS tokens, bearer tokens, plaintext passwords
+
+Changed 2026-11-11 (template 164bd2d, PR #12): the original hard block stopped a new project's first commit.
 
 Hook uses `$SECRET_PAT` variable pattern (single-line grep) — avoids broken `\` continuation in POSIX sh.
 
 ---
 
-*Last updated: 2026-11-10*
+*Last updated: 2026-11-11*
