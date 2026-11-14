@@ -1,0 +1,34 @@
+/// Shipping method. 4 rows: Standard Class, Second Class, First Class, Same Day.
+table dim_ShipMode
+	lineageTag: 78e271c9-6997-4394-a5f2-2bfcd584809e
+
+	column ShipModeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 91623fcf-865e-42ad-bf6c-af355f0d32b2
+		summarizeBy: none
+		sourceColumn: ShipModeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipMode
+		dataType: string
+		lineageTag: bb9b202c-842c-4a94-927f-54baad7b5e92
+		summarizeBy: none
+		sourceColumn: ShipMode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_ShipMode = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\alisa\DS-ML-DL\Business-Intelligence-Projects\projects\retail-profitability\_output\dim_ShipMode.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ShipModeKey", Int64.Type}, {"ShipMode", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

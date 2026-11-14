@@ -1,0 +1,58 @@
+/// Product catalogue. One row per product SKU. 1,861 products. Hierarchy: Category -> Sub-Category -> Product Name.
+table dim_Product
+	lineageTag: 2a88c1d5-f618-4bef-9991-36cdceee22be
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a3d7f995-db58-4bed-9e7e-58298f07534e
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: 84d561c6-0855-48e7-87a9-0e52228e7dd1
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 7a5c25ba-65b1-4de9-8d23-77b9c5421856
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d03b8e73-665c-483f-8487-fe72215fd8ce
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCategory
+		dataType: string
+		lineageTag: 6abd14c1-0b31-4f0a-b180-1e18e90f5737
+		summarizeBy: none
+		sourceColumn: SubCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Product = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\alisa\DS-ML-DL\Business-Intelligence-Projects\projects\retail-profitability\_output\dim_Product.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"ProductID", type text}, {"ProductName", type text}, {"Category", type text}, {"SubCategory", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

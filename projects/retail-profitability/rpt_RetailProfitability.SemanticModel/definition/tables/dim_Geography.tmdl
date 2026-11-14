@@ -1,0 +1,59 @@
+/// Delivery geography. One row per unique postal code. 627 postal codes across 47 US states and 4 regions.
+table dim_Geography
+	lineageTag: 5ee674cc-9fbf-4e2d-9516-0313be1cb245
+
+	column GeoKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ba0a5c63-2d25-40d9-8fdc-b7229f29d34a
+		summarizeBy: none
+		sourceColumn: GeoKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 16e71db2-09e4-4c39-8ad4-366709290eb5
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 8a63f612-a37c-43f6-a690-58cddb51e93f
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: ff577d70-96a8-48f9-ac77-1e0be0cc6902
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 39e9f405-55bf-4cb3-ad2b-a7ea712bae9e
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Geography = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\alisa\DS-ML-DL\Business-Intelligence-Projects\projects\retail-profitability\_output\dim_Geography.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"GeoKey", Int64.Type}, {"PostalCode", Int64.Type}, {"City", type text}, {"State", type text}, {"Region", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
