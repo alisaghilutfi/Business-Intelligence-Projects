@@ -1,0 +1,50 @@
+/// Customer master. One row per unique customer. 793 customers. Attributes: name and segment (Consumer / Corporate / Home Office).
+table dim_Customer
+	lineageTag: 462be0e1-dbfd-427e-8069-b9d0915d9697
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8b0cd721-e67a-444c-a996-0a56f85cfa3d
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: string
+		lineageTag: 7a5beee1-2257-486d-b7e8-8952cdf244dd
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: d00c2774-3491-4cfc-acce-928f33cfbdc2
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 4a5c328a-d512-47ef-9313-77c3c0a85099
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\alisa\DS-ML-DL\Business-Intelligence-Projects\projects\retail-profitability\_output\dim_Customer.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", Int64.Type}, {"CustomerID", type text}, {"CustomerName", type text}, {"Segment", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

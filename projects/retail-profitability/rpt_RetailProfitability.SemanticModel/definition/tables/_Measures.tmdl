@@ -1,0 +1,99 @@
+/// Calculated table used to organise all measures. Contains no analytical data.
+table _Measures
+	isHidden
+	lineageTag: d9df1bbc-5384-45f2-b837-d368ddc3d5c8
+
+	/// Total revenue across all order lines. Excludes returns (not in source).
+	measure 'Total Sales' = SUM(fct_OrderLines[Sales])
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: e67be982-2b64-4107-bd96-b7898ad2b5f4
+
+	/// Average sales value per distinct order (not per line item).
+	measure 'Avg Order Value' =
+			VAR _orders = [Order Count]
+			RETURN DIVIDE([Total Sales], _orders)
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: 74d11952-12de-45b0-89df-02e0673122ad
+
+	/// Year-over-year sales growth. Requires a Year or Date on the visual.
+	measure 'Sales YoY %' =
+			VAR _CY = [Total Sales]
+			VAR _PY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(dim_Date[Date]))
+			RETURN DIVIDE(_CY - _PY, _PY)
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: b8cdb507-d29b-4b3e-bd61-7ac5ad078c48
+
+	/// Net profit across all order lines. Can be negative on heavily discounted lines.
+	measure 'Total Profit' = SUM(fct_OrderLines[Profit])
+		formatString: #,0.00
+		displayFolder: Profit
+		lineageTag: f2144280-0be3-40a7-8e8f-0a3d2e043768
+
+	/// Profit as a percentage of sales. Primary profitability KPI.
+	measure 'Profit Margin %' = DIVIDE([Total Profit], [Total Sales])
+		formatString: 0.0%
+		displayFolder: Profit
+		lineageTag: 239467f3-1c47-4bbf-be0d-7d30964fd926
+
+	/// Year-over-year profit growth. Requires a Year or Date on the visual.
+	measure 'Profit YoY %' =
+			VAR _CY = [Total Profit]
+			VAR _PY = CALCULATE([Total Profit], SAMEPERIODLASTYEAR(dim_Date[Date]))
+			RETURN DIVIDE(_CY - _PY, _PY)
+		formatString: 0.0%
+		displayFolder: Profit
+		lineageTag: dae7fb0f-7a09-4c5a-960d-cc396f92159a
+
+	/// Share of order lines with positive profit.
+	measure '% Lines Profitable' =
+			VAR _profitable = CALCULATE(COUNTROWS(fct_OrderLines), fct_OrderLines[Profit] > 0)
+			RETURN DIVIDE(_profitable, COUNTROWS(fct_OrderLines))
+		formatString: 0.0%
+		displayFolder: Profit
+		lineageTag: 3f557ad5-753c-4f52-9522-e24858f4f759
+
+	/// Total units sold across all order lines.
+	measure 'Total Quantity' = SUM(fct_OrderLines[Quantity])
+		formatString: #,0
+		displayFolder: Volume
+		lineageTag: becdcc57-8a40-4a15-a03b-6a584e527a31
+
+	/// Count of distinct orders (Order ID, not line items).
+	measure 'Order Count' = DISTINCTCOUNT(fct_OrderLines[OrderID])
+		formatString: #,0
+		displayFolder: Volume
+		lineageTag: 315542ba-6466-4b92-87b1-c46df5b4eb71
+
+	/// Count of distinct customers who placed at least one order.
+	measure 'Customer Count' = DISTINCTCOUNT(dim_Customer[CustomerID])
+		formatString: #,0
+		displayFolder: Volume
+		lineageTag: f0e24880-65fc-4be6-8d53-7af445cabd9b
+
+	/// Average discount rate across all lines. 0 = no discount, 0.8 = 80% off.
+	measure 'Avg Discount' = AVERAGE(fct_OrderLines[Discount])
+		formatString: 0.0%
+		displayFolder: Volume
+		lineageTag: f6991f83-d6de-4d41-83b3-11cc66f1c48b
+
+	/// Average discount rate excluding zero-discount lines.
+	measure 'Avg Discount (Discounted Only)' =
+			CALCULATE(
+			    AVERAGE(fct_OrderLines[Discount]),
+			    fct_OrderLines[Discount] > 0
+			)
+		formatString: 0.0%
+		displayFolder: Volume
+		lineageTag: b2f5158f-f2c5-48f4-a959-6e9b157f60e8
+
+	column placeholder
+		isNameInferred
+		sourceColumn: [placeholder]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("placeholder", BLANK())
+

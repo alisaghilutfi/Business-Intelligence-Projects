@@ -1,0 +1,133 @@
+/// Retail order line items from the US Superstore dataset (2020-2021). One row per product on a customer order. Source: 48 US state CSV files unioned. ~10,018 rows. Measures: Sales, Quantity, Discount, Profit.
+table fct_OrderLines
+	lineageTag: 1b23d7c2-b299-4c0c-a88a-78a4d3e67ae2
+
+	column LineKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bbb879d3-34c0-4f54-bfb3-95aa1c2bd3b6
+		summarizeBy: count
+		sourceColumn: LineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: string
+		lineageTag: ba9e8210-0c0d-49a9-961f-1aa59bef931b
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5002bbd7-963e-4ec5-83c7-645f0ed82994
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d6b72b36-c003-4667-af18-003e6031f9cb
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeoKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d2a69b4d-8770-4352-87c8-f5b9608a0bb2
+		summarizeBy: none
+		sourceColumn: GeoKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fb6974fd-6661-4380-b3b9-0fd788ecc4d6
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6900422e-cf63-4e3f-868f-5d15c70ea75c
+		summarizeBy: count
+		sourceColumn: ShipDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipModeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 309e1ea1-610f-4ff6-89a6-54304963e0f4
+		summarizeBy: none
+		sourceColumn: ShipModeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		lineageTag: d1e5dbfa-36ce-483b-9ba4-6a8dd6fcfd22
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 8508fef1-8bf5-4f85-9e49-d72464e88a9a
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: e8fd3335-4417-4b1b-ae6e-37657bebbddf
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Profit
+		dataType: double
+		lineageTag: 8ad643a2-ef78-43c0-89c3-7f9dee68569b
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_OrderLines = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\alisa\DS-ML-DL\Business-Intelligence-Projects\projects\retail-profitability\_output\fct_OrderLines.csv"),[Delimiter=",", Columns=12, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"LineKey", Int64.Type}, {"OrderID", type text}, {"CustomerKey", Int64.Type}, {"ProductKey", Int64.Type}, {"GeoKey", Int64.Type}, {"OrderDateKey", Int64.Type}, {"ShipDateKey", Int64.Type}, {"ShipModeKey", Int64.Type}, {"Sales", type number}, {"Quantity", Int64.Type}, {"Discount", type number}, {"Profit", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

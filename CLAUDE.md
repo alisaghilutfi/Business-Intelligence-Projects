@@ -22,6 +22,7 @@ BI portfolio monorepo. Power BI Desktop / PBIP reports across Finance, Ecommerce
 | `excel-customer-churn` | `projects/excel-customer-churn/` | .xlsx | Registered |
 | `sql-nashville-housing` | `projects/sql-nashville-housing/` | .sql | Registered |
 | `sql-segmentation-cohorts` | `projects/sql-segmentation-cohorts/` | .sql | Registered |
+| `retail-profitability` | `projects/retail-profitability/` | PBIP ✓ | In progress |
 
 ### Workflow
 

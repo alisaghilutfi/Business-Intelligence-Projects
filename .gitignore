@@ -17,3 +17,7 @@ node_modules/
 
 # Power BI local model diagram layout
 **/diagramLayout.json
+
+# retail-profitability: raw source and processed output data
+projects/retail-profitability/_data/
+projects/retail-profitability/_output/

@@ -1,0 +1,30 @@
+relationship d7a52ef1-00b3-4b2e-9aea-1290d2e7cf8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Date.Date
+	toColumn: LocalDateTable_765f486e-ac73-4b06-a871-e8ed1d870277.Date
+
+relationship AutoDetected_5074af0b-249f-4036-986b-70afceb5b372
+	fromColumn: fct_OrderLines.CustomerKey
+	toColumn: dim_Customer.CustomerKey
+
+relationship AutoDetected_19c3e037-9d24-468f-8b69-a190da611452
+	fromColumn: fct_OrderLines.GeoKey
+	toColumn: dim_Geography.GeoKey
+
+relationship AutoDetected_675fbbb0-904e-437a-8441-e3dc5cf8b239
+	fromColumn: fct_OrderLines.ProductKey
+	toColumn: dim_Product.ProductKey
+
+relationship AutoDetected_7a928b3d-4bf6-4fa3-83f7-be11e55856e2
+	fromColumn: fct_OrderLines.ShipModeKey
+	toColumn: dim_ShipMode.ShipModeKey
+
+relationship 77bae9d9-38f1-73ef-e1ff-71eb8685f355
+	fromColumn: fct_OrderLines.OrderDateKey
+	toColumn: dim_Date.DateKey
+
+relationship d764d5a4-2387-31d4-ddfe-1934e6bb9b45
+	isActive: false
+	fromColumn: fct_OrderLines.ShipDateKey
+	toColumn: dim_Date.DateKey
+
