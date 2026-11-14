@@ -100,7 +100,7 @@ This prevents silent drift in long sessions where the original goal gets lost ac
 |---|---|---|
 | `pbi-desktop@power-bi-agentic-development` | Project | Installed here; disabled in Fabric-Apps-Projects — enable here |
 | `pbip@power-bi-agentic-development` | Project | Installed at project scope |
-| `powerbi-modeling-mcp` | Both | Local .exe v1.0.0; read-only in ProjectPlanner; read-write via plugin in FabricEngineer |
+| `powerbi-modeling-mcp` | Both | npx auto-latest; read-write in both ProjectPlanner (Desktop) and FabricEngineer (plugin) |
 | Desktop Bridge CLI | FabricEngineer | `@microsoft/powerbi-desktop-bridge-cli` — must open `.pbip` not `.pbix` |
 
 `analyst-mindset` is a global skill (`~/.claude/skills/`, source dev-environment `claude/skills/`); AI-readiness guidance comes from the `fabric-skills` plugin.
