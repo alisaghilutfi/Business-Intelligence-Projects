@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "p3_rail_alert",
+  "position": {
+    "x": 1336,
+    "y": 24,
+    "z": 1000,
+    "height": 320,
+    "width": 560,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Unprofitable Sub-Cat Count"
+                }
+              },
+              "queryRef": "_Measures.Unprofitable Sub-Cat Count",
+              "nativeQueryRef": "Unprofitable Sub-Cat Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Unprofitable Sub-Cat Loss"
+                }
+              },
+              "queryRef": "_Measures.Unprofitable Sub-Cat Loss",
+              "nativeQueryRef": "Unprofitable Sub-Cat Loss"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

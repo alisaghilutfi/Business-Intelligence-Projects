@@ -1,9 +1,12 @@
 # retail-profitability — state
 
-- Status: In progress. Semantic model complete. PR #16 merged to main.
-- Phase: Report pages — building now on feature/report-pages.
-- Model state: Complete. 12 measures in Sales/Profit/Volume folders. All columns hidden.
-- Report state: No pages yet. Building 4 pages this session.
+- Status: In progress. Report pages built on feature/report-pages. PR open.
+- Phase: Report pages — complete. PR open.
+- Model state: Complete. 22 measures in Sales/Profit/Volume folders. All columns hidden.
+- Report state: 4 pages built (Overview, Sales Analysis, Profitability, Customers).
 
 ## Next step
-Build 4 report pages per design-brief.md.
+1. Reload report in Power BI Desktop and validate all 4 pages render correctly.
+2. Address any visual binding errors (e.g. card LY comparisons, sort by MonthNum).
+3. Run /validate retail-profitability.
+4. Merge PR to main.
