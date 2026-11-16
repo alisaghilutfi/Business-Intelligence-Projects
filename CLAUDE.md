@@ -95,7 +95,7 @@ Layout: powerbi.tips Layout Trifecta — left nav 200px, top header 56px, conten
 
 ## Common commands
 
-`/new-project <slug>` -- scaffold projects/<slug>/ (CLAUDE.md, state.md, decisions.md, docs/validations/) from _template and add the project to the Projects table (project command).
+`/new-project <slug>` -- scaffold projects/<slug>/ (CLAUDE.md, README.md, state.md, decisions.md, docs/validations/) from _template and add the project to the Projects table (project command).
 `/session-start <slug>` -- read-only session-start report: current status, blockers, and next step for a project (project command).
 `/end-session <slug>` -- trigger the session-recap-writer agent: updates state.md and decisions.md, then commits on a feature branch and pushes (project command).
 `/validate <slug>` -- pre-commit checklist: Desktop-managed TMDL changes, BOM in staged PBIR JSON, powerbi-report-author validate (project command).
