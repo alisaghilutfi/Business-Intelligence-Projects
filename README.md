@@ -40,14 +40,15 @@ flowchart TD
 
 | Project | Format | Domain | Tables |
 |---|---|---|---|
-| [Finance Analysis](PowerBI_Finance_Analysis/) | PBIP ✓ | Personal finance / banking | `fact_Transactions`, `dim_Customer`, `dim_Date` |
-| [Competitor Sales](PowerBI_Competitor_Sales_Analysis/) | PBIP ✓ | Retail sales / market share | `fact_Sales`, `dim_Product`, `dim_Geography`, `dim_Manufacturer`, `dim_Date` |
-| [Ecommerce Analysis](PowerBI_Ecommerce_Analysis/) | PBIP ✓ | E-commerce / customer LTV | `fact_Sales`, `fact_Invoice_Totals`, `fact_Market_Baskets`, `dim_Customer`, `dim_Product`, `dim_State_Mapping`, `dim_Date` |
-| [Supply Chain](PowerBI_Supply_Chain_Analysis/) | PBIP ✓ | Make vs. buy / cost avoidance | `fact_Quotes`, `fact_Mfg_Estimates`, `dim_Product`, `dim_Yield_Rate` |
-| [Healthcare Analysis](PowerBI_Healthcare_Analysis/) | PBIP ✓ | Hospital discharges / LOS | `fact_Hospital_Discharges`, `dim_Surgical_Program` |
-| [Customer Churn](Excel_Customer_Churn_Analysis/) | Excel | Churn prediction | — |
-| [Nashville Housing](SQL_Nashville_Housing/) | SQL | Data cleaning | — |
-| [Segmentation & Cohorts](SQL_Segmentation_Cohorts_Retention/) | SQL | Customer analytics | — |
+| [Finance Analysis](projects/finance-analysis/) | PBIP ✓ | Personal finance / banking | `fact_Transactions`, `dim_Customer`, `dim_Date` |
+| [Competitor Sales](projects/competitor-sales/) | PBIP ✓ | Retail sales / market share | `fact_Sales`, `dim_Product`, `dim_Geography`, `dim_Manufacturer`, `dim_Date` |
+| [Ecommerce Analysis](projects/ecommerce-analysis/) | PBIP ✓ | E-commerce / customer LTV | `fact_Sales`, `fact_Invoice_Totals`, `fact_Market_Baskets`, `dim_Customer`, `dim_Product`, `dim_State_Mapping`, `dim_Date` |
+| [Supply Chain](projects/supply-chain/) | PBIP ✓ | Make vs. buy / cost avoidance | `fact_Quotes`, `fact_Mfg_Estimates`, `dim_Product`, `dim_Yield_Rate` |
+| [Healthcare Analysis](projects/healthcare-analysis/) | PBIP ✓ | Hospital discharges / LOS | `fact_Hospital_Discharges`, `dim_Surgical_Program` |
+| [Retail Profitability](projects/retail-profitability/) | PBIP ✓ | Retail margin / discount analysis | `fct_OrderLines`, `dim_Customer`, `dim_Product`, `dim_Geography`, `dim_Date`, `dim_ShipMode` |
+| [Customer Churn](projects/excel-customer-churn/) | Excel | Churn prediction | — |
+| [Nashville Housing](projects/sql-nashville-housing/) | SQL | Data cleaning | — |
+| [Segmentation & Cohorts](projects/sql-segmentation-cohorts/) | SQL | Customer analytics | — |
 
 ## Semantic Model Standards
 
@@ -71,18 +72,18 @@ All Power BI semantic models follow these standards:
 
 _template/                        ← scaffold templates for new projects
   CLAUDE.md                       ← project context template (includes Analyst Mindset checklist)
+  README.md                       ← project README template
   state.md
   decisions.md
 
-projects/<slug>/                  ← per-project metadata
+projects/<slug>/                  ← per-project folder (metadata + PBIP files co-located)
   CLAUDE.md                       ← goal, metrics, grain, stakeholders
+  README.md                       ← project overview (human-readable, GitHub-friendly)
   state.md                        ← current status and blockers
   decisions.md                    ← dated design decision log
-
-PowerBI_<Name>/                   ← PBIP files (Desktop save path)
-  <Name>.pbip
-  <Name>.Report/
-  <Name>.SemanticModel/
+  <Name>.pbip                     ← PBIP project file
+  <Name>.Report/                  ← PBIR report definition
+  <Name>.SemanticModel/           ← TMDL semantic model definition
 
 Analyst-Mindset-Framework.docx    ← project kickoff framework (Jon Christiansen, 27 episodes)
 HARNESS.md                        ← hard-won PBIR/TMDL/MCP gotchas
