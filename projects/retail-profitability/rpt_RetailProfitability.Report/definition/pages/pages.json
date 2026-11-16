@@ -1,7 +1,10 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
   "pageOrder": [
-    "bedbc03e8ab4407d4e76"
+    "bedbc03e8ab4407d4e76",
+    "p2_sales_analysis",
+    "p3_profitability",
+    "p4_customers"
   ],
-  "activePageName": "bedbc03e8ab4407d4e76"
+  "activePageName": "p3_profitability"
 }

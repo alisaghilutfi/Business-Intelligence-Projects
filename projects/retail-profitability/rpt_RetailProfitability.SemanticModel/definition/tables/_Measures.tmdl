@@ -89,7 +89,107 @@ table _Measures
 		displayFolder: Volume
 		lineageTag: b2f5158f-f2c5-48f4-a959-6e9b157f60e8
 
+	/// Total Sales in the same period last year.
+	measure 'Sales LY' =
+			VAR result = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(dim_Date[Date]))
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: e0343e58-2b61-455a-88b8-a48819640ebf
+
+	/// Total Profit in the same period last year.
+	measure 'Profit LY' =
+			VAR result = CALCULATE([Total Profit], SAMEPERIODLASTYEAR(dim_Date[Date]))
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Profit
+		lineageTag: 60adcdc7-6f23-4955-a297-d7c014ba8723
+
+	/// Order count in the same period last year.
+	measure 'Orders LY' =
+			VAR result = CALCULATE([Order Count], SAMEPERIODLASTYEAR(dim_Date[Date]))
+			RETURN result
+		formatString: #,0
+		displayFolder: Volume
+		lineageTag: e12ab2c9-adb7-4859-9295-5f6466d94b8b
+
+	/// Absolute sales change vs same period last year.
+	measure 'Sales YoY$' =
+			VAR result = [Total Sales] - [Sales LY]
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: 90f569a0-0550-444b-b762-b29fd3cb645f
+
+	/// Percentage sales change vs same period last year.
+	measure 'Sales YoY%' =
+			VAR result = DIVIDE([Sales YoY$], [Sales LY], BLANK())
+			RETURN result
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: 86c78094-a99b-4dca-a040-c838ccca3c6b
+
+	/// Absolute profit change vs same period last year.
+	measure 'Profit YoY$' =
+			VAR result = [Total Profit] - [Profit LY]
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Profit
+		lineageTag: 88d65523-d54e-4f6f-8018-ad8c21acd988
+
+	/// Number of sub-categories with negative total profit.
+	measure 'Unprofitable Sub-Cat Count' =
+			VAR result = COUNTROWS(
+			    FILTER(
+			        VALUES(dim_Product[SubCategory]),
+			        [Total Profit] < 0
+			    )
+			)
+			RETURN result
+		formatString: #,0
+		displayFolder: Profit
+		lineageTag: 0f3276ee-8f64-407c-9dcb-93890366ebe0
+
+	/// Total profit loss from unprofitable sub-categories.
+	measure 'Unprofitable Sub-Cat Loss' =
+			VAR result = SUMX(
+			    FILTER(
+			        VALUES(dim_Product[SubCategory]),
+			        [Total Profit] < 0
+			    ),
+			    [Total Profit]
+			)
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Profit
+		lineageTag: 5bc03dd7-457c-464e-b987-2c21a26fa2a0
+
+	/// Total Sales for the Consumer segment.
+	measure 'Sales Consumer' =
+			VAR result = CALCULATE([Total Sales], dim_Customer[Segment] = "Consumer")
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: 222d0066-3a81-4614-8e06-8562105fa613
+
+	/// Total Sales for the Corporate segment.
+	measure 'Sales Corporate' =
+			VAR result = CALCULATE([Total Sales], dim_Customer[Segment] = "Corporate")
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: ed8e4729-c75e-47f6-95f2-636f11660ec9
+
+	/// Total Sales for the Home Office segment.
+	measure 'Sales Home Office' =
+			VAR result = CALCULATE([Total Sales], dim_Customer[Segment] = "Home Office")
+			RETURN result
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: cea1d2e8-14b7-45d7-9aba-cb2b93b32c96
+
 	column placeholder
+		lineageTag: 05faf449-2339-4206-9033-4f60ed7b2157
 		isNameInferred
 		sourceColumn: [placeholder]
 
