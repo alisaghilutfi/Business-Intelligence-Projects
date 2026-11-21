@@ -97,6 +97,19 @@ the `cohort_analysis` view does not validate source data quality.
 
 ---
 
+## Query Result Previews
+
+**Q1 — Customer Segmentation**
+![Customer Segmentation](docs/images/q1_customer_segmentation.png)
+
+**Q2 — Revenue Comparison**
+![Revenue Comparison](docs/images/q2_revenue_comparison.png)
+
+**Q3 — Retention by Cohort**
+![Retention by Cohort](docs/images/q3_retention_by_cohort.png)
+
+---
+
 ## How to Use This Project
 
 1. Connect DBeaver to the star-schema transactional database
