@@ -85,6 +85,14 @@ no analytical background.
 
 ---
 
+## Dashboard
+
+![Executive Dashboard](docs/images/Dashboard.PNG)
+
+![Columns Overview](docs/images/Columns.PNG)
+
+---
+
 ## Key Findings
 
 - **Churn rate: 26.86%** (1,796 of 6,687 customers); **Competitor activity drives 45%**
